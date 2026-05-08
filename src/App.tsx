@@ -1,21 +1,37 @@
+import { Icon } from "./components/Icon/Icon";
+import Box from "./components/layouts/Box";
+import SvgIcon from "./components/svg-icon/SvgIcon";
+import HeadingText from "./components/text/HeadingText";
+import Text from "./components/text/Text";
+import { Color } from "./util/Theme";
+
 function App() {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <h1 style={{ backgroundColor: "#55f3ac" }}>h1 test</h1>
+    <Box gap={12}>
+      <HeadingText variant="h1" color={Color.MONO_GREY_500}>
+        h1 test
+      </HeadingText>
 
-      <h2>h2 test</h2>
+      <HeadingText variant="h2">h2 test</HeadingText>
 
-      <h3>h3 test</h3>
+      <HeadingText variant="h3">h3 test</HeadingText>
 
-      <h4>h4 test</h4>
+      <HeadingText variant="h4">h4 test</HeadingText>
 
-      <p>p test</p>
+      <p color="#fff">p test</p>
       <span> span test</span>
       <a href="#">a test</a>
       <br />
       <input type="text" value="input test" />
       <textarea value="textarea test" />
-    </div>
+
+      <Text size="24px" weight="700" color="#1b8cfd44">
+        12323
+      </Text>
+
+      <SvgIcon name="zoomIn" color="#111" />
+      <Icon name="zoom-in" color="#111" />
+    </Box>
   );
 }
 

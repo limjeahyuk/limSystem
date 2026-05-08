@@ -1,0 +1,43 @@
+export const Color = {
+  MONO_BG: "#f9f9f9",
+  MONO_GREY_25: "#FAFAFA",
+  MONO_GREY_50: "#F7F7F8",
+  MONO_GREY_100: "#EEEEF0",
+  MONO_GREY_150: "#E8E8ED",
+  MONO_GREY_200: "#D9D9DE",
+  MONO_GREY_250: "#DBDBDE",
+  MONO_GREY_300: "#B9BAC0",
+  MONO_GREY_400: "#93949D",
+  MONO_GREY_500: "#6F707A",
+  MONO_GREY_600: "#5E5F6A",
+  MONO_GREY_700: "#4D4E56",
+  MONO_GREY_800: "#42434A",
+  MONO_GREY_900: "#3A3B40",
+  MONO_GREY_950: "#26262B",
+
+  PURPLE_150: "#E4DDF6",
+  PURPLE_100: "#f0e9fa",
+  PURPLE_50: "#F7F2FF",
+  PURPLE_25: "#FCFAFF",
+
+  WHITE: "#FFFFFF",
+  BLACK: "#000000",
+  BLACK_100: "#343A3F",
+  BLACK_200: "#3D3D46",
+  RED_50: "#FFF1F4",
+  RED_100: "#FFE4EA",
+  RED_150: "#FFDBE4",
+  RED_170: "#FF7B9D",
+  RED_200: "#FECDD8",
+  RED_300: "#FDA4B8",
+  RED_400: "#FB718F",
+  RED_500: "#F43F67",
+  RED_600: "#E11D48",
+  RED_700: "#BE1238",
+  RED_800: "#9F1231",
+  RED_900: "#88132D",
+  RED_950: "#4C0515",
+} as const;
+
+// (선택) 만약 Color를 타입으로도 사용해야 한다면 아래 코드를 추가하세요.
+export type ColorType = (typeof Color)[keyof typeof Color];
