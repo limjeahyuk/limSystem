@@ -4,9 +4,15 @@ interface IconProps {
   name: IconName;
   size?: number | string;
   color?: string;
+  style?: React.CSSProperties;
 }
 
-const Icon = ({ name, size = 24, color = "currentColor" }: IconProps) => {
+const Icon = ({
+  name,
+  size = 24,
+  color = "currentColor",
+  style,
+}: IconProps) => {
   const icon = ICON_DATA[name];
   if (!icon) return null;
   return (
@@ -14,7 +20,7 @@ const Icon = ({ name, size = 24, color = "currentColor" }: IconProps) => {
       width={size}
       height={size}
       fill={color}
-      style={{ color: color }}
+      style={style}
       aria-hidden="true"
       viewBox={icon.viewBox}
     >
