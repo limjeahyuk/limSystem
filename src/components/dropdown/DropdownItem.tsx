@@ -1,6 +1,10 @@
+"use client";
+
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Text } from "../text/Text";
+import Text from "../text/Text";
+import { Icon } from "../Icon/Icon";
+import { Color } from "../../util/Theme";
 
 interface Props {
   name?: string;
@@ -36,11 +40,11 @@ const DropdownMenuItem = ({
       >
         {startIcon && <div className="start-icon">{startIcon}</div>}
         <span className="menu-label">
-          <Text variant="bodyMd">{children}</Text>
+          <Text size="14px">{children}</Text>
         </span>
         {selected && (
           <span className="end-icon">
-            <SvgIcon name="check" />
+            <Icon name="check" />
           </span>
         )}
         {endIcon && <div className="end-icon">{endIcon}</div>}
@@ -104,7 +108,7 @@ const Container = styled.div<{
     }
 
     :hover {
-      background: ${Color.COOL_GREY_50};
+      background: ${Color.GRAY_50};
     }
   }
 
@@ -116,11 +120,11 @@ const Container = styled.div<{
     props.selectedSetting &&
     css`
       button {
-        background: ${Color.COOL_GREY_50};
+        background: ${Color.GRAY_50};
         border-radius: 8px;
         span {
           font-weight: 600;
-          color: ${Color.PURPLE_700};
+          color: ${Color.TEAL_700};
         }
       }
     `}

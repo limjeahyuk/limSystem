@@ -1,108 +1,125 @@
-import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
-type TextElementType =
-  | "dt"
-  | "dd"
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "p"
-  | "span"
-  | "strong"
-  | "legend";
+type textSize = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
-interface BaseProps {
+type textWeight = "300" | "400" | "500" | "700";
+
+interface TextProps {
+  as?: React.ElementType;
+  size?: textSize;
+  fontSize?: string;
+  weight?: textWeight;
+  color?: string;
   children: React.ReactNode;
-  weight?: React.CSSProperties["fontWeight"];
-  color?: React.CSSProperties["color"];
-  size?: React.CSSProperties["fontSize"];
-  lineHight?: React.CSSProperties["lineHeight"];
-  letterSpacing?: React.CSSProperties["letterSpacing"];
+  center?: boolean;
   style?: React.CSSProperties;
+  lineClamp?: number;
+  align?: React.CSSProperties["textAlign"];
 }
 
-interface TextProps<T> extends BaseProps {
-  as?: T;
-  trim?: boolean;
-  ellipsis?: boolean;
-  lines?: number;
-}
-
-const Text = <T extends TextElementType = "span">({
-  as,
-  children,
+const Text = ({
+  as = "p",
+  size = "2",
+  fontSize,
   weight = "400",
   color,
-  size = "14px",
-  lineHight,
-  letterSpacing,
-  trim,
-  ellipsis,
-  lines,
-  style,
-}: TextProps<T>) => {
+  children,
+  lineClamp,
+  align,
+}: TextProps) => {
   return (
     <StyledText
       as={as}
       size={size}
-      color={color}
-      lineHight={lineHight}
-      letterSpacing={letterSpacing}
+      fontSize={fontSize}
       weight={weight}
-      trim={trim}
-      ellipsis={ellipsis}
-      lines={lines}
-      style={style}
+      color={color}
+      lineClamp={lineClamp}
+      align={align}
     >
       {children}
     </StyledText>
   );
 };
 
-const StyledText = styled.span<{
-  as?: React.ElementType;
-  size?: React.CSSProperties["fontSize"];
-  weight?: React.CSSProperties["fontWeight"];
-  lineHight?: React.CSSProperties["lineHeight"];
-  letterSpacing?: React.CSSProperties["letterSpacing"];
-  trim?: boolean;
-  ellipsis?: boolean;
-  lines?: number;
-  color?: React.CSSProperties["color"];
-}>`
-  font-size: ${({ size }) => size};
-  letter-spacing: ${({ letterSpacing }) => letterSpacing};
-  line-height: ${({ lineHight }) => lineHight};
+const TYPO__SIZES: Record<textSize, ReturnType<typeof css>> = {
+  "1": css`
+    font-size: 12px;
+    letter-spacing: 0.0025em;
+    line-height: 16px;
+  `,
+  "2": css`
+    font-size: 14px;
+    letter-spacing: 0em;
+    line-height: 20px;
+  `,
+  "3": css`
+    font-size: 16px;
+    letter-spacing: 0em;
+    line-height: 24px;
+  `,
+  "4": css`
+    font-size: 18px;
+    letter-spacing: -0.0025em;
+    line-height: 26px;
+  `,
+  "5": css`
+    font-size: 20px;
+    letter-spacing: -0.005em;
+    line-height: 28px;
+  `,
+  "6": css`
+    font-size: 24px;
+    letter-spacing: -0.00625em;
+    line-height: 30px;
+  `,
+  "7": css`
+    font-size: 28px;
+    letter-spacing: -0.0075em;
+    line-height: 36px;
+  `,
+  "8": css`
+    font-size: 35px;
+    letter-spacing: -0.01em;
+    line-height: 40px;
+  `,
+  "9": css`
+    font-size: 60px;
+    letter-spacing: -0.025em;
+    line-height: 60px;
+  `,
+};
 
-  font-weight: ${({ weight }) => weight};
+const StyledText = styled.p<{
+  size: textSize;
+  fontSize?: string;
+  weight: textWeight;
+  color?: string;
+  lineClamp?: number;
+  align?: React.CSSProperties["textAlign"];
+}>`
+  font-family: inherit;
+  margin: 0;
   color: ${({ color }) => color};
 
-  ${({ trim }) =>
-    trim &&
-    css`
-      line-height: 1;
-    `}
+  ${({ size }) => TYPO__SIZES[size]}
 
-  ${({ ellipsis }) =>
-    ellipsis &&
-    css`
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    `}
+  font-weight : ${({ weight }) => weight};
+  font-size: ${({ fontSize }) => fontSize};
 
-      ${({ lines }) =>
-    lines &&
+  text-align: ${({ align }) => align};
+
+  ${({ lineClamp }) =>
+    lineClamp &&
     css`
-      display: webkit-box;
-      -webkit-line-clamp: ${lines};
+      display: -webkit-box;
+      -webkit-line-clamp: ${lineClamp};
       -webkit-box-orient: vertical;
       overflow: hidden;
-    `}
+      text-overflow: ellipsis;
+      word-break: keep-all;
+    `};
 `;
 
 export default Text;

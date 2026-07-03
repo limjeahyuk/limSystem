@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import styled from "@emotion/styled";
@@ -43,13 +45,13 @@ const SearchInput = ({
 }: Props & ISearchInputProps) => {
   // TODO onClear, onClose
   const clearIcon =
-    onClear && value.length > 0 ? (
+    onClear && value && value.length > 0 ? (
       <button
         onClick={onClear}
         style={{
           width: "15px",
           height: "15px",
-          backgroundColor: Color.MONO_GREY_300,
+          backgroundColor: Color.GRAY_300,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -70,7 +72,7 @@ const SearchInput = ({
     <StyledSearchInput style={style}>
       <TextInput
         size={size}
-        leftIcon={<Icon name="search" size={20} color={Color.MONO_GREY_300} />}
+        leftIcon={<Icon name="search" size={20} color={Color.GRAY_300} />}
         rightIcon={clearIcon}
         placeholder={placeholder}
         value={value}
@@ -81,7 +83,7 @@ const SearchInput = ({
       />
       {/* {onClose && (
         <button onClick={onClose}>
-          <SvgIcon name="delete" size={20} color={Color.COOL_GREY_400} />
+          <SvgIcon name="delete" size={20} color={Color.GRAY_400} />
         </button>
       )} */}
     </StyledSearchInput>

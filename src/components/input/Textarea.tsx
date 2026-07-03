@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "@emotion/styled";
 import { Color } from "util/Theme";
 
@@ -47,20 +49,20 @@ const StyledTextArea = styled.textarea<{
   height: ${(props) => props.height};
   padding: 8px 10px;
   border-radius: 8px;
-  outline: 1px solid ${Color.MONO_GREY_200};
+  outline: 1px solid ${Color.GRAY_200};
   font-size: 14px;
   font-weight: 500;
   border: none;
   resize: none;
-  color: ${Color.MONO_GREY_700};
+  color: ${Color.GRAY_700};
   box-sizing: border-box;
 
   &:disabled {
-    background: ${Color.MONO_GREY_50};
+    background: ${Color.GRAY_50};
   }
 
   &::placeholder {
-    color: ${Color.MONO_GREY_300};
+    color: ${Color.GRAY_300};
   }
   &:focus {
     outline-width: 1px;
@@ -68,7 +70,7 @@ const StyledTextArea = styled.textarea<{
   }
 
   &:read-only {
-    background-color: ${Color.MONO_GREY_50};
+    background-color: ${Color.GRAY_50};
   }
 `;
 

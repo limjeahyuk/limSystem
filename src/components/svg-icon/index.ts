@@ -1,4 +1,4 @@
-import ZoomIn from "assets/icons/zoom-in.svg?react";
+import ZoomIn from "assets/icons/zoom-in.svg";
 
 export type iconSizeType = number;
 

@@ -5,30 +5,29 @@
   "type": "module",
   "scripts": {
     "generate:icons": "node generate-icon-types.ts",
-    "dev": "npm run generate:icons && vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "npm run generate:icons && next dev",
+    "build": "npm run generate:icons && next build",
+    "start": "next start",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@floating-ui/react": "^0.27.19",
+    "next": "^16.2.10",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.10",
-    "vite-plugin-svgr": "^5.2.0"
+    "typescript-eslint": "^8.58.2"
   }
 }

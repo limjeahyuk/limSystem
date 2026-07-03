@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { type IconName } from "../Icon/icon-data";
@@ -45,7 +47,7 @@ const Avatar = (props: AvatarProps) => {
     <StyledAvatar
       as={isInteractive ? "button" : "span"}
       size={size}
-      backgroundColor={props.backgroundColor || Color.MONO_GREY_300}
+      backgroundColor={props.backgroundColor || Color.GRAY_300}
       isInteractive={isInteractive}
       data-state={state}
       onClick={isDisabled ? undefined : onClick}
@@ -105,7 +107,7 @@ const StyledAvatar = styled.div<{
         &[data-state="hover"],
         &:active,
         &[data-state="pressed"] {
-          background-color: ${Color.MONO_GREY_700};
+          background-color: ${Color.GRAY_700};
         }
 
         &:focus,

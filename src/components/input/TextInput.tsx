@@ -1,3 +1,5 @@
+"use client";
+
 import React, { forwardRef } from "react";
 
 import { css } from "@emotion/react";
@@ -73,31 +75,31 @@ const StyledTextInput = styled.div<{
     padding-left: ${(prop) => (prop.leftIcon ? "30px" : "8px !important")};
     border-radius: 8px;
     background: #fff;
-    border: 1px solid ${Color.MONO_GREY_200};
+    border: 1px solid ${Color.GRAY_200};
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
     letter-spacing: -2%;
-    color: ${Color.MONO_GREY_900};
+    color: ${Color.GRAY_900};
     outline: 0;
     width: ${({ width }) => width};
     text-align: ${({ textAlign }) => textAlign};
 
     &::placeholder {
-      color: ${Color.MONO_GREY_300} !important;
+      color: ${Color.GRAY_300} !important;
     }
     &:focus {
-      border-color: ${Color.MONO_GREY_700};
+      border-color: ${Color.GRAY_700};
       background: #fff;
     }
     &:disabled {
-      border-color: ${Color.MONO_GREY_200};
-      background: ${Color.MONO_GREY_50};
-      color: ${Color.MONO_GREY_300};
+      border-color: ${Color.GRAY_200};
+      background: ${Color.GRAY_50};
+      color: ${Color.GRAY_300};
     }
     &:read-only {
-      border: 1px solid ${Color.MONO_GREY_200};
-      background-color: ${Color.MONO_GREY_50};
+      border: 1px solid ${Color.GRAY_200};
+      background-color: ${Color.GRAY_50};
     }
   }
 

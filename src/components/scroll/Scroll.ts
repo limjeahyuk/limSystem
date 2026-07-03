@@ -1,3 +1,5 @@
+"use client";
+
 import { css } from "@emotion/react";
 import { Color } from "../../util/Theme";
 
@@ -7,7 +9,7 @@ export const customScrollbar = css`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: ${Color.MONO_GREY_300};
+    background-color: ${Color.GRAY_300};
     border: 4px solid transparent;
     background-clip: content-box;
     border-radius: 8px;

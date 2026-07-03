@@ -1,0 +1,26 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  compiler: {
+    emotion: true,
+  },
+  // SVG를 React 컴포넌트로 import (기존 vite-plugin-svgr 대체)
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
+  },
+};
+
+export default nextConfig;

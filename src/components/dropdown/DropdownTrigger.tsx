@@ -1,31 +1,34 @@
-import tokens from "tokens";
-import { Input } from "../Input";
-import { Icon } from "../Icon/Icon";
-import { InputBaseProps } from "../Input/Input";
+"use client";
+
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import TextInput, { type InputSizeType } from "../input/TextInput";
+import { Icon } from "../Icon/Icon";
 
-interface DropdownTriggerProps extends InputBaseProps {
+interface DropdownTriggerProps {
+  size?: InputSizeType;
+  value?: string;
+  placeholder?: string;
+  readOnly?: boolean;
   isOpen?: boolean;
 }
 
 const DropdownTrigger = ({
-  variant,
   size,
   value,
   placeholder,
   readOnly = true,
   isOpen = false,
 }: DropdownTriggerProps) => {
-  console.log("dropdownTrigger", readOnly);
   return (
     <StyledInputWrapper
-      variant={variant}
       size={size}
       value={value}
       placeholder={placeholder}
-      icon="chevron-down"
+      rightIcon={<Icon name="chevron-down" size={20} />}
       readOnly={readOnly}
+      hasPointCursor
+      noIconEvent
       isOpen={isOpen}
     />
   );
@@ -33,15 +36,16 @@ const DropdownTrigger = ({
 
 export default DropdownTrigger;
 
-const StyledInputWrapper = styled(Input)<{ isOpen: boolean }>`
+const StyledInputWrapper = styled(TextInput, {
+  shouldForwardProp: (prop) => prop !== "isOpen",
+})<{ isOpen: boolean }>`
   cursor: pointer;
 
   div {
     cursor: pointer;
   }
 
-  .icon-wrapper,
-  svg {
+  .right-icon svg {
     transition: transform 0.2s ease-in-out;
 
     ${(props) =>
