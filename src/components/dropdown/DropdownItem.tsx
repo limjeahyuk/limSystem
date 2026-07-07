@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Text from "../text/Text";
 import { Icon } from "../Icon/Icon";
-import { Color } from "../../util/Theme";
+import { Color } from "../../util/theme";
 
 interface Props {
   name?: string;

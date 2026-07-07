@@ -5,7 +5,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { Icon } from "../Icon/Icon";
-import { Color } from "util/Theme";
+import { Color } from "util/theme";
 import TextInput, { type ISearchInputProps } from "./TextInput";
 
 type InputSizeType = "small" | "medium" | "small-medium";

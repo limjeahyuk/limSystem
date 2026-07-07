@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "@emotion/styled";
-import { Color } from "util/Theme";
+import { Color } from "util/theme";
 
 interface Props {
   height?: string;

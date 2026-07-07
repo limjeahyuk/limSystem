@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef } from "react";
 import { LayoutsProps, layoutStyles, SpaceValue, toCssValue } from "./system";
 import styled from "@emotion/styled";
@@ -7,7 +9,6 @@ interface FlexProps extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
   as?: "div" | "span";
   display?: "none" | "inline-flex" | "flex";
   row?: boolean;
-
   direction?: React.CSSProperties["flexDirection"];
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   justify?: "start" | "center" | "end" | "between";

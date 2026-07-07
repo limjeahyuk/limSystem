@@ -4,7 +4,7 @@ import React, { forwardRef } from "react";
 
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Color } from "util/Theme";
+import { Color } from "util/theme";
 
 export type InputSizeType = "small" | "medium" | "small-medium";
 

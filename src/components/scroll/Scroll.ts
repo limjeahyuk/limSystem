@@ -1,7 +1,7 @@
 "use client";
 
 import { css } from "@emotion/react";
-import { Color } from "../../util/Theme";
+import { Color } from "../../util/theme";
 
 export const customScrollbar = css`
   ::-webkit-scrollbar {

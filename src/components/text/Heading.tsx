@@ -9,7 +9,7 @@ type TextWrap = "wrap" | "nowrap" | "balance" | "pretty";
 type TextTrim = "normal" | "start" | "end" | "both";
 
 interface TextProps {
-  as?: "span" | "div" | "label" | "p";
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   size?: TextSize;
   fontSize?: string;
   weight?: TextWeight;
@@ -23,9 +23,9 @@ interface TextProps {
   truncate?: boolean;
 }
 
-const Text = ({
-  as = "span",
-  size = "2",
+const Heading = ({
+  as = "h1",
+  size = "6",
   fontSize,
   weight = "400",
   color,
@@ -38,7 +38,7 @@ const Text = ({
   style,
 }: TextProps) => {
   return (
-    <StyledText
+    <StyledHeading
       as={as}
       size={size}
       fontSize={fontSize}
@@ -52,7 +52,7 @@ const Text = ({
       style={style}
     >
       {children}
-    </StyledText>
+    </StyledHeading>
   );
 };
 
@@ -104,7 +104,7 @@ const TYPO__SIZES: Record<TextSize, ReturnType<typeof css>> = {
   `,
 };
 
-const StyledText = styled.p<{
+const StyledHeading = styled.h1<{
   size: TextSize;
   fontSize?: string;
   weight: TextWeight;
@@ -178,4 +178,4 @@ const StyledText = styled.p<{
     `}
 `;
 
-export default Text;
+export default Heading;
