@@ -1,3 +1,5 @@
+type ColorType = "RED" | "BLUE" | "GRAY" | "TEAL" | "ORANGE" | "GREEN";
+
 const Color = {
   WHITE: "#FFFFFF",
   BLACK: "#000000",
@@ -85,4 +87,4 @@ const Radius = {
   full: "999px",
 };
 
-export { Color, Radius };
+export { Color, Radius, type ColorType };

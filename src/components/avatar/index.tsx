@@ -11,7 +11,7 @@ interface AvatarProps {
   radius?: keyof typeof Radius;
   fallback?: React.ReactNode;
   src?: string;
-  isInteractive?: boolean;
+  onClick?: () => void;
 }
 
 const Avatar = ({
@@ -20,7 +20,7 @@ const Avatar = ({
   radius = "medium",
   fallback,
   src,
-  isInteractive = true,
+  onClick,
 }: AvatarProps) => {
   const renderContent = () => {
     if (src) {
@@ -33,12 +33,13 @@ const Avatar = ({
     }
     return null;
   };
+
   return (
     <StyledAvatar
       size={toCssValue(size)}
       color={color}
       radius={Radius[radius]}
-      isInteractive={isInteractive}
+      onClick={onClick}
     >
       {renderContent()}
     </StyledAvatar>
@@ -49,7 +50,7 @@ const StyledAvatar = styled.div<{
   size?: string;
   color: string;
   radius: string;
-  isInteractive: boolean;
+  onClick?: () => void;
 }>`
   display: inline-flex;
   align-items: center;
@@ -64,7 +65,7 @@ const StyledAvatar = styled.div<{
   background-color: ${({ color }) => color};
   border-radius: ${({ radius }) => radius};
 
-  ${({ isInteractive }) => isInteractive && interactiveStyled}
+  ${({ onClick }) => onClick && interactiveStyled}
 `;
 
 const AvatarImage = styled.img`

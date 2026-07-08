@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 type TextSize = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-type TextWeight = "300" | "400" | "500" | "700";
+type TextWeight = "300" | "400" | "500" | "600" | "700";
 type TextWrap = "wrap" | "nowrap" | "balance" | "pretty";
 type TextTrim = "normal" | "start" | "end" | "both";
 

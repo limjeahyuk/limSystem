@@ -9,12 +9,21 @@ import SvgIcon from "../components/svg-icon/SvgIcon";
 import { Color } from "../util/theme";
 import { Text } from "src/components/text";
 import Avatar from "src/components/avatar";
-import Badge from "src/components/Badge/Badge";
-import { TestBadge } from "src/components/Badge";
+import { Badge, BadgeBasic } from "src/components/badge";
+import Button from "src/components/button/Button";
+import Callout from "src/components/callout";
+import {
+  HorizontalDivider,
+  VerticalDivider,
+} from "src/components/divider/Divider";
+import Checkbox from "src/components/checkbox/Checkbox";
+import { useState } from "react";
 
 export default function Home() {
+  const [selected, setSelected] = useState(false);
+
   return (
-    <Flex gap={12} style={{ padding: "10px" }}>
+    <Flex gap={12} p={10} mb={100}>
       <Flex
         row
         align="baseline"
@@ -104,8 +113,14 @@ export default function Home() {
 
       <Flex row gap={10} align="center" fullWidth justify="center">
         <Box width={300} height={300} bg={Color.BLUE_400} />
+
+        <VerticalDivider height={200} color={Color.BLUE_200} />
         <Box width={200} height={200} bg={Color.BLUE_300} />
+
+        <VerticalDivider height={100} color={Color.TEAL_500} />
         <Box width={100} height={100} bg={Color.BLUE_200} />
+
+        <VerticalDivider color={Color.RED_500} />
         <Flex gap={5}>
           <Box width={10} height={10} bg={Color.RED_100} />
           <Box width={10} height={20} bg={Color.RED_200} />
@@ -133,7 +148,7 @@ export default function Home() {
           radius="medium"
           color={Color.GRAY_400}
           fallback={<Icon name="Print" size={40} />}
-          isInteractive={false}
+          onClick={() => console.log("1232123")}
         />
         <Avatar
           fallback="AB"
@@ -144,7 +159,7 @@ export default function Home() {
       </Flex>
 
       <Flex row gap={5}>
-        <Badge
+        <BadgeBasic
           padding="8px"
           color={Color.TEAL_100}
           radius={12}
@@ -154,29 +169,117 @@ export default function Home() {
           <Text size="2" color="#111" weight="700" trim="end">
             NEW
           </Text>
-        </Badge>
+        </BadgeBasic>
 
-        <TestBadge
+        <Badge
           size="2"
           label="NEW"
           variant="outline"
           color="BLUE"
           radius="full"
         />
-        <TestBadge
+        <Badge
           size="2"
           label="NEW"
           startIcon="airplay"
           variant="solid"
           color="GRAY"
         />
-        <TestBadge
+        <Badge
           size="2"
           label="NEW"
           variant="surface"
           endIcon="bluetooth"
           color="ORANGE"
         />
+      </Flex>
+
+      <Flex row gap={4}>
+        <Button
+          variant="surface"
+          color="GREEN"
+          label="TEST"
+          startIcon="Print"
+          radius="large"
+          onClick={() => {}}
+        />
+
+        <Button
+          variant="surface"
+          color="RED"
+          label="TEST"
+          startIcon="Print"
+          radius="large"
+          onClick={() => {}}
+        />
+
+        <Button
+          variant="surface"
+          color="GRAY"
+          label="TEST"
+          startIcon="Print"
+          radius="large"
+          onClick={() => {}}
+        />
+
+        <Button
+          variant="surface"
+          color="ORANGE"
+          label="TEST"
+          startIcon="Print"
+          radius="large"
+          onClick={() => {}}
+        />
+
+        <Button
+          variant="surface"
+          color="TEAL"
+          label="TEST"
+          startIcon="Print"
+          radius="large"
+          onClick={() => {}}
+        />
+      </Flex>
+
+      <HorizontalDivider />
+
+      <Flex gap={5}>
+        <Callout
+          variant="surface"
+          size="1"
+          label="The goal of typography is to relate font size, line height, and line width in a proportional way that maximizes beauty and makes reading easier and more pleasantThe goal of typography is to relate font size, line height, and line width in a proportional way that maximizes beauty and makes reading easier and more pleasantThe goal of typography is to relate font size, line height, and line width in a proportional way that maximizes beauty and makes reading easier and more pleasant"
+          fullWidth
+          color="GREEN"
+        />
+        <Callout
+          variant="surface"
+          size="2"
+          label={`123321
+          21312312
+          12312
+          `}
+          color="ORANGE"
+          icon="airplay"
+        />
+        <Callout variant="surface" size="3" label="123" color="TEAL" asChild>
+          <Flex row gap={12}>
+            <Icon name="bookmark" size={20} />
+            <Text size="4">children Callout</Text>
+          </Flex>
+        </Callout>
+      </Flex>
+
+      <Flex row gap={10}>
+        <Checkbox />
+        <Checkbox
+          checked={selected}
+          onChange={(e) => {
+            setSelected(e.target.checked);
+          }}
+          size="2"
+        />
+        <Checkbox size="3" label="22222" />
+        <Checkbox defaultChecked label="123" />
       </Flex>
     </Flex>
   );

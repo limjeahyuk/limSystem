@@ -1,65 +1,67 @@
+import { ColorType, Radius } from "util/theme";
+import { Icon } from "../Icon/Icon";
+import { Text } from "../text";
+import {
+  BadgeSize,
+  BadgeVariant,
+  COLOR_STYLES,
+  SIZE_STYLES,
+} from "./Badge.styled";
+import { IconName } from "../Icon/icon-data";
 import styled from "@emotion/styled";
-import { toCssValue } from "../layouts/system";
 
 interface BadgeProps {
-  children: React.ReactNode;
-  color?: string;
-  border?: React.CSSProperties["border"];
-  borderColor?: React.CSSProperties["borderColor"];
-  radius?: string | number;
-  padding?: React.CSSProperties["padding"];
-  height?: string;
-  gap?: string;
+  label: string;
+  size?: BadgeSize;
+  variant: BadgeVariant;
+  startIcon?: IconName;
+  endIcon?: IconName;
+  color: ColorType;
+  radius?: keyof typeof Radius;
 }
 
 const Badge = ({
-  children,
+  label,
+  size = "2",
+  variant = "surface",
+  startIcon,
+  endIcon,
   color,
-  border,
-  borderColor,
-  radius,
-  padding,
-  height = "20px",
-  gap,
+  radius = "medium",
 }: BadgeProps) => {
   return (
     <StyledBadge
+      variant={variant}
       color={color}
-      border={border}
-      borderColor={borderColor}
-      radius={toCssValue(radius)}
-      padding={padding}
-      height={height}
-      gap={gap}
+      size={size}
+      radius={Radius[radius]}
     >
-      {children}
+      {startIcon && <Icon name={startIcon} size="1em" color="currentColor" />}
+      {
+        <Text weight="500" trim="end">
+          {label}
+        </Text>
+      }
+      {endIcon && <Icon name={endIcon} size="1em" color="currentColor" />}
     </StyledBadge>
   );
 };
 
 const StyledBadge = styled.div<{
-  color?: string;
-  border?: React.CSSProperties["border"];
-  borderColor?: string;
-  radius?: string;
-  padding?: React.CSSProperties["padding"];
-  height: string;
-  gap?: string;
+  size: BadgeSize;
+  variant: BadgeVariant;
+  color: ColorType;
+  radius: string;
 }>`
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
-  height: ${({ height }) => height};
-
-  background-color: ${({ color }) => color};
-  border: ${({ border }) => border};
-  border-color: ${({ borderColor }) => borderColor};
+  ${({ size }) => SIZE_STYLES[size]}
+  ${({ variant, color }) => COLOR_STYLES[color][variant]}
 
   border-radius: ${({ radius }) => radius};
-  padding: ${({ padding }) => `0 ${padding}`};
-  gap: ${({ gap }) => gap};
 `;
 
 export default Badge;
