@@ -1,39 +1,15 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { forwardRef } from "react";
+import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { ColorType } from "util/theme";
 import { Icon } from "../Icon/Icon";
 import { Text } from "../text";
-
-type CheckboxSize = "1" | "2" | "3";
-type CheckboxVariant = "classic" | "surface" | "soft";
-
-const SIZE_STYLES: Record<CheckboxSize, ReturnType<typeof css>> = {
-  "1": css`
-    width: 14px;
-    height: 14px;
-    svg {
-      width: 10px;
-      height: 10px;
-    }
-  `,
-  "2": css`
-    width: 16px;
-    height: 16px;
-    svg {
-      width: 12px;
-      height: 12px;
-    }
-  `,
-  "3": css`
-    width: 20px;
-    height: 20px;
-    svg {
-      width: 14px;
-      height: 14px;
-    }
-  `,
-};
+import { interactiveStyled } from "util/styled";
+import {
+  CheckboxSize,
+  CheckboxVariant,
+  COLOR_STYLES,
+  SIZE_STYLES,
+} from "./Checkbox.styled";
 
 interface CheckboxProps {
   size?: CheckboxSize;
@@ -43,6 +19,7 @@ interface CheckboxProps {
 
   checked?: boolean;
   defaultChecked?: boolean;
+  indeterminate?: boolean;
   disabled?: boolean;
 
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -64,25 +41,54 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       name,
       value,
       className,
+      color = "BLUE",
+      variant = "classic",
+      indeterminate = false,
     },
     ref,
   ) => {
+    const internalRef = useRef<HTMLInputElement>(null);
+
+    const setRefs = useCallback(
+      (node: HTMLInputElement) => {
+        internalRef.current = node;
+        if (typeof ref === "function") {
+          ref(node);
+        } else if (ref) {
+          ref.current = node;
+        }
+      },
+      [ref],
+    );
+
+    useEffect(() => {
+      if (internalRef.current) {
+        internalRef.current.indeterminate = indeterminate;
+      }
+    }, [indeterminate]);
+
     return (
       <CheckboxContainer disabled={disabled} className={className}>
         <HiddenInput
           type="checkbox"
           className="peer-input"
-          ref={ref}
+          ref={setRefs}
           checked={checked}
           defaultChecked={defaultChecked}
           disabled={disabled}
           onChange={onChange}
           name={name}
           value={value}
+          aria-checked={indeterminate ? "mixed" : checked}
         />
 
-        <Control className="checkbox-control" size={size}>
-          <Icon name="check" />
+        <Control
+          size={size}
+          color={color}
+          variant={variant}
+          data-indeterminate={indeterminate}
+        >
+          <Icon name={indeterminate ? "minus" : "check"} />
         </Control>
 
         {label && <Text size={size}>{label}</Text>}
@@ -90,36 +96,6 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     );
   },
 );
-
-const sizeStyles = {
-  "1": css`
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    svg {
-      width: 12px;
-      height: 12px;
-    }
-  `,
-  "2": css`
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    svg {
-      width: 14px;
-      height: 14px;
-    }
-  `,
-  "3": css`
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  `,
-};
 
 const CheckboxContainer = styled.label<{ disabled: boolean }>`
   display: inline-flex;
@@ -142,25 +118,32 @@ const HiddenInput = styled.input`
   border: 0;
 `;
 
-const Control = styled.div<{ size: CheckboxSize }>`
+const Control = styled.div<{
+  size: CheckboxSize;
+  variant: CheckboxVariant;
+  color: ColorType;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
-  border: 1px solid #cbcfd2;
+
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
 
-  ${({ size }) => sizeStyles[size]}
+  ${({ size }) => SIZE_STYLES[size]}
+  ${({ variant, color }) => COLOR_STYLES[color][variant]}
 
-  .peer-input:checked + & {
-    background-color: #1872e2;
-    border-color: #1872e2;
+  svg {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
   }
+
   .peer-input:focus-visible + & {
     outline: 2px solid #83c5fc;
     outline-offset: 2px;
   }
+
+  ${interactiveStyled}
 `;
 
 export default Checkbox;

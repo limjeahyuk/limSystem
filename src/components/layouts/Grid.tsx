@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 interface GridProps extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
-  as?: "div" | "span" | "section" | "article";
+  as?: "div" | "span" | "section" | "article" | "dl";
   display?: "none" | "inline-grid" | "grid";
 
   columns?: string | number;

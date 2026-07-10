@@ -16,12 +16,8 @@ import {
   HorizontalDivider,
   VerticalDivider,
 } from "src/components/divider/Divider";
-import Checkbox from "src/components/checkbox/Checkbox";
-import { useState } from "react";
 
 export default function Home() {
-  const [selected, setSelected] = useState(false);
-
   return (
     <Flex gap={12} p={10} mb={100}>
       <Flex
@@ -267,19 +263,6 @@ export default function Home() {
             <Text size="4">children Callout</Text>
           </Flex>
         </Callout>
-      </Flex>
-
-      <Flex row gap={10}>
-        <Checkbox />
-        <Checkbox
-          checked={selected}
-          onChange={(e) => {
-            setSelected(e.target.checked);
-          }}
-          size="2"
-        />
-        <Checkbox size="3" label="22222" />
-        <Checkbox defaultChecked label="123" />
       </Flex>
     </Flex>
   );
