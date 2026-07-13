@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { Badge } from "src/components/badge";
 import {
   Checkbox,
   CheckboxGroup,
   MasterCheckbox,
   useCheckboxGroup,
 } from "src/components/checkbox";
-import { Flex } from "src/components/layouts";
+import {
+  DataList,
+  DataListItem,
+  DataListLabel,
+  DataListValue,
+} from "src/components/data-list/DataList";
+import { Box, Flex } from "src/components/layouts";
 import { Text } from "src/components/text";
+import { Color } from "util/theme";
 
 const JOB_OPTIONS = [
   { label: "바텐더", value: "1" },
@@ -58,6 +66,11 @@ export default function Home() {
             value={groupValue}
             onChange={setGroupValue}
           />
+          <CheckboxGroup
+            options={JOB_OPTIONS}
+            value={groupValue}
+            onChange={setGroupValue}
+          />
         </Flex>
       </Flex>
 
@@ -72,7 +85,12 @@ export default function Home() {
           color="TEAL"
         />
         <Flex row gap={5}>
-          {JOB_OPTIONS.map((opt, index) => (
+          <CheckboxGroup
+            options={JOB_OPTIONS}
+            value={groupValue}
+            onChange={setGroupValue}
+          />
+          {/* {JOB_OPTIONS.map((opt, index) => (
             <Checkbox
               key={index}
               label={opt.label}
@@ -82,9 +100,55 @@ export default function Home() {
               size="2"
               color="RED"
             />
-          ))}
+          ))} */}
         </Flex>
       </Flex>
+
+      <Flex>
+        <DataList>
+          <DataListItem align="center">
+            <DataListLabel>Status</DataListLabel>
+            <DataListValue>
+              <Flex>
+                <Badge
+                  label="Authorized"
+                  variant="solid"
+                  size="1"
+                  color="BLUE"
+                />
+                <Text>11231212312</Text>
+              </Flex>
+            </DataListValue>
+          </DataListItem>
+
+          <DataListItem>
+            <DataListLabel
+              color={Color.BLUE_400}
+              fontWeight={700}
+              minWidth="100px"
+            >
+              ID
+            </DataListLabel>
+            <DataListValue color={Color.BLUE_700} fontWeight={500}>
+              u_2J89JSA4GJ
+            </DataListValue>
+          </DataListItem>
+
+          <DataListItem>
+            <DataListLabel minWidth="200px">Name</DataListLabel>
+            <DataListValue>Vlad Moroz</DataListValue>
+          </DataListItem>
+
+          <DataListItem>
+            <DataListLabel>Email</DataListLabel>
+            <DataListValue>vlad@workos.com</DataListValue>
+          </DataListItem>
+        </DataList>
+      </Flex>
+
+      <Box>
+        <Badge label="Authorized" variant="solid" size="1" color="BLUE"></Badge>
+      </Box>
     </Flex>
   );
 }

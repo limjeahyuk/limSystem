@@ -168,7 +168,7 @@ export default function Home() {
         </BadgeBasic>
 
         <Badge
-          size="2"
+          size="1"
           label="NEW"
           variant="outline"
           color="BLUE"
@@ -182,7 +182,7 @@ export default function Home() {
           color="GRAY"
         />
         <Badge
-          size="2"
+          size="1"
           label="NEW"
           variant="surface"
           endIcon="bluetooth"

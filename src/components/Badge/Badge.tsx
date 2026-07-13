@@ -54,6 +54,7 @@ const StyledBadge = styled.div<{
   radius: string;
 }>`
   display: inline-flex;
+  vertical-align: middle;
   flex-direction: row;
   align-items: center;
   justify-content: center;
