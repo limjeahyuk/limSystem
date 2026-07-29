@@ -4,6 +4,41 @@ import { Color, ColorType } from "util/theme";
 export type ButtonVariant = "solid" | "outline" | "surface" | "ghost";
 export type ButtonSize = "1" | "2" | "3" | "4";
 
+export const ICON_SIZE_STYLES: Record<ButtonSize, ReturnType<typeof css>> = {
+  "1": css`
+    height: 24px;
+    width: 24px;
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  `,
+  "2": css`
+    height: 36px;
+    width: 36px;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  `,
+  "3": css`
+    height: 40px;
+    width: 40px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  `,
+  "4": css`
+    height: 48px;
+    width: 48px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  `,
+};
+
 export const SIZE_STYLES: Record<ButtonSize, ReturnType<typeof css>> = {
   "1": css`
     height: 24px;

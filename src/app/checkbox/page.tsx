@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Badge } from "src/components/badge";
+import { Button } from "src/components/button";
+import IconButton from "src/components/button/IconButton";
 import {
   Checkbox,
   CheckboxGroup,
@@ -14,7 +16,11 @@ import {
   DataListLabel,
   DataListValue,
 } from "src/components/data-list/DataList";
+import Dialog from "src/components/dialog/Dialog";
+import { DialogContent } from "src/components/dialog/DialogContent";
+import { Icon } from "src/components/Icon/Icon";
 import { Box, Flex } from "src/components/layouts";
+import { SegmentedControl } from "src/components/segment/SegmentController";
 import { Text } from "src/components/text";
 import { Color } from "util/theme";
 
@@ -85,12 +91,12 @@ export default function Home() {
           color="TEAL"
         />
         <Flex row gap={5}>
-          <CheckboxGroup
+          {/* <CheckboxGroup
             options={JOB_OPTIONS}
             value={groupValue}
             onChange={setGroupValue}
-          />
-          {/* {JOB_OPTIONS.map((opt, index) => (
+          /> */}
+          {JOB_OPTIONS.map((opt, index) => (
             <Checkbox
               key={index}
               label={opt.label}
@@ -100,12 +106,12 @@ export default function Home() {
               size="2"
               color="RED"
             />
-          ))} */}
+          ))}
         </Flex>
       </Flex>
 
       <Flex>
-        <DataList>
+        <DataList size="2">
           <DataListItem align="center">
             <DataListLabel>Status</DataListLabel>
             <DataListValue>
@@ -146,9 +152,72 @@ export default function Home() {
         </DataList>
       </Flex>
 
-      <Box>
-        <Badge label="Authorized" variant="solid" size="1" color="BLUE"></Badge>
-      </Box>
+      <Dialog
+        dimming={true}
+        trigger={
+          <Box>
+            <Button
+              variant="solid"
+              size="1"
+              color="BLUE"
+              label="123"
+              onClick={() => {}}
+            />
+          </Box>
+        }
+      >
+        <DialogContent
+          title="123"
+          content={<Icon name="airplay" size={24}></Icon>}
+          onCancel={() => {}}
+          onSubmit={() => {}}
+          onClose={() => {}}
+        ></DialogContent>
+      </Dialog>
+
+      <Flex gap={4} row>
+        <IconButton
+          name="airplay"
+          size="1"
+          variant="ghost"
+          onClick={() => {}}
+        />
+        <IconButton
+          name="airplay"
+          variant="outline"
+          radius="full"
+          onClick={() => {}}
+        />
+        <IconButton
+          name="airplay"
+          size="3"
+          variant="solid"
+          radius="large"
+          onClick={() => {}}
+        />
+        <IconButton
+          name="airplay"
+          size="4"
+          variant="surface"
+          radius="medium"
+          onClick={() => {}}
+        />
+        <IconButton name="airplay" radius="small" onClick={() => {}} />
+        <IconButton name="airplay" onClick={() => {}} />
+      </Flex>
+
+      <Flex width={300}>
+        <SegmentedControl
+          options={[
+            { label: "123", value: "1" },
+            { label: "234", value: "2" },
+            { label: "345", value: "3" },
+          ]}
+          value="1"
+          size="1"
+          radius="full"
+        />
+      </Flex>
     </Flex>
   );
 }

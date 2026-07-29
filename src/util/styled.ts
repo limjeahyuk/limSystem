@@ -7,6 +7,8 @@ export const interactiveStyled = css`
     content: "";
     position: absolute;
     inset: 0;
+
+    border-radius: inherit;
     background-color: transparent;
     pointer-events: none;
     transition: background-color 0.2s ease-in-out;
