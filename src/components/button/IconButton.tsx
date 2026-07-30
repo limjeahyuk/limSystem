@@ -9,6 +9,7 @@ import {
 } from "./Button.styled";
 import { interactiveStyled } from "util/styled";
 import { Icon } from "../Icon/Icon";
+import { forwardRef } from "react";
 
 interface IconButtonProps {
   size?: ButtonSize;
@@ -23,30 +24,36 @@ interface IconButtonProps {
   onClick: () => void;
 }
 
-const IconButton = ({
-  size = "2",
-  variant = "solid",
-  color = "BLUE",
-  radius = "none",
-  name,
-  disabled,
-  className,
-  onClick,
-}: IconButtonProps) => {
-  return (
-    <StyledIconButton
-      size={size}
-      variant={variant}
-      color={color}
-      radius={radius}
-      disabled={disabled}
-      onClick={onClick}
-      className={className}
-    >
-      <Icon name={name} />
-    </StyledIconButton>
-  );
-};
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  (
+    {
+      size = "2",
+      variant = "solid",
+      color = "BLUE",
+      radius = "none",
+      name,
+      disabled,
+      className,
+      onClick,
+    },
+    ref,
+  ) => {
+    return (
+      <StyledIconButton
+        ref={ref}
+        size={size}
+        variant={variant}
+        color={color}
+        radius={radius}
+        disabled={disabled}
+        onClick={onClick}
+        className={className}
+      >
+        <Icon name={name} />
+      </StyledIconButton>
+    );
+  },
+);
 
 const StyledIconButton = styled.button<{
   size: ButtonSize;

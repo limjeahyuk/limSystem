@@ -20,8 +20,11 @@ import Dialog from "src/components/dialog/Dialog";
 import { DialogContent } from "src/components/dialog/DialogContent";
 import { Icon } from "src/components/Icon/Icon";
 import { Box, Flex } from "src/components/layouts";
+import { RadioGroup } from "src/components/radio";
 import { SegmentedControl } from "src/components/segment/SegmentController";
+import { Tab } from "src/components/tab";
 import { Text } from "src/components/text";
+import Tooltip from "src/components/tooltip/Tooltip";
 import { Color } from "util/theme";
 
 const JOB_OPTIONS = [
@@ -37,6 +40,9 @@ export default function Home() {
   const [groupValue, setGroupValue] = useState<string[]>([]);
 
   const { selected, setSelected, isChecked, toggle } = useCheckboxGroup([]);
+
+  const [tab, setTab] = useState("사과");
+  const [theme, setTheme] = useState("light");
 
   return (
     <Flex mb={100} p={50} gap={20}>
@@ -153,7 +159,6 @@ export default function Home() {
       </Flex>
 
       <Dialog
-        dimming={true}
         trigger={
           <Box>
             <Button
@@ -195,6 +200,7 @@ export default function Home() {
           radius="large"
           onClick={() => {}}
         />
+
         <IconButton
           name="airplay"
           size="4"
@@ -203,7 +209,9 @@ export default function Home() {
           onClick={() => {}}
         />
         <IconButton name="airplay" radius="small" onClick={() => {}} />
-        <IconButton name="airplay" onClick={() => {}} />
+        <Tooltip content="12312321" offsetValue={2} placement="bottom-end">
+          <IconButton name="Positive" onClick={() => {}} />
+        </Tooltip>
       </Flex>
 
       <Flex width={300}>
@@ -216,6 +224,32 @@ export default function Home() {
           value="1"
           size="1"
           radius="full"
+        />
+      </Flex>
+
+      <Flex width={300}>
+        <Tab
+          list={["사과", "수박", "망고"]}
+          value={tab}
+          size="1"
+          color="GREEN"
+          onChange={(value) => {
+            setTab(value);
+          }}
+        />
+      </Flex>
+
+      <Flex width={300}>
+        <RadioGroup
+          size="1"
+          value={theme}
+          color="BLUE"
+          onChange={setTheme}
+          options={[
+            { label: "Light", value: "light" },
+            { label: "Dark", value: "dark" },
+            { label: "System", value: "system", disabled: true },
+          ]}
         />
       </Flex>
     </Flex>
