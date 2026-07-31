@@ -19,9 +19,10 @@ import {
 import Dialog from "src/components/dialog/Dialog";
 import { DialogContent } from "src/components/dialog/DialogContent";
 import { Icon } from "src/components/Icon/Icon";
-import { Box, Flex } from "src/components/layouts";
+import { Flex } from "src/components/layouts";
 import { RadioGroup } from "src/components/radio";
 import { SegmentedControl } from "src/components/segment/SegmentController";
+import { Switch } from "src/components/switch/Switch";
 import { Tab } from "src/components/tab";
 import { Text } from "src/components/text";
 import Tooltip from "src/components/tooltip/Tooltip";
@@ -249,6 +250,10 @@ export default function Home() {
             { label: "System", value: "system", disabled: true },
           ]}
         />
+      </Flex>
+
+      <Flex row gap={2}>
+        <Switch color="RED"></Switch>
       </Flex>
     </Flex>
   );
