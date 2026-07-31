@@ -20,6 +20,7 @@ interface ButtonProps {
   endIcon?: IconName;
   disabled?: boolean;
   radius?: keyof typeof Radius;
+  width?: React.CSSProperties["width"];
 
   onClick: () => void;
 }
@@ -34,6 +35,7 @@ const Button = ({
   disabled,
   onClick,
   radius = "none",
+  width = "fit-content",
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -43,6 +45,7 @@ const Button = ({
       radius={Radius[radius]}
       disabled={disabled}
       onClick={onClick}
+      width={width}
     >
       {startIcon && <Icon name={startIcon} />}
       <Text weight="600" style={{ padding: "0 4px" }}>
@@ -59,6 +62,7 @@ const StyledButton = styled.button<{
   color: ColorType;
   radius: string;
   disabled?: boolean;
+  width: React.CSSProperties["width"];
 }>`
   display: inline-flex;
   flex-direction: row;
@@ -67,6 +71,8 @@ const StyledButton = styled.button<{
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   transition: all 0.2s ease;
+
+  width: ${({ width }) => width};
 
   ${({ size }) => SIZE_STYLES[size]}
   ${({ variant, color }) => COLOR_STYLES[color][variant]}

@@ -160,15 +160,13 @@ export default function Home() {
 
       <Dialog
         trigger={
-          <Box>
-            <Button
-              variant="solid"
-              size="1"
-              color="BLUE"
-              label="123"
-              onClick={() => {}}
-            />
-          </Box>
+          <Button
+            variant="solid"
+            size="1"
+            color="BLUE"
+            label="123"
+            onClick={() => {}}
+          />
         }
       >
         <DialogContent
