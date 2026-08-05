@@ -11,17 +11,20 @@ interface DropdownTriggerProps {
   placeholder?: string;
   readOnly?: boolean;
   isOpen?: boolean;
+  width?: string;
 }
 
 const DropdownTrigger = ({
   size,
   value,
   placeholder,
-  readOnly = true,
+  width,
+  readOnly = false,
   isOpen = false,
 }: DropdownTriggerProps) => {
   return (
     <StyledInputWrapper
+      width={width}
       size={size}
       value={value}
       placeholder={placeholder}

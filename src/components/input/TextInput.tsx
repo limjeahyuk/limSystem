@@ -172,7 +172,7 @@ const TextInput = forwardRef<HTMLInputElement, ISearchInputProps>(
       noIconEvent,
       textAlign = "start",
     },
-    ref, // ✅ ref 추가
+    ref,
   ) => {
     return (
       <StyledTextInput

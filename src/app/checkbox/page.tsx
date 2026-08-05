@@ -18,10 +18,15 @@ import {
 } from "src/components/data-list/DataList";
 import Dialog from "src/components/dialog/Dialog";
 import { DialogContent } from "src/components/dialog/DialogContent";
+import Dropdown from "src/components/dropdown/Dropdown";
+import DropdownContent from "src/components/dropdown/DropdownContent";
+import DropdownMenuItem from "src/components/dropdown/DropdownItem";
+import DropdownTrigger from "src/components/dropdown/DropdownTrigger";
 import { Icon } from "src/components/Icon/Icon";
 import { Flex } from "src/components/layouts";
 import { RadioGroup } from "src/components/radio";
 import { SegmentedControl } from "src/components/segment/SegmentController";
+import { Select } from "src/components/select/Select";
 import { Switch } from "src/components/switch/Switch";
 import { Tab } from "src/components/tab";
 import { Text } from "src/components/text";
@@ -44,6 +49,8 @@ export default function Home() {
 
   const [tab, setTab] = useState("사과");
   const [theme, setTheme] = useState("light");
+
+  const [select, setSelect] = useState("");
 
   return (
     <Flex mb={100} p={50} gap={20}>
@@ -254,6 +261,32 @@ export default function Home() {
 
       <Flex row gap={2}>
         <Switch color="RED"></Switch>
+      </Flex>
+
+      <Flex width="300px">
+        <Dropdown trigger={<DropdownTrigger value="123" width="300px" />}>
+          {(close) => (
+            <DropdownContent width="300px">
+              <DropdownMenuItem onClick={close}>123</DropdownMenuItem>
+              <DropdownMenuItem onClick={close}>123</DropdownMenuItem>
+              <DropdownMenuItem onClick={close}>123</DropdownMenuItem>
+              <DropdownMenuItem onClick={close}>123</DropdownMenuItem>
+            </DropdownContent>
+          )}
+        </Dropdown>
+      </Flex>
+
+      <Flex width="300px">
+        <Select
+          options={[
+            { value: "apple", label: "Apple" },
+            { value: "orange", label: "Orange" },
+            { value: "grape", label: "Grape", disabled: true },
+            { value: "banana", label: "Banana" },
+          ]}
+          value={select}
+          onChange={(item) => setSelect(item)}
+        ></Select>
       </Flex>
     </Flex>
   );

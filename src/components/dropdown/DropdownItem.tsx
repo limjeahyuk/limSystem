@@ -40,7 +40,7 @@ const DropdownMenuItem = ({
       >
         {startIcon && <div className="start-icon">{startIcon}</div>}
         <span className="menu-label">
-          <Text size="14px">{children}</Text>
+          <Text size="2">{children}</Text>
         </span>
         {selected && (
           <span className="end-icon">
@@ -81,6 +81,8 @@ const Container = styled.div<{
     height: auto;
     padding: 8px 10px;
     border-radius: 8px;
+    border: none;
+    background-color: transparent;
 
     // for fix text line-height
     span {
