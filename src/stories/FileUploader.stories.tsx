@@ -34,6 +34,7 @@ const meta = {
       <FormField
         label="첨부파일"
         description="파일당 최대 50MB, 총 10건까지 등록 가능합니다."
+        descriptionPlacement="top"
       >
         <FileUploader
           {...args}
@@ -130,12 +131,14 @@ export const ButtonWithList: Story = {
       <FormField
         label="첨부파일"
         description="파일당 최대 50MB, 총 10건까지 등록 가능합니다."
+        descriptionPlacement="top"
       >
         <FileUploader variant="button" files={LIST} onRemove={() => {}} />
       </FormField>
       <FormField
         label="첨부파일"
         description="파일당 최대 50MB, 총 10건까지 등록 가능합니다."
+        descriptionPlacement="top"
       >
         <FileUploader variant="button" disabled />
       </FormField>
@@ -149,12 +152,14 @@ export const Dropzone: Story = {
       <FormField
         label="첨부파일"
         description="파일당 최대 50MB, 총 10건까지 등록 가능합니다."
+        descriptionPlacement="top"
       >
         <FileUploader variant="dropzone" files={LIST} onRemove={() => {}} />
       </FormField>
       <FormField
         label="첨부파일"
         description="파일당 최대 50MB, 총 10건까지 등록 가능합니다."
+        descriptionPlacement="top"
       >
         <FileUploader variant="dropzone" disabled />
       </FormField>
