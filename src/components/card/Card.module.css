@@ -1,0 +1,26 @@
+.card {
+  border-radius: var(--ls-radius-large);
+  border: 1px solid transparent;
+}
+.card[data-size="1"] {
+  padding: var(--ls-space-3);
+}
+.card[data-size="2"] {
+  padding: var(--ls-space-4);
+}
+.card[data-size="3"] {
+  padding: var(--ls-space-6);
+}
+
+.card[data-variant="surface"] {
+  background: var(--ls-bg-surface);
+  border-color: var(--ls-border-default);
+  box-shadow: var(--ls-shadow-small);
+}
+.card[data-variant="outline"] {
+  background: transparent;
+  border-color: var(--ls-border-default);
+}
+.card[data-variant="ghost"] {
+  background: var(--ls-bg-subtle);
+}

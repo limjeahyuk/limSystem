@@ -1,0 +1,17 @@
+.skeleton {
+  display: block;
+  min-height: 1em;
+  border-radius: var(--ls-radius-small);
+  background: var(--ls-bg-muted);
+  animation: pulse 1.4s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+.hidden {
+  visibility: hidden;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

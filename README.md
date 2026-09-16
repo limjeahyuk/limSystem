@@ -47,13 +47,14 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 ### 레이아웃
 
-| 컴포넌트                                | 설명                                                                 |
-| --------------------------------------- | -------------------------------------------------------------------- |
-| `Box`                                   | 기본 블록. `p/m/width/height/bg/radius` 등 `LayoutsProps`            |
-| `Flex`                                  | flexbox 컨테이너. `row`, `align`, `justify`, `wrap`, `gap/gapX/gapY` |
-| `Grid`                                  | grid 컨테이너. `columns`, `rows`, `flow`, `align`, `justify`, `gap`  |
-| `HorizontalDivider` / `VerticalDivider` | 1px 구분선. `width`/`height`, `color`                                |
-| `ScrollBox`                             | 커스텀 스크롤바 영역. `variant(list/popover/body/grid)`, `height`    |
+| 컴포넌트                                | 설명                                                                            |
+| --------------------------------------- | ------------------------------------------------------------------------------- |
+| `Box`                                   | 기본 블록. `p/m/width/height/bg/radius` 등 `LayoutsProps`                       |
+| `Flex`                                  | flexbox 컨테이너. `row`, `align`, `justify`, `wrap`, `gap/gapX/gapY`            |
+| `Grid`                                  | grid 컨테이너. `columns`, `rows`, `flow`, `align`, `justify`, `gap`             |
+| `HorizontalDivider` / `VerticalDivider` | 1px 구분선. `width`/`height`, `color`                                           |
+| `ScrollBox`                             | 커스텀 스크롤바 영역. `variant(list/popover/body/grid)`, `height`               |
+| `Card`                                  | 콘텐츠 묶음 컨테이너. `variant(surface/outline/ghost)`, `size`, `Box` prop 전부 |
 
 ### 타이포그래피
 
@@ -72,13 +73,16 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 ### 표시
 
-| 컴포넌트  | 설명                                                                                                        |
-| --------- | ----------------------------------------------------------------------------------------------------------- |
-| `Badge`   | `children` 뱃지. `size`, `variant(solid/surface/outline)`, `color`, `startIcon/endIcon`                     |
-| `Avatar`  | `src` 이미지, 없으면 `fallback`. `size`, `radius`, `color`(배경)                                            |
-| `Callout` | 안내 박스. `children`, `icon`(기본 `circle-info`, `null`이면 없음), `size`, `variant`, `color`, `fullWidth` |
-| `Tooltip` | hover 툴팁. `content`, `placement`, `delay`, `isArrow`, `offsetValue`                                       |
-| `Icon`    | `src/assets/icons` SVG 아이콘. `name: IconName`, `size`, `color`                                            |
+| 컴포넌트     | 설명                                                                                                        |
+| ------------ | ----------------------------------------------------------------------------------------------------------- |
+| `Badge`      | `children` 뱃지. `size`, `variant(solid/surface/outline)`, `color`, `startIcon/endIcon`                     |
+| `Avatar`     | `src` 이미지, 없으면 `fallback`. `size`, `radius`, `color`(배경)                                            |
+| `Callout`    | 안내 박스. `children`, `icon`(기본 `circle-info`, `null`이면 없음), `size`, `variant`, `color`, `fullWidth` |
+| `Tooltip`    | hover 툴팁. `content`, `placement`, `delay`, `isArrow`, `offsetValue`                                       |
+| `Icon`       | `src/assets/icons` SVG 아이콘. `name: IconName`, `size`, `color`                                            |
+| `Spinner`    | 로딩 스피너. `size("1"~"3")`, `color`                                                                       |
+| `Skeleton`   | 로딩 자리표시. `width/height/radius`, 또는 `loading` + `children`으로 내용 자리만큼 표시                    |
+| `EmptyState` | 빈 상태 안내. `icon`, `title`, `description`, `size`, `children`(액션 버튼)                                 |
 
 ### 입력
 
@@ -94,6 +98,7 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 | `RadioGroup`       | `options` 라디오. `value`, `onChange(value)`, `direction`, `size`, `color`                                                           |
 | `useRadioGroup`    | 라디오 상태 훅                                                                                                                       |
 | `Switch`           | 토글. `checked`, `onChange(checked)`, `size("1"~"3")`, `color`                                                                       |
+| `FormField`        | `label` / `description` / `error` / `required`를 입력 컴포넌트에 묶는다. 자식에 `id`, `aria-*` 자동 주입                             |
 | `Select`           | 드롭다운 셀렉트(floating-ui, 키보드 탐색). `options`(그룹 지원), `value/defaultValue`, `onChange(value)`, `size`, `variant`, `color` |
 
 ### 오버레이
@@ -101,6 +106,7 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 | 컴포넌트   | 설명                                                                                                                                                                               |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Dropdown` | 조합형 팝오버. `Dropdown` → `Dropdown.Trigger` / `Content` / `Item`. `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `Item`은 클릭 시 자동 닫힘(`closeOnClick`) |
+| `Toast`    | `ToastProvider`로 감싸고 `useToast().toast({ title, description, color, icon, duration })`. `position`, 기본 `duration` 4000ms                                                     |
 | `Dialog`   | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming`                       |
 
 ```tsx

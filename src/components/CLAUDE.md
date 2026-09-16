@@ -46,6 +46,13 @@
 - `Select`도 floating-ui 기반. 키보드 탐색(`useListNavigation`)과 `role="listbox"` 내장.
 - `Dialog`는 조합형: `Dialog.Trigger / Content / CloseButton / Title / Description / Body / Footer / Close`.
 
+## 화면 조립용 컴포넌트
+
+- 카드/섹션 박스는 `Card`. `Box`에 배경/테두리를 직접 주지 않는다.
+- 폼 입력은 `FormField`로 감싼다(`label`, `description`, `error`, `required`). 입력 컴포넌트에 라벨을 따로 붙이지 않는다.
+- 로딩은 `Spinner`(동작 중) / `Skeleton`(데이터 자리), 빈 목록은 `EmptyState`. 즉석 `<div>Loading...</div>` 금지.
+- 액션 결과 알림은 `Toast`. 앱 루트를 `ToastProvider`로 감싸고 `useToast()`로 호출한다.
+
 ## 상태 훅
 
 - `useCheckboxGroup(initial)`: `selected`, `toggle/check/uncheck/checkAll/clear`, `isChecked`, `count`, `isEmpty`
