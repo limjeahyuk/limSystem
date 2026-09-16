@@ -5,7 +5,6 @@ import { Icon } from "../icon/Icon";
 import Dropdown from "./Dropdown";
 import DropdownContent from "./DropdownContent";
 import DropdownMenuItem from "./DropdownItem";
-import DropdownTrigger from "./DropdownTrigger";
 
 const ITEMS = ["Edit", "Duplicate", "Archive", "Delete"];
 
@@ -16,7 +15,7 @@ const meta = {
     placement: "bottom-start",
     triggerMode: "click",
     offset: 4,
-    trigger: <Button label="Open menu" onClick={() => {}} />,
+    trigger: <Button>Open menu</Button>,
     children: (close: () => void) => (
       <DropdownContent width="200px">
         {ITEMS.map((item) => (
@@ -82,26 +81,20 @@ export const WithIcons: Story = {
   },
 };
 
-export const SelectLike: Story = {
+export const Selectable: Story = {
   render: function Render(args) {
-    const [value, setValue] = useState("");
-    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState("Edit");
     return (
       <Dropdown
         {...args}
-        open={open}
-        onOpenChange={setOpen}
         trigger={
-          <DropdownTrigger
-            value={value}
-            placeholder="선택하세요"
-            width="240px"
-            isOpen={open}
-          />
+          <Button variant="outline" endIcon="chevron-down">
+            {value}
+          </Button>
         }
       >
         {(close) => (
-          <DropdownContent width="240px">
+          <DropdownContent width="200px">
             {ITEMS.map((item) => (
               <DropdownMenuItem
                 key={item}

@@ -8,8 +8,12 @@ export type TextareaResize = "none" | "vertical" | "horizontal" | "both";
 
 export interface TextareaProps extends Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-  "color"
+  "color" | "onChange"
 > {
+  onChange?: (
+    value: string,
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => void;
   size?: TextareaSize;
   variant?: TextareaVariant;
   color?: ColorType;
@@ -31,6 +35,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       height,
       className,
       style,
+      onChange,
       ...rest
     },
     ref,
@@ -42,6 +47,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       data-variant={variant}
       data-color={color}
       style={{ width, height, resize, borderRadius: Radius[radius], ...style }}
+      onChange={(e) => onChange?.(e.target.value, e)}
       {...rest}
     />
   ),

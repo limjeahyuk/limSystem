@@ -7,16 +7,9 @@ export interface SearchInputProps extends TextInputProps {
   onClear?: () => void;
 }
 
-const SearchInput = ({
-  size = "medium",
-  value,
-  onClear,
-  style,
-  inputStyle,
-  ...rest
-}: SearchInputProps) => {
+const SearchInput = ({ value, onClear, ...rest }: SearchInputProps) => {
   const clearIcon =
-    onClear && value && value.length > 0 ? (
+    onClear && value ? (
       <button type="button" className={styles.clear} onClick={onClear}>
         <Icon
           name="deleted"
@@ -28,16 +21,12 @@ const SearchInput = ({
     ) : null;
 
   return (
-    <div className={styles.wrapper} style={style}>
-      <TextInput
-        size={size}
-        leftIcon={<Icon name="search" size={20} color={Color.GRAY_300} />}
-        rightIcon={clearIcon}
-        value={value}
-        style={inputStyle}
-        {...rest}
-      />
-    </div>
+    <TextInput
+      leftIcon={<Icon name="search" size={20} color={Color.GRAY_300} />}
+      rightIcon={clearIcon}
+      value={value}
+      {...rest}
+    />
   );
 };
 

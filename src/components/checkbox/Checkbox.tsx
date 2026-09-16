@@ -7,36 +7,34 @@ import styles from "./Checkbox.module.css";
 export type CheckboxSize = "1" | "2" | "3";
 export type CheckboxVariant = "classic" | "surface";
 
-export interface CheckboxProps {
+export interface CheckboxProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size" | "onChange" | "color"
+> {
   size?: CheckboxSize;
   variant?: CheckboxVariant;
   color?: ColorType;
   label?: React.ReactNode;
-  checked?: boolean;
-  defaultChecked?: boolean;
   indeterminate?: boolean;
-  disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  name?: string;
-  value?: string | number;
-  className?: string;
+  onChange?: (
+    checked: boolean,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       size = "1",
+      variant = "classic",
+      color,
       label,
-      checked,
-      defaultChecked,
+      indeterminate = false,
       disabled = false,
       onChange,
-      name,
-      value,
       className,
-      color,
-      variant = "classic",
-      indeterminate = false,
+      style,
+      ...rest
     },
     ref,
   ) => {
@@ -60,18 +58,16 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       <label
         className={[styles.label, className].filter(Boolean).join(" ")}
         data-disabled={disabled || undefined}
+        style={style}
       >
         <input
           type="checkbox"
           className={styles.input}
           ref={setRefs}
-          checked={checked}
-          defaultChecked={defaultChecked}
           disabled={disabled}
-          onChange={onChange}
-          name={name}
-          value={value}
-          aria-checked={indeterminate ? "mixed" : checked}
+          onChange={(e) => onChange?.(e.target.checked, e)}
+          aria-checked={indeterminate ? "mixed" : rest.checked}
+          {...rest}
         />
         <div
           className={`${styles.control} ls-interactive`}

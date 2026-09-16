@@ -1,18 +1,16 @@
-export { default as Avatar, type AvatarProps } from "./avatar";
-export { Badge, BadgeBasic } from "./badge";
+export { Avatar } from "./avatar";
+export type { AvatarProps } from "./avatar/Avatar";
+export { Badge } from "./badge";
 export type { BadgeProps, BadgeSize, BadgeVariant } from "./badge/Badge";
-export { Button, ButtonBasic } from "./button";
+export { Button, IconButton } from "./button";
 export type { ButtonProps, ButtonSize, ButtonVariant } from "./button/Button";
-export {
-  default as IconButton,
-  type IconButtonProps,
-} from "./button/IconButton";
-export {
-  default as Callout,
-  type CalloutProps,
-  type CalloutSize,
-  type CalloutVariant,
-} from "./callout";
+export type { IconButtonProps } from "./button/IconButton";
+export { Callout } from "./callout";
+export type {
+  CalloutProps,
+  CalloutSize,
+  CalloutVariant,
+} from "./callout/Callout";
 export {
   Checkbox,
   CheckboxGroup,
@@ -33,7 +31,7 @@ export {
   type DataListProps,
 } from "./data-list/DataList";
 export { default as Dialog, useDialog } from "./dialog/Dialog";
-export { DialogContent } from "./dialog/DialogContent";
+export type { DialogProps, DialogContentProps } from "./dialog/Dialog";
 export { HorizontalDivider, VerticalDivider } from "./divider/Divider";
 export { default as Dropdown } from "./dropdown/Dropdown";
 export {
@@ -44,11 +42,7 @@ export {
   default as DropdownItem,
   type DropdownItemProps,
 } from "./dropdown/DropdownItem";
-export {
-  default as DropdownTrigger,
-  type DropdownTriggerProps,
-} from "./dropdown/DropdownTrigger";
-export { Icon } from "./icon/Icon";
+export { Icon, renderIcon, type IconProps, type IconSlot } from "./icon/Icon";
 export { ICON_DATA, type IconName } from "./icon/icon-data";
 export {
   default as SearchInput,
@@ -57,7 +51,7 @@ export {
 export {
   default as TextInput,
   type TextInputProps,
-  type InputSizeType,
+  type InputSize,
 } from "./input/TextInput";
 export {
   default as Textarea,

@@ -10,7 +10,7 @@ const meta = {
   title: "Components/Badge",
   component: Badge,
   args: {
-    label: "Badge",
+    children: "Badge",
     size: "2",
     variant: "surface",
     color: "BLUE",
@@ -33,7 +33,7 @@ export const Size: Story = {
   render: (args) => (
     <Flex row gap={10} align="center">
       {(["1", "2", "3"] as const).map((size) => (
-        <Badge key={size} {...args} size={size} label={`size ${size}`} />
+        <Badge key={size} {...args} size={size}>{`size ${size}`}</Badge>
       ))}
     </Flex>
   ),
@@ -45,13 +45,9 @@ export const Variant: Story = {
       {VARIANTS.map((variant) => (
         <Flex key={variant} row gap={10}>
           {COLORS.map((color) => (
-            <Badge
-              key={color}
-              {...args}
-              variant={variant}
-              color={color}
-              label={color}
-            />
+            <Badge key={color} {...args} variant={variant} color={color}>
+              {color}
+            </Badge>
           ))}
         </Flex>
       ))}

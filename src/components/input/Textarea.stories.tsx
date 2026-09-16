@@ -132,12 +132,7 @@ export const Controlled: Story = {
     const [value, setValue] = useState("");
     return (
       <Flex gap={6}>
-        <Textarea
-          {...args}
-          value={value}
-          maxLength={100}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <Textarea {...args} value={value} maxLength={100} onChange={setValue} />
         <span>{value.length} / 100</span>
       </Flex>
     );

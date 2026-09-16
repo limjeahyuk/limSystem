@@ -14,7 +14,7 @@ const meta = {
     delay: 200,
     isArrow: false,
     offsetValue: 8,
-    children: <Button label="Hover me" onClick={() => {}} />,
+    children: <Button>Hover me</Button>,
   },
   argTypes: {
     placement: {
@@ -54,7 +54,7 @@ export const Placement: Story = {
           placement={placement}
           content={placement}
         >
-          <Button label={placement} onClick={() => {}} />
+          <Button>{placement}</Button>
         </Tooltip>
       ))}
     </Flex>

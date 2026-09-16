@@ -5,6 +5,7 @@ import {
   JUSTIFY_MAP,
   LayoutsProps,
   SpaceValue,
+  compactStyle,
   splitLayoutProps,
   toCssValue,
 } from "./system";
@@ -53,7 +54,7 @@ const Grid = forwardRef<HTMLElement, GridProps>(
       <Tag
         ref={ref as never}
         className={[styles.grid, className].filter(Boolean).join(" ")}
-        style={{
+        style={compactStyle({
           display,
           gridTemplateColumns: toGridTemplate(columns),
           gridTemplateRows: toGridTemplate(rows),
@@ -65,7 +66,7 @@ const Grid = forwardRef<HTMLElement, GridProps>(
           rowGap: toCssValue(gapY),
           ...layoutStyle,
           ...style,
-        }}
+        })}
         {...rest}
       >
         {children}

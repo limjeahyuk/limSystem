@@ -5,25 +5,19 @@ import { Flex } from "../layouts";
 import { Color } from "util/theme";
 import TextInput from "./TextInput";
 
-const SIZES = ["small", "small-medium", "medium"] as const;
+const SIZES = ["1", "2", "3"] as const;
 
 const meta = {
   title: "Components/TextInput",
   component: TextInput,
-  args: { placeholder: "Enter text", size: "medium", width: "280px" },
+  args: { placeholder: "Enter text", size: "2", width: "280px" },
   argTypes: {
     size: { control: "radio", options: SIZES },
     textAlign: { control: "radio", options: ["start", "center", "end"] },
   },
   render: function Render(args) {
     const [value, setValue] = useState(args.value ?? "");
-    return (
-      <TextInput
-        {...args}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-    );
+    return <TextInput {...args} value={value} onChange={setValue} />;
   },
 } satisfies Meta<typeof TextInput>;
 
@@ -36,7 +30,12 @@ export const Size: Story = {
   render: (args) => (
     <Flex gap={10}>
       {SIZES.map((size) => (
-        <TextInput key={size} {...args} size={size} placeholder={size} />
+        <TextInput
+          key={size}
+          {...args}
+          size={size}
+          placeholder={`size ${size}`}
+        />
       ))}
     </Flex>
   ),

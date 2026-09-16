@@ -28,7 +28,9 @@ const meta = {
           Status
         </DataListLabel>
         <DataListValue>
-          <Badge label="Authorized" color="GREEN" variant="surface" />
+          <Badge color="GREEN" variant="surface">
+            Authorized
+          </Badge>
         </DataListValue>
       </DataListItem>
       <DataListItem>

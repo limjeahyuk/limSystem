@@ -64,15 +64,3 @@
 .endIcon {
   margin-left: auto;
 }
-
-.trigger,
-.trigger div,
-.trigger input {
-  cursor: pointer;
-}
-.trigger svg {
-  transition: transform 0.2s ease-in-out;
-}
-.trigger[data-open] svg {
-  transform: rotate(180deg);
-}

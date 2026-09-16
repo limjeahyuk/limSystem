@@ -7,7 +7,7 @@ import { CheckboxOption } from "./CheckboxGroup";
 interface MasterCheckboxProps {
   options: CheckboxOption[];
   value: string[];
-  onChange: (nextValues: string[]) => void;
+  onChange: (value: string[]) => void;
 
   label?: React.ReactNode;
   size?: CheckboxSize;

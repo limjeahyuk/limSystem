@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import styles from "./Layout.module.css";
-import { LayoutsProps, splitLayoutProps } from "./system";
+import { LayoutsProps, compactStyle, splitLayoutProps } from "./system";
 
 export interface BoxProps
   extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
@@ -16,7 +16,7 @@ const Box = forwardRef<HTMLElement, BoxProps>(
       <Tag
         ref={ref as never}
         className={[styles.box, className].filter(Boolean).join(" ")}
-        style={{ display, ...layoutStyle, ...style }}
+        style={compactStyle({ display, ...layoutStyle, ...style })}
         {...rest}
       >
         {children}

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Flex } from "../layouts";
 import { Color, Radius } from "util/theme";
-import Avatar from "./index";
+import Avatar from "./Avatar";
 
 const meta = {
   title: "Components/Avatar",

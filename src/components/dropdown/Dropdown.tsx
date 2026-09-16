@@ -57,7 +57,12 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   const closeDropdown = () => setOpen(false);
 
-  const { refs, floatingStyles, context, isPositioned } = useFloating({
+  const {
+    refs: { setReference, setFloating },
+    floatingStyles,
+    context,
+    isPositioned,
+  } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
@@ -86,14 +91,14 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div style={{ width: fullWidth ? "100%" : "auto" }}>
-      <div ref={refs.setReference} {...getReferenceProps()}>
+      <div ref={setReference} {...getReferenceProps()}>
         {trigger}
       </div>
 
       {open && (
         <FloatingPortal>
           <div
-            ref={refs.setFloating}
+            ref={setFloating}
             style={{
               ...floatingStyles,
               visibility: isPositioned ? "visible" : "hidden",

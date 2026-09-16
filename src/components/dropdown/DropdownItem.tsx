@@ -16,7 +16,7 @@ export interface DropdownItemProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const DropdownMenuItem = ({
+const DropdownItem = ({
   name,
   gap = "0px",
   selected,
@@ -51,4 +51,4 @@ const DropdownMenuItem = ({
   </div>
 );
 
-export default DropdownMenuItem;
+export default DropdownItem;

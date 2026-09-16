@@ -5,9 +5,9 @@ import SearchInput from "./SearchInput";
 const meta = {
   title: "Components/SearchInput",
   component: SearchInput,
-  args: { placeholder: "검색어를 입력하세요", size: "medium", width: "280px" },
+  args: { placeholder: "검색어를 입력하세요", size: "2", width: "280px" },
   argTypes: {
-    size: { control: "radio", options: ["small", "small-medium", "medium"] },
+    size: { control: "radio", options: ["1", "2", "3"] },
   },
   render: function Render(args) {
     const [value, setValue] = useState("");
@@ -15,7 +15,7 @@ const meta = {
       <SearchInput
         {...args}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={setValue}
         onClear={() => setValue("")}
       />
     );

@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Icon } from "../icon/Icon";
 import { Flex } from "../layouts";
-import Callout from "./index";
+import { Color } from "util/theme";
+import Callout from "./Callout";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const VARIANTS = ["soft", "surface", "outline"] as const;
@@ -9,7 +11,7 @@ const meta = {
   title: "Components/Callout",
   component: Callout,
   args: {
-    label:
+    children:
       "You will need admin privileges to install and access this application.",
     size: "2",
     variant: "soft",
@@ -44,13 +46,9 @@ export const Variant: Story = {
       {VARIANTS.map((variant) => (
         <Flex key={variant} gap={6}>
           {COLORS.map((color) => (
-            <Callout
-              key={color}
-              {...args}
-              variant={variant}
-              color={color}
-              label={`${variant} / ${color}`}
-            />
+            <Callout key={color} {...args} variant={variant} color={color}>
+              {`${variant} / ${color}`}
+            </Callout>
           ))}
         </Flex>
       ))}
@@ -58,6 +56,13 @@ export const Variant: Story = {
   ),
 };
 
-export const AsChild: Story = {
-  args: { asChild: true, children: <span>Custom children</span> },
+export const CustomIcon: Story = {
+  args: {
+    icon: <Icon name="triangle-warning" color={Color.RED_500} />,
+    color: "RED",
+  },
+};
+
+export const NoIcon: Story = {
+  args: { icon: null },
 };

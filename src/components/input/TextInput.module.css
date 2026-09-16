@@ -10,11 +10,14 @@
   min-width: 0;
   flex: 1;
 }
-.wrapper[data-size="small"] {
+.wrapper[data-size="1"] {
   height: 32px;
 }
-.wrapper[data-size="small-medium"] {
+.wrapper[data-size="2"] {
   height: 36px;
+}
+.wrapper[data-size="3"] {
+  height: 40px;
 }
 
 .leftIcon,
@@ -56,11 +59,14 @@
 .wrapper[data-has-left-icon] .input {
   padding-left: 30px;
 }
-.wrapper[data-size="small"] .input {
+.wrapper[data-size="1"] .input {
   height: 32px;
 }
-.wrapper[data-size="small-medium"] .input {
+.wrapper[data-size="2"] .input {
   height: 36px;
+}
+.wrapper[data-size="3"] .input {
+  height: 40px;
 }
 .wrapper[data-pointer] .input {
   cursor: pointer;

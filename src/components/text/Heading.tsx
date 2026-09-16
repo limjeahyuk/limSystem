@@ -1,8 +1,7 @@
 import { type TextStyleProps, toTextAttrs } from "./Text";
 
-export interface HeadingProps extends Omit<TextStyleProps, "weight"> {
+export interface HeadingProps extends TextStyleProps {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  weight?: "300" | "400" | "500" | "700";
 }
 
 const Heading = ({

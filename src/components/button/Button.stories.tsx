@@ -11,7 +11,7 @@ const meta = {
   title: "Components/Button",
   component: Button,
   args: {
-    label: "Button",
+    children: "Button",
     size: "2",
     variant: "solid",
     color: "BLUE",
@@ -35,7 +35,7 @@ export const Size: Story = {
   render: (args) => (
     <Flex row gap={10} align="center">
       {(["1", "2", "3", "4"] as const).map((size) => (
-        <Button key={size} {...args} size={size} label={`size ${size}`} />
+        <Button key={size} {...args} size={size}>{`size ${size}`}</Button>
       ))}
     </Flex>
   ),
@@ -47,13 +47,9 @@ export const Variant: Story = {
       {VARIANTS.map((variant) => (
         <Flex key={variant} row gap={10}>
           {COLORS.map((color) => (
-            <Button
-              key={color}
-              {...args}
-              variant={variant}
-              color={color}
-              label={color}
-            />
+            <Button key={color} {...args} variant={variant} color={color}>
+              {color}
+            </Button>
           ))}
         </Flex>
       ))}

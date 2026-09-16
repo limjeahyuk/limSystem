@@ -5,6 +5,7 @@ import {
   JUSTIFY_MAP,
   LayoutsProps,
   SpaceValue,
+  compactStyle,
   splitLayoutProps,
   toCssValue,
 } from "./system";
@@ -48,7 +49,7 @@ const Flex = forwardRef<HTMLElement, FlexProps>(
       <Tag
         ref={ref as never}
         className={[styles.flex, className].filter(Boolean).join(" ")}
-        style={{
+        style={compactStyle({
           display,
           flexDirection: direction ?? (row ? "row" : "column"),
           alignItems: align && ALIGN_MAP[align],
@@ -59,7 +60,7 @@ const Flex = forwardRef<HTMLElement, FlexProps>(
           rowGap: toCssValue(gapY),
           ...layoutStyle,
           ...style,
-        }}
+        })}
         {...rest}
       >
         {children}

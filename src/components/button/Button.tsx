@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import { ColorType, Radius, type RadiusType } from "util/theme";
-import { Icon } from "../icon/Icon";
-import { IconName } from "../icon/icon-data";
+import { type IconSlot, renderIcon } from "../icon/Icon";
 import { Text } from "../text";
 import styles from "./Button.module.css";
 
@@ -15,9 +14,8 @@ export interface ButtonProps extends Omit<
   size?: ButtonSize;
   variant?: ButtonVariant;
   color?: ColorType;
-  label: string;
-  startIcon?: IconName;
-  endIcon?: IconName;
+  startIcon?: IconSlot;
+  endIcon?: IconSlot;
   radius?: RadiusType;
   width?: React.CSSProperties["width"];
 }
@@ -28,7 +26,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = "2",
       variant = "solid",
       color,
-      label,
       startIcon,
       endIcon,
       radius = "none",
@@ -36,6 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       style,
       type = "button",
+      children,
       ...rest
     },
     ref,
@@ -52,11 +50,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       style={{ width, borderRadius: Radius[radius], ...style }}
       {...rest}
     >
-      {startIcon && <Icon name={startIcon} />}
+      {renderIcon(startIcon)}
       <Text weight="600" style={{ padding: "0 4px" }}>
-        {label}
+        {children}
       </Text>
-      {endIcon && <Icon name={endIcon} />}
+      {renderIcon(endIcon)}
     </button>
   ),
 );

@@ -51,7 +51,7 @@ const Tooltip = ({
   isArrow = false,
   offsetValue = 8,
 }: TooltipProps) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [arrowEl, setArrowEl] = useState<SVGSVGElement | null>(null);
 
   const {

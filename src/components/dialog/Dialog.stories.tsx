@@ -3,25 +3,36 @@ import { fn } from "storybook/test";
 import { Button } from "../button";
 import { Text } from "../text";
 import Dialog from "./Dialog";
-import { DialogContent } from "./DialogContent";
 
 const meta = {
   title: "Components/Dialog",
   component: Dialog,
-  args: {
-    dimming: true,
-    trigger: <Button label="Open dialog" onClick={() => {}} />,
-    children: (
-      <DialogContent
-        title="Edit profile"
-        desc="Make changes to your profile."
-        content={<Text>Dialog content goes here.</Text>}
-        onCancel={fn()}
-        onSubmit={fn()}
-        onClose={fn()}
-      />
-    ),
-  },
+  args: { children: null, dimming: true, onOpenChange: fn() },
+  render: (args) => (
+    <Dialog {...args}>
+      <Dialog.Trigger>
+        <Button>Open dialog</Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <Dialog.CloseButton />
+        <Dialog.Title>Edit profile</Dialog.Title>
+        <Dialog.Description>Make changes to your profile.</Dialog.Description>
+        <Dialog.Body>
+          <Text>Dialog content goes here.</Text>
+        </Dialog.Body>
+        <Dialog.Footer>
+          <Dialog.Close>
+            <Button variant="ghost" color="GRAY">
+              취소
+            </Button>
+          </Dialog.Close>
+          <Button color="RED" onClick={fn()}>
+            확인
+          </Button>
+        </Dialog.Footer>
+      </Dialog.Content>
+    </Dialog>
+  ),
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
@@ -31,14 +42,18 @@ export const Playground: Story = {};
 
 export const NoDimming: Story = { args: { dimming: false } };
 
-export const CustomFooter: Story = {
-  args: {
-    children: (
-      <DialogContent
-        title="Custom footer"
-        content={<Text>Footer is fully replaced.</Text>}
-        footer={<Text style={{ padding: 16 }}>custom footer</Text>}
-      />
-    ),
-  },
+export const NoFooter: Story = {
+  render: (args) => (
+    <Dialog {...args}>
+      <Dialog.Trigger>
+        <Button>Open</Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <Dialog.Title>Notice</Dialog.Title>
+        <Dialog.Body height="80px">
+          <Text>Footer is optional.</Text>
+        </Dialog.Body>
+      </Dialog.Content>
+    </Dialog>
+  ),
 };
