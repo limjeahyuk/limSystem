@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Grid, Flex } from "../layouts";
-import { Text } from "../text";
+import {
+  Grid,
+  Flex,
+  Text,
+  Icon,
+  ICON_DATA,
+  type IconName,
+} from "src/components";
 import { Color } from "util/theme";
-import { Icon } from "./Icon";
-import { ICON_DATA, type IconName } from "./icon-data";
 
 const NAMES = Object.keys(ICON_DATA) as IconName[];
 

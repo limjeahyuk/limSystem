@@ -1,30 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
-import { Flex } from "../layouts";
+import { Flex, Badge } from "src/components";
 import { Radius } from "util/theme";
-import Button from "./Button";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
-const VARIANTS = ["solid", "outline", "surface", "ghost"] as const;
+const VARIANTS = ["solid", "surface", "outline"] as const;
 
 const meta = {
-  title: "Components/Button",
-  component: Button,
+  title: "Components/Badge",
+  component: Badge,
   args: {
-    children: "Button",
+    children: "Badge",
     size: "2",
-    variant: "solid",
+    variant: "surface",
     color: "BLUE",
-    radius: "none",
-    onClick: fn(),
+    radius: "medium",
   },
   argTypes: {
-    size: { control: "radio", options: ["1", "2", "3", "4"] },
+    size: { control: "radio", options: ["1", "2", "3"] },
     variant: { control: "radio", options: VARIANTS },
     color: { control: "select", options: COLORS },
     radius: { control: "select", options: Object.keys(Radius) },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Badge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -34,8 +31,8 @@ export const Playground: Story = {};
 export const Size: Story = {
   render: (args) => (
     <Flex row gap={10} align="center">
-      {(["1", "2", "3", "4"] as const).map((size) => (
-        <Button key={size} {...args} size={size}>{`size ${size}`}</Button>
+      {(["1", "2", "3"] as const).map((size) => (
+        <Badge key={size} {...args} size={size}>{`size ${size}`}</Badge>
       ))}
     </Flex>
   ),
@@ -47,9 +44,9 @@ export const Variant: Story = {
       {VARIANTS.map((variant) => (
         <Flex key={variant} row gap={10}>
           {COLORS.map((color) => (
-            <Button key={color} {...args} variant={variant} color={color}>
+            <Badge key={color} {...args} variant={variant} color={color}>
               {color}
-            </Button>
+            </Badge>
           ))}
         </Flex>
       ))}
@@ -58,9 +55,5 @@ export const Variant: Story = {
 };
 
 export const WithIcon: Story = {
-  args: { startIcon: "plus", endIcon: "chevron-down" },
-};
-
-export const Disabled: Story = {
-  args: { disabled: true },
+  args: { startIcon: "check", endIcon: "chevron-right" },
 };

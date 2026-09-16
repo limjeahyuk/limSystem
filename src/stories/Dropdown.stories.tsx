@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Button, Icon, Dropdown } from "src/components";
 import { useState } from "react";
-import { Button } from "../button";
-import { Icon } from "../icon/Icon";
-import Dropdown from "./Dropdown";
 
 const ITEMS = ["Edit", "Duplicate", "Archive", "Delete"];
 

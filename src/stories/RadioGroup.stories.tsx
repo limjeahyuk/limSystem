@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Flex } from "../layouts";
-import { RadioGroup, useRadioGroup } from "./index";
+import { Flex, RadioGroup, useRadioGroup } from "src/components";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const OPTIONS = [

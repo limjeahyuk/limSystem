@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Icon } from "../icon/Icon";
-import { Flex } from "../layouts";
+import { Icon, Flex, Callout } from "src/components";
 import { Color } from "util/theme";
-import Callout from "./Callout";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const VARIANTS = ["soft", "surface", "outline"] as const;

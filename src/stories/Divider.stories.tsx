@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Flex } from "../layouts";
-import { Text } from "../text";
+import { Flex, Text, HorizontalDivider, VerticalDivider } from "src/components";
 import { Color } from "util/theme";
-import { HorizontalDivider, VerticalDivider } from "./Divider";
 
 const meta = {
   title: "Components/Divider",

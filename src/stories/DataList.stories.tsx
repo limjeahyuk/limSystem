@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Badge } from "../badge";
-import { Color } from "util/theme";
 import {
+  Badge,
   DataList,
   DataListItem,
   DataListLabel,
   DataListValue,
-} from "./DataList";
+} from "src/components";
+import { Color } from "util/theme";
 
 const meta = {
   title: "Components/DataList",

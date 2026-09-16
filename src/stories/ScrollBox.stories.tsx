@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Box } from "../layouts";
-import { Text } from "../text";
+import { Box, Text, ScrollBox } from "src/components";
 import { Color } from "util/theme";
-import ScrollBox from "./ScrollBox";
 
 const meta = {
   title: "Components/ScrollBox",

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Flex } from "../layouts";
+import { Flex, Avatar } from "src/components";
 import { Color, Radius } from "util/theme";
-import Avatar from "./Avatar";
 
 const meta = {
   title: "Components/Avatar",
@@ -52,11 +51,14 @@ export const ColorStory: Story = {
 
   render: (args) => (
     <Flex row gap={10}>
-      {[Color.BORDER_STRONG, Color.ACCENT_400, Color.TEXT_TERTIARY, Color.BG_INVERSE].map(
-        (color) => (
-          <Avatar key={color} {...args} color={color} />
-        ),
-      )}
+      {[
+        Color.BORDER_STRONG,
+        Color.ACCENT_400,
+        Color.TEXT_TERTIARY,
+        Color.BG_INVERSE,
+      ].map((color) => (
+        <Avatar key={color} {...args} color={color} />
+      ))}
     </Flex>
   ),
 };

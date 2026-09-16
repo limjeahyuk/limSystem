@@ -6,7 +6,7 @@ import {
   TableColumnHeaderCell,
   TableHeader,
   TableRow,
-} from "./Table";
+} from "src/components";
 
 const ROWS = [
   { name: "Danilo Sousa", email: "danilo@example.com", group: "Developer" },

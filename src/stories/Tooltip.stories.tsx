@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "../button";
-import { Flex } from "../layouts";
-import Tooltip from "./Tooltip";
+import { Button, Flex, Tooltip } from "src/components";
 
 const PLACEMENTS = ["top", "bottom", "left", "right"] as const;
 

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
-import { Flex } from "../layouts";
-import { Text } from "../text";
 import {
+  Flex,
+  Text,
   Checkbox,
   CheckboxGroup,
   MasterCheckbox,
   useCheckboxGroup,
-} from "./index";
+} from "src/components";
+import { useState } from "react";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const OPTIONS = [

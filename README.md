@@ -4,7 +4,7 @@
 `src/components` + `src/util` 폴더를 다른 프로젝트에 복사해서 쓴다. Vite / Next 어디서든 동작한다.
 
 - Stack: React 19 · TypeScript · CSS Modules · @floating-ui/react · Storybook(Vite)
-- 데모/플레이그라운드는 Storybook. 앱 페이지는 없다.
+- 데모/플레이그라운드는 Storybook(`src/stories/`). 앱 페이지는 없다.
 
 ## 실행
 

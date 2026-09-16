@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Flex, Textarea } from "src/components";
 import { useState } from "react";
-import { Flex } from "src/components/layouts";
 import { Radius } from "util/theme";
-import Textarea from "./Textarea";
 
 const meta = {
   title: "Components/Textarea",

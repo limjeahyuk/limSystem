@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Flex, IconButton } from "src/components";
 import { fn } from "storybook/test";
-import { Flex } from "../layouts";
 import { Radius } from "util/theme";
-import IconButton from "./IconButton";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const VARIANTS = ["solid", "outline", "surface", "ghost"] as const;

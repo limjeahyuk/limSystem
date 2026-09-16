@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Flex, Select } from "src/components";
 import { useState } from "react";
-import { Flex } from "../layouts";
 import { Radius } from "util/theme";
-import { Select } from "./Select";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const VARIANTS = ["surface", "classic", "soft", "ghost"] as const;

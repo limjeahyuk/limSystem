@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Flex, Tab, TabNav } from "src/components";
 import { useState } from "react";
-import { Flex } from "../layouts";
-import { Tab, TabNav } from "./index";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 const LIST = [

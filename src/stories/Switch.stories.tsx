@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Flex, Switch } from "src/components";
 import { useState } from "react";
-import { Flex } from "../layouts";
-import { Switch } from "./Switch";
 
 const COLORS = ["GRAY", "BLUE", "RED", "TEAL", "ORANGE", "GREEN"] as const;
 

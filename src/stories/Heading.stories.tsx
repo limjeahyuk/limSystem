@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Flex } from "../layouts";
-import Heading from "./Heading";
+import { Flex, Heading } from "src/components";
 
 const SIZES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const;
 

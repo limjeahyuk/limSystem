@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Flex, SegmentedControl } from "src/components";
 import { useState } from "react";
-import { Flex } from "../layouts";
 import { Radius } from "util/theme";
-import { SegmentedControl } from "./SegmentedControl";
 
 const OPTIONS = [
   { label: "Inbox", value: "inbox" },

@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Icon, Flex, TextInput } from "src/components";
 import { useState } from "react";
-import { Icon } from "../icon/Icon";
-import { Flex } from "../layouts";
 import { Color } from "util/theme";
-import TextInput from "./TextInput";
 
 const SIZES = ["1", "2", "3"] as const;
 

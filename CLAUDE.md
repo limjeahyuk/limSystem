@@ -11,7 +11,7 @@ AI를 이용하는 여러 프로젝트에서도 가져다 쓰기 좋은 프로�
 - `npm run storybook` | `npm run build-storybook` | `npm run lint` | `npm run typecheck` | `npm run check` | `npm run generate:icons`
   - `storybook`/`build-storybook`는 실행 전 `generate:icons`를 자동 실행한다.
   - 테스트 러너 없음. `npm run check` = typecheck + lint + build-storybook.
-- 데모/플레이그라운드는 Storybook(`*.stories.tsx`)이다. 앱 페이지는 없다.
+- 데모/플레이그라운드는 Storybook. 스토리는 전부 `src/stories/*.stories.tsx`에 모아 두고 `src/components` barrel에서만 import한다. 컴포넌트 폴더 안에 스토리를 두지 않는다(복사 대상에서 제외하기 위함). 앱 페이지는 없다.
 - 이 레포는 다른 프로젝트에 `src/components` + `src/util`(+ `src/hooks`, `src/css-reset/reset.css`, `src/assets/icons`, `generate-icon-types.ts`)을 복사해서 쓴다. 복사 대상은 Next App Router일 수 있다.
 
 ## Agent Rules

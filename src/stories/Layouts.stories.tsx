@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Text } from "../text";
+import { Text, Box, Flex, Grid } from "src/components";
 import { Color } from "util/theme";
-import { Box, Flex, Grid } from "./index";
 
 const Cell = ({ children }: { children: React.ReactNode }) => (
   <Box p={12} bg={Color.ACCENT_100} radius={6}>
