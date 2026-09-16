@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Badge, Flex, TreeView, type TreeNode } from "src/components";
+import { Flex, TreeView, type TreeNode } from "src/components";
 
 const item = (id: string, extra?: Partial<TreeNode>): TreeNode => ({
   id,
@@ -80,16 +80,14 @@ export const Icons: Story = {
 export const Badges: Story = {
   args: {
     data: withExtra(DATA, (n) =>
-      n.id === "1-1" || n.id === "3"
-        ? {
-            badge: (
-              <Badge size="1" variant="solid" color="RED" radius="full">
-                {n.id === "3" ? 35 : 2}
-              </Badge>
-            ),
-          }
-        : {},
+      n.id === "1-1" || n.id === "3" ? { badge: n.id === "3" ? 35 : 2 } : {},
     ),
+
+    style: {
+      width: 300,
+    },
+
+    color: "BLUE",
   },
 };
 
@@ -98,12 +96,7 @@ export const All: Story = {
     checkable: true,
     data: withExtra(DATA, (n) => ({
       icon: "calendar-empty",
-      badge:
-        n.id === "2" ? (
-          <Badge size="1" variant="solid" color="RED" radius="full">
-            2
-          </Badge>
-        ) : undefined,
+      badge: n.id === "2" ? 2 : undefined,
     })),
   },
 };

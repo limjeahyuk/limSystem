@@ -2,6 +2,7 @@
 
 import React, { forwardRef, useState } from "react";
 import { ColorType } from "util/theme";
+import { Badge } from "../badge";
 import { Checkbox } from "../checkbox";
 import { Icon, type IconSlot, renderIcon } from "../icon/Icon";
 import { Text } from "../text";
@@ -11,6 +12,7 @@ export interface TreeNode {
   id: string;
   label: React.ReactNode;
   icon?: IconSlot;
+  /* 숫자/문자면 RED solid Badge로 감싸고, 노드면 그대로 렌더링 */
   badge?: React.ReactNode;
   disabled?: boolean;
   children?: TreeNode[];
@@ -36,6 +38,15 @@ export interface TreeViewProps extends Omit<
 
 const leafIds = (node: TreeNode): string[] =>
   node.children?.length ? node.children.flatMap(leafIds) : [node.id];
+
+const renderBadge = (badge: React.ReactNode) =>
+  typeof badge === "string" || typeof badge === "number" ? (
+    <Badge size="1" variant="solid" color="RED" radius="full">
+      {badge}
+    </Badge>
+  ) : (
+    badge
+  );
 
 const toggleId = (ids: string[], id: string) =>
   ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
@@ -127,7 +138,7 @@ const TreeView = forwardRef<HTMLUListElement, TreeViewProps>(
             >
               {renderIcon(node.icon)}
               <Text truncate>{node.label}</Text>
-              {node.badge}
+              {renderBadge(node.badge)}
             </button>
           </div>
           {hasChildren && isOpen && (
