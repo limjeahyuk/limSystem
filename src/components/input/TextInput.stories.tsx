@@ -43,8 +43,8 @@ export const Size: Story = {
 
 export const WithIcon: Story = {
   args: {
-    leftIcon: <Icon name="search" size={20} color={Color.GRAY_300} />,
-    rightIcon: <Icon name="close" size={16} color={Color.GRAY_400} />,
+    leftIcon: <Icon name="search" size={20} color={Color.TEXT_PLACEHOLDER} />,
+    rightIcon: <Icon name="close" size={16} color={Color.TEXT_TERTIARY} />,
   },
 };
 

@@ -8,7 +8,7 @@
   background-color: transparent;
 }
 .overlay[data-dimming] {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--ls-overlay-dim);
   backdrop-filter: blur(4px);
 }
 
@@ -19,7 +19,7 @@
   max-width: 400px;
   background-color: var(--ls-bg-surface);
   border-radius: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--ls-shadow-dialog);
   display: flex;
   flex-direction: column;
   overflow: hidden;

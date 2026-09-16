@@ -27,12 +27,12 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 | 파일        | 내용                                                                                                                                                                                                                         |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `theme.css` | 토큰의 원본. primitive(`--ls-gray-500`, `--ls-blue-500` …) → semantic(`--ls-accent-*`, `--ls-bg-*`, `--ls-border-*`, `--ls-text-*`, `--ls-space-*`, `--ls-font-size-*`, `--ls-radius-*`). `.ls-interactive` 공용 상태 클래스 |
-| `theme.ts`  | `theme.css`의 TS 미러. `Color.BLUE_500 === "var(--ls-blue-500)"`, `Radius`, `ColorType`, `RadiusType`. 인라인 style에서 쓸 때 참조                                                                                           |
+| `theme.ts`  | semantic 변수의 TS 미러. `Color.ACCENT_500 === "var(--ls-accent-500)"`, `Radius`, `ColorType`, `RadiusType`. 인라인 style에서 쓸 때 참조                                                                                     |
 | `warn.ts`   | `warnDev(condition, message)` — 개발 모드 전용 경고                                                                                                                                                                          |
 
 - 프로젝트별 룩은 `theme.css`의 semantic 블록만 바꾼다. `--ls-accent-*`가 기본 강조색.
 - `color` prop을 주면 `[data-color]` 규칙이 그 요소 하위의 accent 스케일을 재바인딩한다. 생략하면 테마 기본 accent.
-- 컴포넌트 CSS에 hex / rgba를 직접 쓰지 않는다. 새 값은 `theme.css`에 변수로 추가한 뒤 참조한다.
+- 컴포넌트 CSS / TS는 semantic 변수만 참조한다. primitive(`--ls-gray-*`), hex, rgba 직접 사용 금지. 새 값은 `theme.css` semantic 블록에 추가한 뒤 참조한다.
 
 ## 공통 규칙
 

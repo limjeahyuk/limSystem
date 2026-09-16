@@ -14,7 +14,7 @@ const meta = {
   render: (args) => (
     <ScrollBox {...args}>
       {Array.from({ length: 30 }, (_, i) => (
-        <Box key={i} p={8} bg={i % 2 ? Color.GRAY_50 : Color.WHITE}>
+        <Box key={i} p={8} bg={i % 2 ? Color.BG_MUTED : Color.BG_SURFACE}>
           <Text>Row {i + 1}</Text>
         </Box>
       ))}

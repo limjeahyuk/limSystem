@@ -1,7 +1,7 @@
 .clear {
   width: 15px;
   height: 15px;
-  background-color: var(--ls-gray-300);
+  background-color: var(--ls-border-strong);
   display: flex;
   align-items: center;
   justify-content: center;

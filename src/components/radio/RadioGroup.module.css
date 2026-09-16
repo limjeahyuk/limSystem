@@ -37,7 +37,7 @@
 .control::after {
   content: "";
   border-radius: 50%;
-  background: var(--ls-white);
+  background: var(--ls-bg-surface);
 }
 .input:checked + .control {
   border-color: var(--ls-accent-600);

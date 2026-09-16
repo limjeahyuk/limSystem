@@ -10,7 +10,7 @@ const NAMES = Object.keys(ICON_DATA) as IconName[];
 const meta = {
   title: "Components/Icon",
   component: Icon,
-  args: { name: "search", size: 24, color: Color.GRAY_900 },
+  args: { name: "search", size: 24, color: Color.TEXT_PRIMARY },
   argTypes: {
     name: { control: "select", options: NAMES },
     color: { control: "color" },
@@ -40,7 +40,7 @@ export const All: Story = {
           <Icon {...args} name={name} />
           <Text
             size="1"
-            color={Color.GRAY_600}
+            color={Color.TEXT_SECONDARY}
             truncate
             style={{ maxWidth: "100%" }}
           >

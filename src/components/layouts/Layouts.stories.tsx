@@ -4,7 +4,7 @@ import { Color } from "util/theme";
 import { Box, Flex, Grid } from "./index";
 
 const Cell = ({ children }: { children: React.ReactNode }) => (
-  <Box p={12} bg={Color.BLUE_100} radius={6}>
+  <Box p={12} bg={Color.ACCENT_100} radius={6}>
     <Text size="2">{children}</Text>
   </Box>
 );
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const BoxStory: Story = {
   name: "Box",
   render: () => (
-    <Box p={20} m={10} bg={Color.GRAY_50} radius={8} width={300}>
+    <Box p={20} m={10} bg={Color.BG_MUTED} radius={8} width={300}>
       <Text>Box with p=20, m=10, radius=8</Text>
     </Box>
   ),
@@ -37,7 +37,7 @@ export const FlexStory: Story = {
     },
   },
   render: (args) => (
-    <Flex {...args} p={10} bg={Color.GRAY_50} width={400} height={120}>
+    <Flex {...args} p={10} bg={Color.BG_MUTED} width={400} height={120}>
       <Cell>1</Cell>
       <Cell>2</Cell>
       <Cell>3</Cell>

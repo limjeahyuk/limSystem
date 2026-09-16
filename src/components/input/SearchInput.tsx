@@ -14,7 +14,7 @@ const SearchInput = ({ value, onClear, ...rest }: SearchInputProps) => {
         <Icon
           name="deleted"
           size={15}
-          color={Color.WHITE}
+          color={Color.TEXT_INVERSE}
           style={{ pointerEvents: "none" }}
         />
       </button>
@@ -22,7 +22,7 @@ const SearchInput = ({ value, onClear, ...rest }: SearchInputProps) => {
 
   return (
     <TextInput
-      leftIcon={<Icon name="search" size={20} color={Color.GRAY_300} />}
+      leftIcon={<Icon name="search" size={20} color={Color.TEXT_PLACEHOLDER} />}
       rightIcon={clearIcon}
       value={value}
       {...rest}

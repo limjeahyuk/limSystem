@@ -75,5 +75,5 @@ export const LineClamp: Story = {
 
 export const ColorStory: Story = {
   name: "Color",
-  args: { color: Color.BLUE_600, weight: "600" },
+  args: { color: Color.ACCENT_600, weight: "600" },
 };

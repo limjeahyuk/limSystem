@@ -5,9 +5,7 @@
   background-color: var(--ls-bg-inverse);
   color: var(--ls-text-inverse);
   border-radius: var(--ls-radius-small);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--ls-shadow-popover);
   font-size: var(--ls-font-size-1);
   font-weight: 500;
   line-height: 1.5;

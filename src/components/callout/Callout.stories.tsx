@@ -58,7 +58,7 @@ export const Variant: Story = {
 
 export const CustomIcon: Story = {
   args: {
-    icon: <Icon name="triangle-warning" color={Color.RED_500} />,
+    icon: <Icon name="triangle-warning" color={Color.ACCENT_500} />,
     color: "RED",
   },
 };

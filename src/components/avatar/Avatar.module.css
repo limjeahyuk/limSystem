@@ -8,7 +8,7 @@
   flex-shrink: 0;
   width: var(--size);
   height: var(--size);
-  background-color: var(--ls-gray-400);
+  background-color: var(--ls-border-strong);
 }
 
 .image {

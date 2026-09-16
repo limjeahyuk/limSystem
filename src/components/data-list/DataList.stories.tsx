@@ -24,7 +24,7 @@ const meta = {
   render: (args) => (
     <DataList {...args}>
       <DataListItem align="center">
-        <DataListLabel minWidth="88px" color={Color.GRAY_600}>
+        <DataListLabel minWidth="88px" color={Color.TEXT_SECONDARY}>
           Status
         </DataListLabel>
         <DataListValue>
@@ -34,19 +34,19 @@ const meta = {
         </DataListValue>
       </DataListItem>
       <DataListItem>
-        <DataListLabel minWidth="88px" color={Color.GRAY_600}>
+        <DataListLabel minWidth="88px" color={Color.TEXT_SECONDARY}>
           ID
         </DataListLabel>
         <DataListValue>u_2J89JSA4GJ</DataListValue>
       </DataListItem>
       <DataListItem>
-        <DataListLabel minWidth="88px" color={Color.GRAY_600}>
+        <DataListLabel minWidth="88px" color={Color.TEXT_SECONDARY}>
           Name
         </DataListLabel>
         <DataListValue>Vlad Moroz</DataListValue>
       </DataListItem>
       <DataListItem>
-        <DataListLabel minWidth="88px" color={Color.GRAY_600}>
+        <DataListLabel minWidth="88px" color={Color.TEXT_SECONDARY}>
           Email
         </DataListLabel>
         <DataListValue>vlad@workos.com</DataListValue>

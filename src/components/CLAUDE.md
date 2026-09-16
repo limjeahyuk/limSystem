@@ -13,9 +13,9 @@
 
 ## 토큰 (`src/util/`)
 
-- `theme.css` — 토큰의 원본. primitive(`--ls-gray-500`, `--ls-blue-500` …) → semantic(`--ls-accent-*`, `--ls-bg-*`, `--ls-border-*`, `--ls-text-*`, `--ls-space-*`, `--ls-font-size-*`, `--ls-radius-*`). 프로젝트별 룩은 semantic 블록만 바꾼다.
-- `theme.ts` — `theme.css`의 TS 미러(`Color.BLUE_500 === "var(--ls-blue-500)"`), `Radius`, `ColorType`, `RadiusType`. 인라인 style에 쓸 때 참조.
-- 매직 넘버 금지. CSS는 `var(--ls-*)`, TS는 `Color`/`Radius`를 쓴다. hex / rgba 직접 사용 금지. 새 값은 `theme.css`에 변수 추가 → `theme.ts`에 미러 추가 → 사용.
+- `theme.css` — 토큰의 원본. primitive(`--ls-gray-500`, `--ls-blue-500` …) → semantic(`--ls-accent-*`, `--ls-bg-*`, `--ls-border-*`, `--ls-text-*`, `--ls-overlay-*`, `--ls-shadow-*`, `--ls-space-*`, `--ls-font-size-*`, `--ls-radius-*`). 프로젝트별 룩은 semantic 블록만 바꾼다.
+- `theme.ts` — semantic 변수의 TS 미러(`Color.ACCENT_500 === "var(--ls-accent-500)"`), `Radius`, `ColorType`, `RadiusType`. 인라인 style에 쓸 때 참조.
+- 매직 넘버 금지. CSS와 TS 모두 semantic 변수만 참조한다(primitive `--ls-gray-*` 직접 참조 금지). hex / rgba / 그림자 직접 사용 금지. 새 값은 `theme.css` semantic 블록에 변수 추가 → 필요하면 `theme.ts`에 미러 추가 → 사용.
 - `.ls-interactive`: hover/pressed/focus/disabled 공용 상태 클래스.
 
 ## 컴포넌트 공통 API

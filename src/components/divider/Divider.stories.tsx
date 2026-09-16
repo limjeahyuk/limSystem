@@ -35,6 +35,6 @@ export const Vertical: Story = {
 
 export const ColorStory: Story = {
   name: "Color",
-  args: { color: Color.RED_400, width: 200 },
+  args: { color: Color.ACCENT_400, width: 200 },
   render: (args) => <HorizontalDivider {...args} />,
 };

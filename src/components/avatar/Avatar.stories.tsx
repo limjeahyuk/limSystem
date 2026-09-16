@@ -52,7 +52,7 @@ export const ColorStory: Story = {
 
   render: (args) => (
     <Flex row gap={10}>
-      {[Color.GRAY_400, Color.BLUE_400, Color.RED_400, Color.TEAL_400].map(
+      {[Color.BORDER_STRONG, Color.ACCENT_400, Color.TEXT_TERTIARY, Color.BG_INVERSE].map(
         (color) => (
           <Avatar key={color} {...args} color={color} />
         ),
