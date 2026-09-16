@@ -82,28 +82,26 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 ### 입력
 
-| 컴포넌트           | 설명                                                                                                       |
-| ------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `TextInput`        | 텍스트 입력. `size("1"~"3")`, `leftIcon/rightIcon`, `fullWidth`, `textAlign`, `onChange(value)`            |
-| `SearchInput`      | 검색 입력. `onClear` 주면 지우기 버튼 표시                                                                 |
-| `Textarea`         | 여러 줄 입력. `size`, `variant(classic/surface/soft)`, `color`, `radius`, `resize`                         |
-| `Checkbox`         | `checked`, `indeterminate`, `label`, `size`, `variant(classic/surface)`, `color`, `onChange(checked)`      |
-| `CheckboxGroup`    | `options` 기반 다중 체크. `value: string[]`, `onChange(value[])`                                           |
-| `MasterCheckbox`   | 전체 선택. 하위 상태에 따라 checked / indeterminate 자동                                                   |
-| `useCheckboxGroup` | 선택 상태 훅. `selected`, `toggle/check/uncheck/checkAll/clear`, `isChecked`, `count`                      |
-| `RadioGroup`       | `options` 라디오. `value`, `onChange(value)`, `direction`, `size`, `color`                                 |
-| `useRadioGroup`    | 라디오 상태 훅                                                                                             |
-| `Switch`           | 토글. `checked`, `onChange(checked)`, `size("1"~"3")`, `color`                                             |
-| `Select`           | 드롭다운 셀렉트. `options`(그룹 지원), `value/defaultValue`, `onChange(value)`, `size`, `variant`, `color` |
+| 컴포넌트           | 설명                                                                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `TextInput`        | 텍스트 입력. `size("1"~"3")`, `leftIcon/rightIcon`, `fullWidth`, `textAlign`, `onChange(value)`                                      |
+| `SearchInput`      | 검색 입력. `onClear` 주면 지우기 버튼 표시                                                                                           |
+| `Textarea`         | 여러 줄 입력. `size`, `variant(classic/surface/soft)`, `color`, `radius`, `resize`                                                   |
+| `Checkbox`         | `checked`, `indeterminate`, `label`, `size`, `variant(classic/surface)`, `color`, `onChange(checked)`                                |
+| `CheckboxGroup`    | `options` 기반 다중 체크. `value: string[]`, `onChange(value[])`                                                                     |
+| `MasterCheckbox`   | 전체 선택. 하위 상태에 따라 checked / indeterminate 자동                                                                             |
+| `useCheckboxGroup` | 선택 상태 훅. `selected`, `toggle/check/uncheck/checkAll/clear`, `isChecked`, `count`                                                |
+| `RadioGroup`       | `options` 라디오. `value`, `onChange(value)`, `direction`, `size`, `color`                                                           |
+| `useRadioGroup`    | 라디오 상태 훅                                                                                                                       |
+| `Switch`           | 토글. `checked`, `onChange(checked)`, `size("1"~"3")`, `color`                                                                       |
+| `Select`           | 드롭다운 셀렉트(floating-ui, 키보드 탐색). `options`(그룹 지원), `value/defaultValue`, `onChange(value)`, `size`, `variant`, `color` |
 
 ### 오버레이
 
-| 컴포넌트          | 설명                                                                                                                                                         |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Dropdown`        | 팝오버 컨테이너. `trigger`, `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `children`은 `close`를 받는 함수 가능                         |
-| `DropdownContent` | 팝오버 본문. `width`, `height`, `padding`, `radius`                                                                                                          |
-| `DropdownItem`    | 메뉴 항목. `selected`, `startIcon/endIcon`, `onClick`                                                                                                        |
-| `Dialog`          | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming` |
+| 컴포넌트   | 설명                                                                                                                                                                               |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Dropdown` | 조합형 팝오버. `Dropdown` → `Dropdown.Trigger` / `Content` / `Item`. `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `Item`은 클릭 시 자동 닫힘(`closeOnClick`) |
+| `Dialog`   | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming`                       |
 
 ```tsx
 <Dialog>

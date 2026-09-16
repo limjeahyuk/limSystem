@@ -5,22 +5,8 @@
   background: var(--ls-bg-surface);
   box-shadow: var(--ls-shadow-popover);
 }
-.content[data-centered] {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-}
 
 .item {
-  position: relative;
-  width: 100%;
-}
-.item + .item {
-  margin-top: 2px;
-}
-.item button {
   width: 100%;
   display: flex;
   align-items: center;
@@ -28,27 +14,31 @@
   text-align: left;
   gap: var(--gap);
   min-height: 40px;
-  height: auto;
   padding: 8px 10px;
   border-radius: var(--ls-radius-large);
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
-.item button span {
+.item + .item {
+  margin-top: 2px;
+}
+.item span {
   line-height: 24px;
 }
-.item button:hover {
+.item:hover,
+.item[data-selected] {
   background: var(--ls-bg-muted);
 }
-.item[data-selected-setting] button {
-  background: var(--ls-bg-muted);
-}
-.item[data-selected-setting] button span {
+.item[data-selected] .label {
   font-weight: 600;
-  color: var(--ls-teal-700);
 }
-.menuLabel {
+.item:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.label {
   display: block;
   text-align: left;
   white-space: normal;

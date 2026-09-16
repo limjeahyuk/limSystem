@@ -33,15 +33,12 @@ export {
 export { default as Dialog, useDialog } from "./dialog/Dialog";
 export type { DialogProps, DialogContentProps } from "./dialog/Dialog";
 export { HorizontalDivider, VerticalDivider } from "./divider/Divider";
-export { default as Dropdown } from "./dropdown/Dropdown";
-export {
-  default as DropdownContent,
-  type DropdownContentProps,
-} from "./dropdown/DropdownContent";
-export {
-  default as DropdownItem,
-  type DropdownItemProps,
-} from "./dropdown/DropdownItem";
+export { default as Dropdown, useDropdown } from "./dropdown/Dropdown";
+export type {
+  DropdownProps,
+  DropdownContentProps,
+  DropdownItemProps,
+} from "./dropdown/Dropdown";
 export { Icon, renderIcon, type IconProps, type IconSlot } from "./icon/Icon";
 export { ICON_DATA, type IconName } from "./icon/icon-data";
 export {
