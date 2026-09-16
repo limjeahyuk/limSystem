@@ -1,5 +1,5 @@
 import { ColorType } from "util/theme";
-import { CheckboxSize, CheckboxVariant } from "./Checkbox.styled";
+import type { CheckboxSize, CheckboxVariant } from "./Checkbox";
 import Checkbox from "./Checkbox";
 
 export type CheckboxOption = {

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import styled from "@emotion/styled";
 import {
   useFloating,
   autoUpdate,
@@ -20,6 +19,7 @@ import {
   safePolygon,
 } from "@floating-ui/react";
 import { Color } from "util/theme";
+import styles from "./Tooltip.module.css";
 
 export interface TooltipProps {
   content: React.ReactNode;
@@ -126,63 +126,31 @@ const Tooltip = ({
       {trigger}
       {isOpen && (
         <FloatingPortal>
-          <TooltipBox
+          <div
             ref={floatingRef}
+            className={styles.tooltip}
+            data-placement={finalPlacement}
             style={{
               ...floatingStyles,
               visibility: isPositioned ? "visible" : "hidden",
               opacity: isPositioned ? 1 : 0,
             }}
-            placement={finalPlacement}
-            isPositioned={isPositioned}
             {...getFloatingProps()}
           >
             {content}
             {isArrow && (
-              <StyledArrow
+              <FloatingArrow
+                className={styles.arrow}
                 ref={setArrowEl}
                 context={context}
-                fill={Color.GRAY_800}
+                fill={Color.BG_INVERSE}
               />
             )}
-          </TooltipBox>
+          </div>
         </FloatingPortal>
       )}
     </>
   );
 };
-
-const TooltipBox = styled.div<{ placement: Placement; isPositioned?: boolean }>`
-  z-index: 9999;
-  max-width: 260px;
-  padding: 2px 6px;
-
-  background-color: ${Color.GRAY_800};
-  color: #ffffff;
-  border-radius: 4px;
-  box-shadow:
-    0px 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-  font-family: "Pretendard", sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  word-break: keep-all;
-
-  transform-origin: ${({ placement }) => {
-    if (placement.startsWith("top")) return "bottom center";
-    if (placement.startsWith("bottom")) return "top center";
-    if (placement.startsWith("left")) return "right center";
-    if (placement.startsWith("right")) return "left center";
-    return "center";
-  }};
-`;
-
-const StyledArrow = styled(FloatingArrow)`
-  width: 10px;
-  height: 5px;
-`;
 
 export default Tooltip;

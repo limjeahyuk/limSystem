@@ -1,0 +1,43 @@
+.list {
+  line-height: 1.5;
+  margin: 0;
+}
+.list[data-size="1"] dt {
+  font-size: var(--ls-font-size-2);
+}
+.list[data-size="1"] dd {
+  font-size: var(--ls-font-size-1);
+}
+.list[data-size="2"] dt {
+  font-size: var(--ls-font-size-3);
+}
+.list[data-size="2"] dd {
+  font-size: var(--ls-font-size-2);
+}
+.list[data-size="3"] dt {
+  font-size: var(--ls-font-size-6);
+}
+.list[data-size="3"] dd {
+  font-size: var(--ls-font-size-5);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ls-space-1);
+}
+@media (min-width: 640px) {
+  .item {
+    flex-direction: row;
+    align-items: var(--align);
+    gap: var(--gap);
+  }
+}
+
+.label,
+.value {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--ls-black);
+  font-weight: 500;
+}

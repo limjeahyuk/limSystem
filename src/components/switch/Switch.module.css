@@ -1,0 +1,92 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+.label[data-disabled] {
+  cursor: not-allowed;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--ls-gray-300);
+  border-radius: var(--ls-radius-full);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  box-sizing: border-box;
+  padding: 2px;
+}
+
+.thumb {
+  background-color: var(--ls-white);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.input:checked + .track {
+  background-color: var(--ls-accent-500);
+}
+.input:focus-visible + .track {
+  outline: 2px solid var(--ls-focus-ring);
+  outline-offset: 2px;
+}
+.input:disabled + .track {
+  opacity: 0.4;
+}
+
+.label[data-size="1"] {
+  gap: 6px;
+}
+.label[data-size="1"] .track {
+  width: 28px;
+  height: 16px;
+}
+.label[data-size="1"] .thumb {
+  width: 12px;
+  height: 12px;
+}
+.label[data-size="1"] .input:checked + .track .thumb {
+  transform: translateX(12px);
+}
+
+.label[data-size="2"] {
+  gap: 8px;
+}
+.label[data-size="2"] .track {
+  width: 36px;
+  height: 20px;
+}
+.label[data-size="2"] .thumb {
+  width: 16px;
+  height: 16px;
+}
+.label[data-size="2"] .input:checked + .track .thumb {
+  transform: translateX(16px);
+}
+
+.label[data-size="3"] {
+  gap: 10px;
+}
+.label[data-size="3"] .track {
+  width: 44px;
+  height: 24px;
+}
+.label[data-size="3"] .thumb {
+  width: 20px;
+  height: 20px;
+}
+.label[data-size="3"] .input:checked + .track .thumb {
+  transform: translateX(20px);
+}

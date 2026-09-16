@@ -1,6 +1,6 @@
 import React from "react";
 import Checkbox from "./Checkbox";
-import { CheckboxSize, CheckboxVariant } from "./Checkbox.styled";
+import type { CheckboxSize, CheckboxVariant } from "./Checkbox";
 import { ColorType } from "util/theme";
 import { CheckboxOption } from "./CheckboxGroup";
 

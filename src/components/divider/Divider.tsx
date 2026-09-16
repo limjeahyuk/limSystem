@@ -1,23 +1,36 @@
-import styled from "@emotion/styled";
-import { toCssValue } from "../layouts/system";
-import { Color } from "util/theme";
+import { SpaceValue, toCssValue } from "../layouts/system";
+import styles from "./Divider.module.css";
 
-const VerticalDivider = styled.div<{
-  height?: number | string;
+interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: React.CSSProperties["backgroundColor"];
-}>`
-  width: 1px;
-  height: ${({ height }) => toCssValue(height) || "stretch"};
-  background-color: ${({ color }) => color || Color.GRAY_200};
-`;
+}
 
-const HorizontalDivider = styled.div<{
-  width?: number | string;
-  color?: React.CSSProperties["backgroundColor"];
-}>`
-  height: 1px;
-  width: ${({ width }) => toCssValue(width) || "100%"};
-  background-color: ${({ color }) => color || Color.GRAY_200};
-`;
+const VerticalDivider = ({
+  height,
+  color,
+  className,
+  style,
+  ...rest
+}: DividerProps & { height?: SpaceValue }) => (
+  <div
+    className={[styles.vertical, className].filter(Boolean).join(" ")}
+    style={{ height: toCssValue(height), backgroundColor: color, ...style }}
+    {...rest}
+  />
+);
+
+const HorizontalDivider = ({
+  width,
+  color,
+  className,
+  style,
+  ...rest
+}: DividerProps & { width?: SpaceValue }) => (
+  <div
+    className={[styles.horizontal, className].filter(Boolean).join(" ")}
+    style={{ width: toCssValue(width), backgroundColor: color, ...style }}
+    {...rest}
+  />
+);
 
 export { VerticalDivider, HorizontalDivider };

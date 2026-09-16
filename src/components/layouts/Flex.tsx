@@ -1,100 +1,73 @@
-"use client";
-
 import { forwardRef } from "react";
-import { LayoutsProps, layoutStyles, SpaceValue, toCssValue } from "./system";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styles from "./Layout.module.css";
+import {
+  ALIGN_MAP,
+  JUSTIFY_MAP,
+  LayoutsProps,
+  SpaceValue,
+  splitLayoutProps,
+  toCssValue,
+} from "./system";
 
-interface FlexProps extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
+export interface FlexProps
+  extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
   as?: "div" | "span";
   display?: "none" | "inline-flex" | "flex";
   row?: boolean;
   direction?: React.CSSProperties["flexDirection"];
-  align?: "start" | "center" | "end" | "baseline" | "stretch";
-  justify?: "start" | "center" | "end" | "between";
+  align?: keyof typeof ALIGN_MAP;
+  justify?: keyof typeof JUSTIFY_MAP;
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
   gap?: SpaceValue;
   gapX?: SpaceValue;
   gapY?: SpaceValue;
 }
 
-const ALIGN_MAP = {
-  start: "flex-start",
-  center: "center",
-  end: "flex-end",
-  baseline: "baseline",
-  stretch: "stretch",
-};
-
-const JUSTIFY_MAP = {
-  start: "flex-start",
-  center: "center",
-  end: "flex-end",
-  between: "space-between",
-};
-
 const Flex = forwardRef<HTMLElement, FlexProps>(
-  ({ as = "div", display = "flex", row, children, ...rest }, ref) => {
+  (
+    {
+      as: Tag = "div",
+      display = "flex",
+      row,
+      direction,
+      align,
+      justify,
+      wrap,
+      gap,
+      gapX,
+      gapY,
+      className,
+      style,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const { style: layoutStyle, rest } = splitLayoutProps(props);
     return (
-      <StyledFlex
-        as={as}
-        display={display}
-        ref={ref as React.Ref<HTMLDivElement>}
-        row={row}
+      <Tag
+        ref={ref as never}
+        className={[styles.flex, className].filter(Boolean).join(" ")}
+        style={{
+          display,
+          flexDirection: direction ?? (row ? "row" : "column"),
+          alignItems: align && ALIGN_MAP[align],
+          justifyContent: justify && JUSTIFY_MAP[justify],
+          flexWrap: wrap,
+          gap: toCssValue(gap),
+          columnGap: toCssValue(gapX),
+          rowGap: toCssValue(gapY),
+          ...layoutStyle,
+          ...style,
+        }}
         {...rest}
       >
         {children}
-      </StyledFlex>
+      </Tag>
     );
   },
 );
 
-const StyledFlex = styled.div<FlexProps>`
-  box-sizing: border-box;
-
-  display: ${({ display }) => display};
-
-  flex-direction: ${({ row }) => (row ? "row" : "column")};
-
-  ${({ direction }) =>
-    direction &&
-    css`
-      flex-direction: ${direction};
-    `}
-
-  ${({ align }) =>
-    align &&
-    css`
-      align-items: ${ALIGN_MAP[align]};
-    `}
-  ${({ justify }) =>
-    justify &&
-    css`
-      justify-content: ${JUSTIFY_MAP[justify]};
-    `}
-  ${({ wrap }) =>
-    wrap &&
-    css`
-      flex-wrap: ${wrap};
-    `}
-  
-  ${({ gap }) =>
-    gap !== undefined &&
-    css`
-      gap: ${toCssValue(gap)};
-    `}
-  ${({ gapX }) =>
-    gapX !== undefined &&
-    css`
-      column-gap: ${toCssValue(gapX)};
-    `}
-  ${({ gapY }) =>
-    gapY !== undefined &&
-    css`
-      row-gap: ${toCssValue(gapY)};
-    `}
-
-  ${(props) => layoutStyles(props)}
-`;
+Flex.displayName = "Flex";
 
 export default Flex;

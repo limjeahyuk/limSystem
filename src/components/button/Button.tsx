@@ -1,85 +1,66 @@
-import { IconName } from "../Icon/icon-data";
-import { ColorType, Radius } from "util/theme";
+import { forwardRef } from "react";
+import { ColorType, Radius, type RadiusType } from "util/theme";
+import { Icon } from "../icon/Icon";
+import { IconName } from "../icon/icon-data";
 import { Text } from "../text";
-import { Icon } from "../Icon/Icon";
-import {
-  ButtonSize,
-  ButtonVariant,
-  COLOR_STYLES,
-  SIZE_STYLES,
-} from "./Button.styled";
-import styled from "@emotion/styled";
-import { interactiveStyled } from "util/styled";
+import styles from "./Button.module.css";
 
-interface ButtonProps {
+export type ButtonVariant = "solid" | "outline" | "surface" | "ghost";
+export type ButtonSize = "1" | "2" | "3" | "4";
+
+export interface ButtonProps extends Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "color"
+> {
   size?: ButtonSize;
   variant?: ButtonVariant;
   color?: ColorType;
   label: string;
   startIcon?: IconName;
   endIcon?: IconName;
-  disabled?: boolean;
-  radius?: keyof typeof Radius;
+  radius?: RadiusType;
   width?: React.CSSProperties["width"];
-
-  onClick: () => void;
 }
 
-const Button = ({
-  size = "2",
-  variant = "solid",
-  color = "BLUE",
-  label,
-  startIcon,
-  endIcon,
-  disabled,
-  onClick,
-  radius = "none",
-  width = "fit-content",
-}: ButtonProps) => {
-  return (
-    <StyledButton
-      size={size}
-      color={color}
-      variant={variant}
-      radius={Radius[radius]}
-      disabled={disabled}
-      onClick={onClick}
-      width={width}
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      size = "2",
+      variant = "solid",
+      color,
+      label,
+      startIcon,
+      endIcon,
+      radius = "none",
+      width = "fit-content",
+      className,
+      style,
+      type = "button",
+      ...rest
+    },
+    ref,
+  ) => (
+    <button
+      ref={ref}
+      type={type}
+      className={[styles.button, "ls-interactive", className]
+        .filter(Boolean)
+        .join(" ")}
+      data-size={size}
+      data-variant={variant}
+      data-color={color}
+      style={{ width, borderRadius: Radius[radius], ...style }}
+      {...rest}
     >
       {startIcon && <Icon name={startIcon} />}
       <Text weight="600" style={{ padding: "0 4px" }}>
         {label}
       </Text>
       {endIcon && <Icon name={endIcon} />}
-    </StyledButton>
-  );
-};
+    </button>
+  ),
+);
 
-const StyledButton = styled.button<{
-  size: ButtonSize;
-  variant: ButtonVariant;
-  color: ColorType;
-  radius: string;
-  disabled?: boolean;
-  width: React.CSSProperties["width"];
-}>`
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-
-  transition: all 0.2s ease;
-
-  width: ${({ width }) => width};
-
-  ${({ size }) => SIZE_STYLES[size]}
-  ${({ variant, color }) => COLOR_STYLES[color][variant]}
-
-  border-radius: ${({ radius }) => radius};
-
-  ${interactiveStyled}
-`;
+Button.displayName = "Button";
 
 export default Button;

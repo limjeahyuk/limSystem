@@ -1,56 +1,34 @@
-"use client";
 import { CSSProperties, ReactNode, forwardRef } from "react";
+import styles from "./ScrollBox.module.css";
 
-import styled from "@emotion/styled";
+export type ScrollVariant = "list" | "popover" | "body" | "grid";
 
-import { customScrollbar, scrollStyled } from "./Scroll";
-
-interface ScrollBoxProps {
+export interface ScrollBoxProps {
   children: ReactNode;
   height?: string;
   width?: string;
   style?: CSSProperties;
   id?: string;
-  variant?: scrollStyled;
+  variant?: ScrollVariant;
 }
 
 const ScrollBox = forwardRef<HTMLDivElement, ScrollBoxProps>(
   (
-    {
-      children,
-      height = "200px",
-      width = "100%",
-      style = {},
-      id,
-      variant = "body",
-    },
+    { children, height = "200px", width = "100%", style, id, variant = "body" },
     ref,
-  ) => {
-    return (
-      <StyledScrollBox
-        id={id}
-        ref={ref}
-        style={{
-          width: width,
-          height: height,
-          ...style,
-        }}
-        variant={variant}
-      >
-        {children}
-      </StyledScrollBox>
-    );
-  },
+  ) => (
+    <div
+      id={id}
+      ref={ref}
+      className={styles.scroll}
+      data-variant={variant}
+      style={{ width, height, ...style }}
+    >
+      {children}
+    </div>
+  ),
 );
 
-const StyledScrollBox = styled.div<{ variant: scrollStyled }>`
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  ${({ variant }) => customScrollbar(variant)}
-
-  scroll-behavior: smooth;
-  scrollbar-gutter: stable;
-`;
+ScrollBox.displayName = "ScrollBox";
 
 export default ScrollBox;

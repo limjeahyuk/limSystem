@@ -1,39 +1,27 @@
-"use client";
-
 import { forwardRef } from "react";
-import { LayoutsProps, layoutStyles, SpaceValue, toCssValue } from "./system";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styles from "./Layout.module.css";
+import {
+  ALIGN_MAP,
+  JUSTIFY_MAP,
+  LayoutsProps,
+  SpaceValue,
+  splitLayoutProps,
+  toCssValue,
+} from "./system";
 
-interface GridProps extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
+export interface GridProps
+  extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
   as?: "div" | "span" | "section" | "article" | "dl";
   display?: "none" | "inline-grid" | "grid";
-
   columns?: string | number;
   rows?: string | number;
   flow?: "row" | "column" | "dense" | "row dense" | "column dense";
-  align?: "start" | "center" | "end" | "baseline" | "stretch";
-  justify?: "start" | "center" | "end" | "between";
-
+  align?: keyof typeof ALIGN_MAP;
+  justify?: keyof typeof JUSTIFY_MAP;
   gap?: SpaceValue;
   gapX?: SpaceValue;
   gapY?: SpaceValue;
 }
-
-const ALIGN_MAP = {
-  start: "flex-start",
-  center: "center",
-  end: "flex-end",
-  baseline: "baseline",
-  stretch: "stretch",
-};
-
-const JUSTIFY_MAP = {
-  start: "flex-start",
-  center: "center",
-  end: "flex-end",
-  between: "space-between",
-};
 
 const toGridTemplate = (value?: string | number) => {
   if (!value) return undefined;
@@ -41,57 +29,51 @@ const toGridTemplate = (value?: string | number) => {
 };
 
 const Grid = forwardRef<HTMLElement, GridProps>(
-  ({ as = "div", display = "grid", children, ...rest }, ref) => {
+  (
+    {
+      as: Tag = "div",
+      display = "grid",
+      columns,
+      rows,
+      flow,
+      align,
+      justify,
+      gap,
+      gapX,
+      gapY,
+      className,
+      style,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const { style: layoutStyle, rest } = splitLayoutProps(props);
     return (
-      <StyledGrid
-        as={as}
-        display={display}
-        ref={ref as React.Ref<HTMLDivElement>}
+      <Tag
+        ref={ref as never}
+        className={[styles.grid, className].filter(Boolean).join(" ")}
+        style={{
+          display,
+          gridTemplateColumns: toGridTemplate(columns),
+          gridTemplateRows: toGridTemplate(rows),
+          gridAutoFlow: flow,
+          alignItems: align && ALIGN_MAP[align],
+          justifyContent: justify && JUSTIFY_MAP[justify],
+          gap: toCssValue(gap),
+          columnGap: toCssValue(gapX),
+          rowGap: toCssValue(gapY),
+          ...layoutStyle,
+          ...style,
+        }}
         {...rest}
       >
         {children}
-      </StyledGrid>
+      </Tag>
     );
   },
 );
 
-const StyledGrid = styled.div<GridProps>`
-  box-sizing: border-box;
-
-  display: ${({ display }) => display};
-
-  grid-template-columns: ${({ columns }) => toGridTemplate(columns)};
-  grid-template-rows: ${({ rows }) => toGridTemplate(rows)};
-  grid-auto-flow: ${({ flow }) => flow};
-
-  ${({ align }) =>
-    align &&
-    css`
-      align-items: ${ALIGN_MAP[align]};
-    `}
-  ${({ justify }) =>
-    justify &&
-    css`
-      justify-content: ${JUSTIFY_MAP[justify]};
-    `}
-  
-  ${({ gap }) =>
-    gap !== undefined &&
-    css`
-      gap: ${toCssValue(gap)};
-    `}
-  ${({ gapX }) =>
-    gapX !== undefined &&
-    css`
-      column-gap: ${toCssValue(gapX)};
-    `}
-  ${({ gapY }) =>
-    gapY !== undefined &&
-    css`
-      row-gap: ${toCssValue(gapY)};
-    `}
-
-  ${(props) => layoutStyles(props)}
-`;
+Grid.displayName = "Grid";
 
 export default Grid;

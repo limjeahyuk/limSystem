@@ -1,88 +1,48 @@
-"use client";
-
-import styled from "@emotion/styled";
 import { toCssValue } from "../layouts/system";
-import { Color, Radius } from "util/theme";
-import { interactiveStyled } from "util/styled";
+import { Radius, type RadiusType } from "util/theme";
+import styles from "./Avatar.module.css";
 
-interface AvatarProps {
+export interface AvatarProps {
   size: string | number;
   color?: string;
-  radius?: keyof typeof Radius;
+  radius?: RadiusType;
   fallback?: React.ReactNode;
   src?: string;
   onClick?: () => void;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const Avatar = ({
   size,
-  color = Color.GRAY_400,
+  color,
   radius = "medium",
   fallback,
   src,
   onClick,
-}: AvatarProps) => {
-  const renderContent = () => {
-    if (src) {
-      return <AvatarImage src={src} alt="avatar image" />;
+  className,
+  style,
+}: AvatarProps) => (
+  <div
+    className={[styles.avatar, onClick && "ls-interactive", className]
+      .filter(Boolean)
+      .join(" ")}
+    style={
+      {
+        "--size": toCssValue(size),
+        backgroundColor: color,
+        borderRadius: Radius[radius],
+        ...style,
+      } as React.CSSProperties
     }
-    if (fallback) {
-      return (
-        <AvatarFallback size={toCssValue(size)}>{fallback}</AvatarFallback>
-      );
-    }
-    return null;
-  };
-
-  return (
-    <StyledAvatar
-      size={toCssValue(size)}
-      color={color}
-      radius={Radius[radius]}
-      onClick={onClick}
-    >
-      {renderContent()}
-    </StyledAvatar>
-  );
-};
-
-const StyledAvatar = styled.div<{
-  size?: string;
-  color: string;
-  radius: string;
-  onClick?: () => void;
-}>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  overflow: hidden;
-  user-select: none;
-  flex-shrink: 0;
-
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
-  background-color: ${({ color }) => color};
-  border-radius: ${({ radius }) => radius};
-
-  ${({ onClick }) => onClick && interactiveStyled}
-`;
-
-const AvatarImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-`;
-
-const AvatarFallback = styled.span<{ size?: string }>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-weight: 500;
-  line-height: 1;
-  font-size: calc(${({ size }) => size} * 0.4);
-`;
+    onClick={onClick}
+  >
+    {src ? (
+      <img className={styles.image} src={src} alt="avatar image" />
+    ) : fallback ? (
+      <span className={styles.fallback}>{fallback}</span>
+    ) : null}
+  </div>
+);
 
 export default Avatar;

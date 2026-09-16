@@ -1,27 +1,19 @@
-import { ColorType, Radius } from "util/theme";
-import { IconName } from "../Icon/icon-data";
-import styled from "@emotion/styled";
-import {
-  ButtonSize,
-  ButtonVariant,
-  COLOR_STYLES,
-  ICON_SIZE_STYLES,
-} from "./Button.styled";
-import { interactiveStyled } from "util/styled";
-import { Icon } from "../Icon/Icon";
 import { forwardRef } from "react";
+import { ColorType, Radius, type RadiusType } from "util/theme";
+import { Icon } from "../icon/Icon";
+import { IconName } from "../icon/icon-data";
+import type { ButtonSize, ButtonVariant } from "./Button";
+import styles from "./Button.module.css";
 
-interface IconButtonProps {
+export interface IconButtonProps extends Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "color"
+> {
   size?: ButtonSize;
   variant?: ButtonVariant;
   color?: ColorType;
-  radius?: keyof typeof Radius;
-
+  radius?: RadiusType;
   name: IconName;
-  className?: string;
-
-  disabled?: boolean;
-  onClick: () => void;
 }
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -29,53 +21,33 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     {
       size = "2",
       variant = "solid",
-      color = "BLUE",
+      color,
       radius = "none",
       name,
-      disabled,
       className,
-      onClick,
+      style,
+      type = "button",
+      ...rest
     },
     ref,
-  ) => {
-    return (
-      <StyledIconButton
-        ref={ref}
-        size={size}
-        variant={variant}
-        color={color}
-        radius={radius}
-        disabled={disabled}
-        onClick={onClick}
-        className={className}
-      >
-        <Icon name={name} />
-      </StyledIconButton>
-    );
-  },
+  ) => (
+    <button
+      ref={ref}
+      type={type}
+      className={[styles.button, styles.icon, "ls-interactive", className]
+        .filter(Boolean)
+        .join(" ")}
+      data-size={size}
+      data-variant={variant}
+      data-color={color}
+      style={{ borderRadius: Radius[radius], ...style }}
+      {...rest}
+    >
+      <Icon name={name} />
+    </button>
+  ),
 );
 
-const StyledIconButton = styled.button<{
-  size: ButtonSize;
-  variant: ButtonVariant;
-  color: ColorType;
-  radius: keyof typeof Radius;
-  disabled?: boolean;
-}>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-
-  transition: all 0.2s ease;
-
-  ${({ size }) => ICON_SIZE_STYLES[size]}
-  ${({ variant, color }) => COLOR_STYLES[color][variant]}
-  
-    border-radius: ${({ radius }) => Radius[radius]};
-
-  ${interactiveStyled}
-`;
+IconButton.displayName = "IconButton";
 
 export default IconButton;

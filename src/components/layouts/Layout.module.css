@@ -1,0 +1,5 @@
+.box,
+.flex,
+.grid {
+  box-sizing: border-box;
+}

@@ -12,7 +12,7 @@ import {
   FloatingOverlay,
   FloatingFocusManager,
 } from "@floating-ui/react";
-import styled from "@emotion/styled";
+import styles from "./Dialog.module.css";
 
 interface DialogContextType {
   setOpen: (open: boolean) => void;
@@ -97,27 +97,19 @@ const Dialog = ({
 
       {isOpen && (
         <FloatingPortal>
-          <StyledOverlay dimming={dimming} lockScroll>
+          <FloatingOverlay
+            className={styles.overlay}
+            data-dimming={dimming || undefined}
+            lockScroll
+          >
             <FloatingFocusManager context={context}>
               <>{children}</>
             </FloatingFocusManager>
-          </StyledOverlay>
+          </FloatingOverlay>
         </FloatingPortal>
       )}
     </DialogContext.Provider>
   );
 };
-
-const StyledOverlay = styled(FloatingOverlay)<{ dimming: boolean }>`
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ dimming }) =>
-    dimming ? "rgba(0, 0, 0, 0.5)" : "transparent"};
-  backdrop-filter: ${({ dimming }) => (dimming ? "blur(4px)" : "none")};
-`;
 
 export default Dialog;

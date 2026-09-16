@@ -1,5 +1,5 @@
 import { ColorType } from "util/theme";
-import { TAB_COLOR_MAP, TabButton, TabContainer } from "./Tab.styled";
+import styles from "./Tab.module.css";
 
 export interface TabOption {
   label: string;
@@ -22,40 +22,36 @@ const Tab = ({
   onChange,
   size = "2",
   disabled = false,
-  color = "RED",
+  color,
 }: TabProps) => {
-  const normalizedList: TabOption[] = list.map((item) =>
+  const tabs: TabOption[] = list.map((item) =>
     typeof item === "string" ? { label: item, value: item } : item,
   );
 
   return (
-    <TabContainer role="tablist">
-      {normalizedList.map((tab) => {
+    <div role="tablist" className={styles.list} data-color={color}>
+      {tabs.map((tab) => {
         const isActive = value === tab.value;
-        const isTabDisabled = disabled || tab.disabled;
-
+        const isDisabled = disabled || tab.disabled;
         return (
-          <TabButton
+          <button
             key={tab.value}
-            role="tab"
-            aria-selected={isActive}
-            aria-disabled={isTabDisabled}
-            isActive={isActive}
-            disabled={isTabDisabled}
-            size={size}
-            onClick={() => {
-              if (!isTabDisabled) {
-                onChange(tab.value);
-              }
-            }}
             type="button"
-            color={TAB_COLOR_MAP[color]}
+            role="tab"
+            className={styles.tab}
+            aria-selected={isActive}
+            aria-disabled={isDisabled}
+            data-size={size}
+            data-active={isActive || undefined}
+            data-disabled={isDisabled || undefined}
+            disabled={isDisabled}
+            onClick={() => !isDisabled && onChange(tab.value)}
           >
             {tab.label}
-          </TabButton>
+          </button>
         );
       })}
-    </TabContainer>
+    </div>
   );
 };
 

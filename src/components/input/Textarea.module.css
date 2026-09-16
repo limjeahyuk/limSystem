@@ -1,0 +1,58 @@
+.textarea {
+  box-sizing: border-box;
+  font-weight: 500;
+  line-height: 140%;
+  color: var(--ls-text-primary);
+  outline: 0;
+  border: 1px solid transparent;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.textarea[data-size="1"] {
+  min-height: 48px;
+  padding: 4px 6px;
+  font-size: var(--ls-font-size-1);
+}
+.textarea[data-size="2"] {
+  min-height: 64px;
+  padding: 6px 8px;
+  font-size: var(--ls-font-size-2);
+}
+.textarea[data-size="3"] {
+  min-height: 80px;
+  padding: 8px 12px;
+  font-size: var(--ls-font-size-3);
+}
+
+.textarea[data-variant="classic"] {
+  background: var(--ls-bg-surface);
+  border-color: var(--ls-border-strong);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+.textarea[data-variant="surface"] {
+  background: var(--ls-bg-surface);
+  border-color: var(--ls-border-default);
+}
+.textarea[data-variant="soft"] {
+  background: var(--ls-accent-50);
+}
+
+.textarea::placeholder {
+  color: var(--ls-text-placeholder);
+}
+.textarea:focus {
+  border-color: var(--ls-accent-500);
+  box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--ls-accent-500) 20%, transparent);
+}
+.textarea:read-only {
+  background: var(--ls-bg-disabled);
+}
+.textarea:disabled {
+  background: var(--ls-bg-disabled);
+  border-color: var(--ls-border-default);
+  color: var(--ls-text-disabled);
+  cursor: not-allowed;
+}

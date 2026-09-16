@@ -1,0 +1,11 @@
+.vertical {
+  width: 1px;
+  height: stretch;
+  background-color: var(--ls-border-default);
+}
+
+.horizontal {
+  height: 1px;
+  width: 100%;
+  background-color: var(--ls-border-default);
+}

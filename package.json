@@ -5,29 +5,31 @@
   "type": "module",
   "scripts": {
     "generate:icons": "node generate-icon-types.ts",
-    "dev": "npm run generate:icons && next dev",
-    "build": "npm run generate:icons && next build",
-    "start": "next start",
-    "lint": "eslint ."
+    "storybook": "npm run generate:icons && storybook dev -p 6006",
+    "build-storybook": "npm run generate:icons && storybook build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run build-storybook"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
     "@floating-ui/react": "^0.27.19",
-    "next": "^16.2.10",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@svgr/webpack": "^8.1.0",
+    "@storybook/react-vite": "^10.6.0",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.5.0",
+    "storybook": "^10.6.0",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.58.2"
+    "typescript-eslint": "^8.58.2",
+    "vite": "^7.3.6",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }

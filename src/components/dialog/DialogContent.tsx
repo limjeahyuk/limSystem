@@ -1,7 +1,7 @@
 import React from "react";
 import { useDialog } from "./Dialog";
 import { useMergeRefs } from "@floating-ui/react";
-import styled from "@emotion/styled";
+import styles from "./Dialog.module.css";
 import { Button } from "../button";
 import { Box } from "../layouts";
 import ScrollBox from "../scroll/ScrollBox";
@@ -62,13 +62,15 @@ export const DialogContent = React.forwardRef<
     };
 
     return (
-      <StyledDialogContent
+      <div
+        className={styles.content}
         ref={mergedRef}
         {...getFloatingProps()}
         style={style}
       >
         {onClose && (
-          <StyledIconClaseButton
+          <IconButton
+            className={styles.close}
             onClick={handleClose}
             name="close"
             size="3"
@@ -106,7 +108,7 @@ export const DialogContent = React.forwardRef<
         {footer !== undefined ? (
           footer
         ) : onCancel || onSubmit ? (
-          <StyledFooter>
+          <div className={styles.footer}>
             {onCancel && (
               <Button
                 variant="solid"
@@ -123,38 +125,10 @@ export const DialogContent = React.forwardRef<
                 label={submitText}
               />
             )}
-          </StyledFooter>
+          </div>
         ) : null}
-      </StyledDialogContent>
+      </div>
     );
   },
 );
 DialogContent.displayName = "DialogContent";
-
-const StyledIconClaseButton = styled(IconButton)`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-`;
-
-const StyledDialogContent = styled.div`
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 400px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-`;
-
-const StyledFooter = styled.div`
-  padding: 16px 24px;
-  background-color: #fff;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  border-top: 1px solid #e5e7eb;
-`;

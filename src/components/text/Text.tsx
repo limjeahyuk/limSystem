@@ -1,20 +1,17 @@
-"use client";
+import styles from "./Text.module.css";
 
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+export type TextSize = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+export type TextWeight = "300" | "400" | "500" | "600" | "700";
+export type TextWrap = "wrap" | "nowrap" | "balance" | "pretty";
+export type TextTrim = "normal" | "start" | "end" | "both";
 
-type TextSize = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-type TextWeight = "300" | "400" | "500" | "600" | "700";
-type TextWrap = "wrap" | "nowrap" | "balance" | "pretty";
-type TextTrim = "normal" | "start" | "end" | "both";
-
-interface TextProps {
-  as?: "span" | "div" | "label" | "p";
+export interface TextStyleProps {
   size?: TextSize;
   fontSize?: string;
   weight?: TextWeight;
   color?: string;
   children: React.ReactNode;
+  className?: string;
   style?: React.CSSProperties;
   lineClamp?: number;
   align?: React.CSSProperties["textAlign"];
@@ -23,159 +20,49 @@ interface TextProps {
   truncate?: boolean;
 }
 
-const Text = ({
-  as = "span",
-  size = "2",
+export interface TextProps extends TextStyleProps {
+  as?: "span" | "div" | "label" | "p";
+}
+
+// Text와 Heading이 공유하는 속성 계산
+export const toTextAttrs = ({
+  size,
   fontSize,
-  weight = "400",
+  weight,
   color,
-  children,
-  truncate,
+  className,
+  style,
   lineClamp,
   align,
   wrap,
+  trim,
+  truncate,
+}: Omit<TextStyleProps, "children">) => ({
+  className: [styles.text, className].filter(Boolean).join(" "),
+  "data-size": size,
+  "data-trim": trim !== "normal" ? trim : undefined,
+  "data-truncate": truncate || undefined,
+  "data-clamp": lineClamp || undefined,
+  style: {
+    fontWeight: weight,
+    fontSize,
+    color,
+    textAlign: align,
+    textWrap: wrap,
+    "--line-clamp": lineClamp,
+    ...style,
+  } as React.CSSProperties,
+});
+
+const Text = ({
+  as: Tag = "span",
+  size = "2",
+  weight = "400",
   trim = "normal",
-  style,
-}: TextProps) => {
-  return (
-    <StyledText
-      as={as}
-      size={size}
-      fontSize={fontSize}
-      weight={weight}
-      color={color}
-      truncate={truncate}
-      lineClamp={lineClamp}
-      align={align}
-      wrap={wrap}
-      trim={trim}
-      style={style}
-    >
-      {children}
-    </StyledText>
-  );
-};
-
-const TYPO__SIZES: Record<TextSize, ReturnType<typeof css>> = {
-  "1": css`
-    font-size: 12px;
-    letter-spacing: 0.0025em;
-    line-height: 16px;
-  `,
-  "2": css`
-    font-size: 14px;
-    letter-spacing: 0em;
-    line-height: 20px;
-  `,
-  "3": css`
-    font-size: 16px;
-    letter-spacing: 0em;
-    line-height: 24px;
-  `,
-  "4": css`
-    font-size: 18px;
-    letter-spacing: -0.0025em;
-    line-height: 26px;
-  `,
-  "5": css`
-    font-size: 20px;
-    letter-spacing: -0.005em;
-    line-height: 28px;
-  `,
-  "6": css`
-    font-size: 24px;
-    letter-spacing: -0.00625em;
-    line-height: 30px;
-  `,
-  "7": css`
-    font-size: 28px;
-    letter-spacing: -0.0075em;
-    line-height: 36px;
-  `,
-  "8": css`
-    font-size: 35px;
-    letter-spacing: -0.01em;
-    line-height: 40px;
-  `,
-  "9": css`
-    font-size: 60px;
-    letter-spacing: -0.025em;
-    line-height: 60px;
-  `,
-};
-
-const StyledText = styled.p<{
-  size: TextSize;
-  fontSize?: string;
-  weight: TextWeight;
-  color?: string;
-  truncate?: boolean;
-  lineClamp?: number;
-  align?: React.CSSProperties["textAlign"];
-  wrap?: TextWrap;
-  trim: TextTrim;
-}>`
-  font-family: inherit;
-  margin: 0;
-  color: ${({ color }) => color};
-
-  ${({ size }) => TYPO__SIZES[size]}
-
-  font-weight : ${({ weight }) => weight};
-  font-size: ${({ fontSize }) => fontSize};
-
-  ${({ wrap }) =>
-    wrap &&
-    css`
-      text-wrap: ${wrap};
-    `}
-
-  text-align: ${({ align }) => align};
-
-  ${({ truncate }) =>
-    truncate &&
-    css`
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      word-break: break-all;
-    `}
-
-  ${({ lineClamp }) =>
-    lineClamp &&
-    css`
-      display: -webkit-box;
-      -webkit-line-clamp: ${lineClamp};
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-break: keep-all;
-    `};
-
-  ${({ trim }) =>
-    trim &&
-    trim !== "normal" &&
-    css`
-      &::before,
-      &::after {
-        content: "";
-        display: table;
-      }
-      /* 상단 여백 제거 (start, both) */
-      ${(trim === "start" || trim === "both") &&
-      css`
-        &::before {
-          margin-bottom: -0.25em; /* 폰트에 따라 미세 조정 필요 */
-        }
-      `}
-      /* 하단 여백 제거 (end, both) */
-      ${(trim === "end" || trim === "both") &&
-      css`
-        &::after {
-          margin-top: -0.25em; /* 폰트에 따라 미세 조정 필요 */
-        }
-      `}
-    `}
-`;
+  children,
+  ...rest
+}: TextProps) => (
+  <Tag {...toTextAttrs({ size, weight, trim, ...rest })}>{children}</Tag>
+);
 
 export default Text;

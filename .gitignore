@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Next.js
-.next
-out
-next-env.d.ts
+# Build
+storybook-static
+tsconfig.tsbuildinfo

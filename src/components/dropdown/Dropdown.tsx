@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import styled from "@emotion/styled";
 
 import {
   useFloating,
@@ -86,10 +85,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   ]);
 
   return (
-    <Container
-      className={open ? "opened" : ""}
-      style={{ width: fullWidth ? "100%" : "auto" }}
-    >
+    <div style={{ width: fullWidth ? "100%" : "auto" }}>
       <div ref={refs.setReference} {...getReferenceProps()}>
         {trigger}
       </div>
@@ -111,14 +107,8 @@ const Dropdown: React.FC<DropdownProps> = ({
           </div>
         </FloatingPortal>
       )}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  &.opened .dropdown-trigger .right-icon {
-    transform: rotate(180deg);
-  }
-`;
 
 export default Dropdown;

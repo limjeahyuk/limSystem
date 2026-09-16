@@ -1,77 +1,52 @@
-"use client";
+import React, { forwardRef } from "react";
+import { ColorType, Radius, type RadiusType } from "util/theme";
+import styles from "./Textarea.module.css";
 
-import styled from "@emotion/styled";
-import { Color } from "util/theme";
+export type TextareaSize = "1" | "2" | "3";
+export type TextareaVariant = "classic" | "surface" | "soft";
+export type TextareaResize = "none" | "vertical" | "horizontal" | "both";
 
-interface Props {
-  height?: string;
-  value?: string;
-  placeholder?: string;
+export interface TextareaProps extends Omit<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  "color"
+> {
+  size?: TextareaSize;
+  variant?: TextareaVariant;
+  color?: ColorType;
+  radius?: RadiusType;
+  resize?: TextareaResize;
   width?: string;
-  readOnly?: boolean;
-  maxLength?: number;
-  disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  height?: string;
 }
 
-const Textarea = ({
-  height = "80px",
-  placeholder,
-  value,
-  readOnly,
-  onChange,
-  onFocus,
-  onBlur,
-  disabled,
-  maxLength,
-}: Props) => {
-  return (
-    <StyledTextArea
-      height={height}
-      value={value}
-      placeholder={placeholder}
-      readOnly={readOnly}
-      disabled={disabled}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      maxLength={maxLength}
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  (
+    {
+      size = "2",
+      variant = "surface",
+      color,
+      radius = "large",
+      resize = "none",
+      width = "100%",
+      height,
+      className,
+      style,
+      ...rest
+    },
+    ref,
+  ) => (
+    <textarea
+      ref={ref}
+      className={[styles.textarea, className].filter(Boolean).join(" ")}
+      data-size={size}
+      data-variant={variant}
+      data-color={color}
+      style={{ width, height, resize, borderRadius: Radius[radius], ...style }}
+      {...rest}
     />
-  );
-};
+  ),
+);
 
-const StyledTextArea = styled.textarea<{
-  height: string;
-}>`
-  width: 100%;
-  height: ${(props) => props.height};
-  padding: 8px 10px;
-  border-radius: 8px;
-  outline: 1px solid ${Color.GRAY_200};
-  font-size: 14px;
-  font-weight: 500;
-  border: none;
-  resize: none;
-  color: ${Color.GRAY_700};
-  box-sizing: border-box;
-
-  &:disabled {
-    background: ${Color.GRAY_50};
-  }
-
-  &::placeholder {
-    color: ${Color.GRAY_300};
-  }
-  &:focus {
-    outline-width: 1px;
-    outline-color: #000;
-  }
-
-  &:read-only {
-    background-color: ${Color.GRAY_50};
-  }
-`;
+Textarea.displayName = "Textarea";
 
 export default Textarea;

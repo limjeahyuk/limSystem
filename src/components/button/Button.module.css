@@ -1,0 +1,109 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.button:disabled {
+  cursor: not-allowed;
+}
+
+/* Button */
+.button[data-size="1"] {
+  height: 24px;
+  padding: 0 4px;
+  gap: 0;
+  font-size: var(--ls-font-size-1);
+}
+.button[data-size="2"] {
+  height: 36px;
+  padding: 0 8px;
+  gap: 0;
+  font-size: var(--ls-font-size-2);
+}
+.button[data-size="3"] {
+  height: 40px;
+  padding: 0 8px;
+  gap: 2px;
+  font-size: var(--ls-font-size-3);
+}
+.button[data-size="4"] {
+  height: 48px;
+  padding: 0 12px;
+  gap: 4px;
+  font-size: var(--ls-font-size-3);
+}
+.button[data-size="1"] svg {
+  width: 14px;
+  height: 14px;
+}
+.button[data-size="2"] svg {
+  width: 16px;
+  height: 16px;
+}
+.button[data-size="3"] svg {
+  width: 20px;
+  height: 20px;
+}
+.button[data-size="4"] svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* IconButton */
+.icon[data-size="1"] {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.icon[data-size="2"] {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+.icon[data-size="3"] {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+.icon[data-size="4"] {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+}
+.icon[data-size="1"] svg {
+  width: 14px;
+  height: 14px;
+}
+.icon[data-size="2"] svg {
+  width: 16px;
+  height: 16px;
+}
+.icon[data-size="3"] svg {
+  width: 20px;
+  height: 20px;
+}
+.icon[data-size="4"] svg {
+  width: 24px;
+  height: 24px;
+}
+
+.button[data-variant="solid"] {
+  background-color: var(--ls-accent-500);
+  color: var(--ls-text-inverse);
+}
+.button[data-variant="surface"] {
+  background-color: var(--ls-accent-300);
+  color: var(--ls-accent-900);
+}
+.button[data-variant="outline"] {
+  background-color: transparent;
+  color: var(--ls-accent-500);
+  border-color: var(--ls-accent-500);
+}
+.button[data-variant="ghost"] {
+  background-color: transparent;
+  color: var(--ls-accent-500);
+}

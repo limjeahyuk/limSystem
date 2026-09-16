@@ -1,0 +1,247 @@
+/* 자동 생성 아님. 프로젝트별 룩은 semantic 블록만 수정한다. */
+:root {
+  /* primitive */
+  --ls-white: #ffffff;
+  --ls-black: #000000;
+  --ls-gray-10: #f9f9fa;
+  --ls-gray-50: #f1f2f4;
+  --ls-gray-100: #e6e8ea;
+  --ls-gray-200: #dde0e3;
+  --ls-gray-300: #cbcfd2;
+  --ls-gray-400: #b3b7bd;
+  --ls-gray-500: #9b9fa6;
+  --ls-gray-600: #878a92;
+  --ls-gray-700: #6d7178;
+  --ls-gray-800: #55585e;
+  --ls-gray-900: #3c3e44;
+  --ls-gray-950: #333538;
+  --ls-gray-980: #292b2d;
+  --ls-gray-990: #181a1b;
+  --ls-teal-50: #e9fcfc;
+  --ls-teal-100: #d6f9fa;
+  --ls-teal-200: #c2f4f5;
+  --ls-teal-300: #93eaeb;
+  --ls-teal-400: #58dddf;
+  --ls-teal-500: #23c7cd;
+  --ls-teal-600: #00aab2;
+  --ls-teal-700: #00838a;
+  --ls-teal-800: #00575c;
+  --ls-teal-900: #013d42;
+  --ls-teal-950: #04343a;
+  --ls-red-50: #fff0f0;
+  --ls-red-100: #ffe5e5;
+  --ls-red-200: #ffcccc;
+  --ls-red-300: #ff9999;
+  --ls-red-400: #fe6d6d;
+  --ls-red-500: #ec4141;
+  --ls-red-600: #d52525;
+  --ls-red-700: #b42222;
+  --ls-red-800: #8b1313;
+  --ls-red-900: #691111;
+  --ls-orange-50: #fff4e0;
+  --ls-orange-100: #ffebc7;
+  --ls-orange-200: #ffdfa3;
+  --ls-orange-300: #ffb75c;
+  --ls-orange-400: #ff9100;
+  --ls-orange-500: #f56900;
+  --ls-orange-600: #d65c00;
+  --ls-orange-700: #b24c00;
+  --ls-orange-800: #853900;
+  --ls-orange-900: #703000;
+  --ls-orange-950: #522300;
+  --ls-green-50: #ecfce9;
+  --ls-green-100: #d8f9d2;
+  --ls-green-200: #baf3af;
+  --ls-green-300: #92de8c;
+  --ls-green-400: #5bc25d;
+  --ls-green-500: #279b33;
+  --ls-green-600: #09721a;
+  --ls-green-700: #055c0f;
+  --ls-green-800: #024b0c;
+  --ls-green-900: #043e0d;
+  --ls-green-950: #023109;
+  --ls-blue-50: #ebf6ff;
+  --ls-blue-100: #dbefff;
+  --ls-blue-200: #bedffe;
+  --ls-blue-300: #83c5fc;
+  --ls-blue-400: #429ff5;
+  --ls-blue-500: #1872e2;
+  --ls-blue-600: #0f59c7;
+  --ls-blue-700: #123fa5;
+  --ls-blue-800: #0f328a;
+  --ls-blue-900: #08286d;
+  --ls-blue-950: #14274d;
+
+  --ls-radius-none: 0px;
+  --ls-radius-small: 4px;
+  --ls-radius-medium: 6px;
+  --ls-radius-large: 8px;
+  --ls-radius-full: 999px;
+
+  --ls-space-1: 4px;
+  --ls-space-2: 8px;
+  --ls-space-3: 12px;
+  --ls-space-4: 16px;
+  --ls-space-5: 20px;
+  --ls-space-6: 24px;
+  --ls-space-7: 32px;
+  --ls-space-8: 40px;
+
+  --ls-font-size-1: 12px;
+  --ls-font-size-2: 14px;
+  --ls-font-size-3: 16px;
+  --ls-font-size-4: 18px;
+  --ls-font-size-5: 20px;
+  --ls-font-size-6: 24px;
+  --ls-font-size-7: 28px;
+  --ls-font-size-8: 35px;
+  --ls-font-size-9: 60px;
+  --ls-line-height-1: 16px;
+  --ls-line-height-2: 20px;
+  --ls-line-height-3: 24px;
+  --ls-line-height-4: 26px;
+  --ls-line-height-5: 28px;
+  --ls-line-height-6: 30px;
+  --ls-line-height-7: 36px;
+  --ls-line-height-8: 40px;
+  --ls-line-height-9: 60px;
+
+  /* semantic: 프로젝트별로 여기만 바꾼다 */
+  --ls-accent-50: var(--ls-blue-50);
+  --ls-accent-100: var(--ls-blue-100);
+  --ls-accent-200: var(--ls-blue-200);
+  --ls-accent-300: var(--ls-blue-300);
+  --ls-accent-400: var(--ls-blue-400);
+  --ls-accent-500: var(--ls-blue-500);
+  --ls-accent-600: var(--ls-blue-600);
+  --ls-accent-700: var(--ls-blue-700);
+  --ls-accent-800: var(--ls-blue-800);
+  --ls-accent-900: var(--ls-blue-900);
+
+  --ls-bg-surface: var(--ls-white);
+  --ls-bg-subtle: var(--ls-gray-10);
+  --ls-bg-muted: var(--ls-gray-50);
+  --ls-bg-disabled: var(--ls-gray-50);
+  --ls-bg-inverse: var(--ls-gray-900);
+
+  --ls-border-default: var(--ls-gray-200);
+  --ls-border-strong: var(--ls-gray-300);
+  --ls-border-focus: var(--ls-gray-700);
+
+  --ls-text-primary: var(--ls-gray-900);
+  --ls-text-secondary: var(--ls-gray-700);
+  --ls-text-tertiary: var(--ls-gray-500);
+  --ls-text-disabled: var(--ls-gray-300);
+  --ls-text-placeholder: var(--ls-gray-300);
+  --ls-text-inverse: var(--ls-white);
+
+  --ls-focus-ring: var(--ls-teal-500);
+  --ls-overlay-hover: rgba(24, 26, 27, 0.08);
+  --ls-overlay-pressed: rgba(24, 26, 27, 0.16);
+  --ls-shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* color prop: data-color가 붙은 요소와 그 하위의 accent 스케일을 재바인딩 */
+[data-color="GRAY"] {
+  --ls-accent-50: var(--ls-gray-50);
+  --ls-accent-100: var(--ls-gray-100);
+  --ls-accent-200: var(--ls-gray-200);
+  --ls-accent-300: var(--ls-gray-300);
+  --ls-accent-400: var(--ls-gray-400);
+  --ls-accent-500: var(--ls-gray-500);
+  --ls-accent-600: var(--ls-gray-600);
+  --ls-accent-700: var(--ls-gray-700);
+  --ls-accent-800: var(--ls-gray-800);
+  --ls-accent-900: var(--ls-gray-900);
+}
+[data-color="BLUE"] {
+  --ls-accent-50: var(--ls-blue-50);
+  --ls-accent-100: var(--ls-blue-100);
+  --ls-accent-200: var(--ls-blue-200);
+  --ls-accent-300: var(--ls-blue-300);
+  --ls-accent-400: var(--ls-blue-400);
+  --ls-accent-500: var(--ls-blue-500);
+  --ls-accent-600: var(--ls-blue-600);
+  --ls-accent-700: var(--ls-blue-700);
+  --ls-accent-800: var(--ls-blue-800);
+  --ls-accent-900: var(--ls-blue-900);
+}
+[data-color="RED"] {
+  --ls-accent-50: var(--ls-red-50);
+  --ls-accent-100: var(--ls-red-100);
+  --ls-accent-200: var(--ls-red-200);
+  --ls-accent-300: var(--ls-red-300);
+  --ls-accent-400: var(--ls-red-400);
+  --ls-accent-500: var(--ls-red-500);
+  --ls-accent-600: var(--ls-red-600);
+  --ls-accent-700: var(--ls-red-700);
+  --ls-accent-800: var(--ls-red-800);
+  --ls-accent-900: var(--ls-red-900);
+}
+[data-color="TEAL"] {
+  --ls-accent-50: var(--ls-teal-50);
+  --ls-accent-100: var(--ls-teal-100);
+  --ls-accent-200: var(--ls-teal-200);
+  --ls-accent-300: var(--ls-teal-300);
+  --ls-accent-400: var(--ls-teal-400);
+  --ls-accent-500: var(--ls-teal-500);
+  --ls-accent-600: var(--ls-teal-600);
+  --ls-accent-700: var(--ls-teal-700);
+  --ls-accent-800: var(--ls-teal-800);
+  --ls-accent-900: var(--ls-teal-900);
+}
+[data-color="ORANGE"] {
+  --ls-accent-50: var(--ls-orange-50);
+  --ls-accent-100: var(--ls-orange-100);
+  --ls-accent-200: var(--ls-orange-200);
+  --ls-accent-300: var(--ls-orange-300);
+  --ls-accent-400: var(--ls-orange-400);
+  --ls-accent-500: var(--ls-orange-500);
+  --ls-accent-600: var(--ls-orange-600);
+  --ls-accent-700: var(--ls-orange-700);
+  --ls-accent-800: var(--ls-orange-800);
+  --ls-accent-900: var(--ls-orange-900);
+}
+[data-color="GREEN"] {
+  --ls-accent-50: var(--ls-green-50);
+  --ls-accent-100: var(--ls-green-100);
+  --ls-accent-200: var(--ls-green-200);
+  --ls-accent-300: var(--ls-green-300);
+  --ls-accent-400: var(--ls-green-400);
+  --ls-accent-500: var(--ls-green-500);
+  --ls-accent-600: var(--ls-green-600);
+  --ls-accent-700: var(--ls-green-700);
+  --ls-accent-800: var(--ls-green-800);
+  --ls-accent-900: var(--ls-green-900);
+}
+
+/* 클릭 가능한 요소 공용 상태. data-state는 데모용 */
+.ls-interactive {
+  position: relative;
+}
+.ls-interactive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color 0.2s ease-in-out;
+}
+.ls-interactive:hover::after,
+.ls-interactive[data-state="hover"]::after {
+  background-color: var(--ls-overlay-hover);
+}
+.ls-interactive:active::after,
+.ls-interactive[data-state="pressed"]::after {
+  background-color: var(--ls-overlay-pressed);
+}
+.ls-interactive:focus-visible,
+.ls-interactive[data-state="focus"] {
+  outline: 2px solid var(--ls-focus-ring);
+}
+.ls-interactive:disabled,
+.ls-interactive[data-state="disabled"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

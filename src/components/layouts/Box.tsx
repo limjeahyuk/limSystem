@@ -1,36 +1,30 @@
-"use client";
-
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { LayoutsProps, layoutStyles } from "./system";
 import { forwardRef } from "react";
+import styles from "./Layout.module.css";
+import { LayoutsProps, splitLayoutProps } from "./system";
 
-interface BoxProps extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
+export interface BoxProps
+  extends React.HTMLAttributes<HTMLElement>, LayoutsProps {
   as?: "div" | "span";
   display?: "none" | "inline" | "inline-block" | "block" | "contents";
   children?: React.ReactNode;
 }
 
 const Box = forwardRef<HTMLElement, BoxProps>(
-  ({ as = "div", children, ...rest }, ref) => {
+  ({ as: Tag = "div", display, className, style, children, ...props }, ref) => {
+    const { style: layoutStyle, rest } = splitLayoutProps(props);
     return (
-      <StyledBox as={as} ref={ref as React.Ref<HTMLDivElement>} {...rest}>
+      <Tag
+        ref={ref as never}
+        className={[styles.box, className].filter(Boolean).join(" ")}
+        style={{ display, ...layoutStyle, ...style }}
+        {...rest}
+      >
         {children}
-      </StyledBox>
+      </Tag>
     );
   },
 );
 
-const StyledBox = styled.div<BoxProps>`
-  box-sizing: border-box;
-
-  ${({ display }) =>
-    display &&
-    css`
-      display: ${display};
-    `}
-
-  ${(props) => layoutStyles(props)}
-`;
+Box.displayName = "Box";
 
 export default Box;

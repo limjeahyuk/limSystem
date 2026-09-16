@@ -1,11 +1,6 @@
 import React from "react";
 import { ColorType } from "util/theme";
-import {
-  NavContainer,
-  TAB_COLOR_MAP,
-  TabContainer,
-  TabNavLink,
-} from "./Tab.styled";
+import styles from "./Tab.module.css";
 
 export interface TabNavOption {
   label: string;
@@ -27,36 +22,33 @@ const TabNav = ({
   currentPath,
   size = "2",
   disabled = false,
-  color = "RED",
+  color,
   linkComponent = "a",
-}: TabNavProps) => {
-  return (
-    <NavContainer role="navigation">
-      <TabContainer role="tablist">
-        {list.map((tab) => {
-          const isActive = currentPath === tab.href;
-          const isTabDisabled = disabled || tab.disabled;
-
-          return (
-            <TabNavLink
-              key={tab.href}
-              as={isTabDisabled ? "span" : linkComponent}
-              href={isTabDisabled ? undefined : tab.href}
-              role="tab"
-              aria-selected={isActive}
-              aria-disabled={isTabDisabled}
-              isActive={isActive}
-              disabled={isTabDisabled}
-              size={size}
-              color={TAB_COLOR_MAP[color]}
-            >
-              {tab.label}
-            </TabNavLink>
-          );
-        })}
-      </TabContainer>
-    </NavContainer>
-  );
-};
+}: TabNavProps) => (
+  <nav role="navigation" className={styles.nav}>
+    <div role="tablist" className={styles.list} data-color={color}>
+      {list.map((tab) => {
+        const isActive = currentPath === tab.href;
+        const isDisabled = disabled || tab.disabled;
+        const Tag: React.ElementType = isDisabled ? "span" : linkComponent;
+        return (
+          <Tag
+            key={tab.href}
+            href={isDisabled ? undefined : tab.href}
+            role="tab"
+            className={styles.tab}
+            aria-selected={isActive}
+            aria-disabled={isDisabled}
+            data-size={size}
+            data-active={isActive || undefined}
+            data-disabled={isDisabled || undefined}
+          >
+            {tab.label}
+          </Tag>
+        );
+      })}
+    </div>
+  </nav>
+);
 
 export default TabNav;

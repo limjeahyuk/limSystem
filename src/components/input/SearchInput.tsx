@@ -1,92 +1,43 @@
-"use client";
-
-import React from "react";
-
-import styled from "@emotion/styled";
-
-import { Icon } from "../Icon/Icon";
 import { Color } from "util/theme";
-import TextInput, { type ISearchInputProps } from "./TextInput";
+import { Icon } from "../icon/Icon";
+import styles from "./SearchInput.module.css";
+import TextInput, { type TextInputProps } from "./TextInput";
 
-type InputSizeType = "small" | "medium" | "small-medium";
-
-// Todo: input style -> 둥근모양
-
-interface Props {
-  size?: InputSizeType;
-  value?: string;
-  placeholder?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+export interface SearchInputProps extends TextInputProps {
   onClear?: () => void;
-  onClose?: () => void;
-  style?: React.CSSProperties;
-  inputStyle?: React.CSSProperties;
 }
-
-const StyledSearchInput = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  > div {
-    width: 100%;
-  }
-`;
 
 const SearchInput = ({
   size = "medium",
-  placeholder,
   value,
-  onChange,
   onClear,
   style,
   inputStyle,
-  fullWidth,
   ...rest
-}: Props & ISearchInputProps) => {
-  // TODO onClear, onClose
+}: SearchInputProps) => {
   const clearIcon =
     onClear && value && value.length > 0 ? (
-      <button
-        onClick={onClear}
-        style={{
-          width: "15px",
-          height: "15px",
-          backgroundColor: Color.GRAY_300,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "50%",
-          cursor: "pointer",
-        }}
-      >
+      <button type="button" className={styles.clear} onClick={onClear}>
         <Icon
           name="deleted"
           size={15}
-          color="#fff"
+          color={Color.WHITE}
           style={{ pointerEvents: "none" }}
         />
       </button>
     ) : null;
 
   return (
-    <StyledSearchInput style={style}>
+    <div className={styles.wrapper} style={style}>
       <TextInput
         size={size}
         leftIcon={<Icon name="search" size={20} color={Color.GRAY_300} />}
         rightIcon={clearIcon}
-        placeholder={placeholder}
         value={value}
-        fullWidth={fullWidth}
-        onChange={onChange}
         style={inputStyle}
         {...rest}
       />
-      {/* {onClose && (
-        <button onClick={onClose}>
-          <SvgIcon name="delete" size={20} color={Color.GRAY_400} />
-        </button>
-      )} */}
-    </StyledSearchInput>
+    </div>
   );
 };
 

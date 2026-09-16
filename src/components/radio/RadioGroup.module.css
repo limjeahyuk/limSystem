@@ -1,0 +1,98 @@
+.group {
+  display: flex;
+  gap: var(--ls-space-3);
+}
+.group[data-direction="row"] {
+  flex-direction: row;
+  align-items: center;
+}
+.group[data-direction="column"] {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.option:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--ls-border-strong);
+  transition: 0.2s;
+}
+.control::after {
+  content: "";
+  border-radius: 50%;
+  background: var(--ls-white);
+}
+.input:checked + .control {
+  border-color: var(--ls-accent-600);
+  background-color: var(--ls-accent-600);
+}
+.input:focus-visible + .control {
+  outline: 2px solid var(--ls-focus-ring);
+  outline-offset: 2px;
+}
+.input:disabled + .control,
+.input:disabled ~ .label {
+  opacity: 0.4;
+}
+
+.group[data-size="1"] .option {
+  gap: 6px;
+}
+.group[data-size="1"] .control {
+  width: 14px;
+  height: 14px;
+}
+.group[data-size="1"] .control::after {
+  width: 7px;
+  height: 7px;
+}
+.group[data-size="1"] .label {
+  font-size: 13px;
+}
+
+.group[data-size="2"] .option {
+  gap: var(--ls-space-2);
+}
+.group[data-size="2"] .control {
+  width: 16px;
+  height: 16px;
+}
+.group[data-size="2"] .control::after {
+  width: 6px;
+  height: 6px;
+}
+.group[data-size="2"] .label {
+  font-size: var(--ls-font-size-2);
+}
+
+.group[data-size="3"] .option {
+  gap: var(--ls-space-2);
+}
+.group[data-size="3"] .control {
+  width: 20px;
+  height: 20px;
+}
+.group[data-size="3"] .control::after {
+  width: 10px;
+  height: 10px;
+}
+.group[data-size="3"] .label {
+  font-size: var(--ls-font-size-3);
+}

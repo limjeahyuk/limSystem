@@ -1,0 +1,34 @@
+.tooltip {
+  z-index: 9999;
+  max-width: 260px;
+  padding: 2px 6px;
+  background-color: var(--ls-bg-inverse);
+  color: var(--ls-text-inverse);
+  border-radius: var(--ls-radius-small);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  font-size: var(--ls-font-size-1);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  transform-origin: center;
+}
+.tooltip[data-placement^="top"] {
+  transform-origin: bottom center;
+}
+.tooltip[data-placement^="bottom"] {
+  transform-origin: top center;
+}
+.tooltip[data-placement^="left"] {
+  transform-origin: right center;
+}
+.tooltip[data-placement^="right"] {
+  transform-origin: left center;
+}
+
+.arrow {
+  width: 10px;
+  height: 5px;
+}

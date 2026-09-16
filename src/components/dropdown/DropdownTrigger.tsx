@@ -1,11 +1,10 @@
 "use client";
 
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Icon } from "../icon/Icon";
 import TextInput, { type InputSizeType } from "../input/TextInput";
-import { Icon } from "../Icon/Icon";
+import styles from "./Dropdown.module.css";
 
-interface DropdownTriggerProps {
+export interface DropdownTriggerProps {
   size?: InputSizeType;
   value?: string;
   placeholder?: string;
@@ -21,9 +20,9 @@ const DropdownTrigger = ({
   width,
   readOnly = false,
   isOpen = false,
-}: DropdownTriggerProps) => {
-  return (
-    <StyledInputWrapper
+}: DropdownTriggerProps) => (
+  <div className={styles.trigger} data-open={isOpen || undefined}>
+    <TextInput
       width={width}
       size={size}
       value={value}
@@ -32,29 +31,8 @@ const DropdownTrigger = ({
       readOnly={readOnly}
       hasPointCursor
       noIconEvent
-      isOpen={isOpen}
     />
-  );
-};
+  </div>
+);
 
 export default DropdownTrigger;
-
-const StyledInputWrapper = styled(TextInput, {
-  shouldForwardProp: (prop) => prop !== "isOpen",
-})<{ isOpen: boolean }>`
-  cursor: pointer;
-
-  div {
-    cursor: pointer;
-  }
-
-  .right-icon svg {
-    transition: transform 0.2s ease-in-out;
-
-    ${(props) =>
-      props.isOpen &&
-      css`
-        transform: rotate(180deg);
-      `}
-  }
-`;
