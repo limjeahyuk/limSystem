@@ -128,6 +128,8 @@ export type {
   TextWrap,
 } from "./text/Text";
 export { default as Tooltip, type TooltipProps } from "./tooltip/Tooltip";
+export { TreeView } from "./tree-view";
+export type { TreeNode, TreeViewProps } from "./tree-view/TreeView";
 export { Card } from "./card";
 export type { CardProps, CardSize, CardVariant } from "./card/Card";
 export { EmptyState } from "./empty-state";

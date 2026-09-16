@@ -133,12 +133,13 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 ### 내비게이션 / 데이터
 
-| 컴포넌트   | 설명                                                                                                            |
-| ---------- | --------------------------------------------------------------------------------------------------------------- |
-| `Tab`      | 상태 기반 탭. `list`, `value`, `onChange(value)`, `size("1"/"2")`, `color`                                      |
-| `TabNav`   | 링크 기반 탭. `list({label, href})`, `currentPath`, `linkComponent`(Next `Link` 등 주입)                        |
-| `Table`    | `Table / TableHeader / TableBody / TableRow / TableColumnHeaderCell / TableCell`. `size`, `variant`, 셀 `align` |
-| `DataList` | 라벨-값 목록. `DataList / DataListItem / DataListLabel / DataListValue`. `orientation`, `size`                  |
+| 컴포넌트   | 설명                                                                                                                                                                                                                                           |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Tab`      | 상태 기반 탭. `list`, `value`, `onChange(value)`, `size("1"/"2")`, `color`                                                                                                                                                                     |
+| `TabNav`   | 링크 기반 탭. `list({label, href})`, `currentPath`, `linkComponent`(Next `Link` 등 주입)                                                                                                                                                       |
+| `Table`    | `Table / TableHeader / TableBody / TableRow / TableColumnHeaderCell / TableCell`. `size`, `variant`, 셀 `align`                                                                                                                                |
+| `DataList` | 라벨-값 목록. `DataList / DataListItem / DataListLabel / DataListValue`. `orientation`, `size`                                                                                                                                                 |
+| `TreeView` | 계층 트리. `data: TreeNode[]`(`id/label/icon/badge/disabled/children`), `expanded/defaultExpanded/onExpandedChange`, `selected/onSelect(id)`(싱글), `checkable/checked/onCheckedChange(ids)`(leaf id 기준, 부모는 indeterminate 자동), `color` |
 
 ## 훅 (`src/hooks/`)
 

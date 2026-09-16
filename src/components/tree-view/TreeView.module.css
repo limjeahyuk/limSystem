@@ -1,0 +1,88 @@
+.tree,
+.group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+/* 들여쓰기는 depth마다 토글 폭만큼 */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--ls-space-1);
+  padding-left: calc(var(--depth) * var(--ls-space-6));
+  color: var(--ls-text-primary);
+}
+.row[data-disabled] {
+  color: var(--ls-text-disabled);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ls-text-secondary);
+  cursor: pointer;
+}
+.toggle:disabled {
+  color: var(--ls-text-disabled);
+  cursor: default;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: var(--ls-space-2);
+  height: 32px;
+  padding: 0 var(--ls-space-2);
+  border: 0;
+  border-radius: var(--ls-radius-small);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.content svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--ls-text-secondary);
+}
+.content:hover {
+  background: var(--ls-bg-muted);
+}
+.content:focus-visible {
+  outline: 2px solid var(--ls-focus-ring);
+  outline-offset: -2px;
+}
+.row[data-selected] .content {
+  background: var(--ls-accent-50);
+}
+.content:disabled {
+  background: none;
+  cursor: default;
+}
+.row[data-disabled] .content svg {
+  color: var(--ls-text-disabled);
+}
