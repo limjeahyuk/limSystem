@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ICONS_DIR = path.join(__dirname, "src/assets/icons");
-const OUTPUT_DIR = path.join(__dirname, "src/components/Icon");
+const OUTPUT_DIR = path.join(__dirname, "src/components/icon");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "icon-data.ts"); // 파일명 변경
 
 try {

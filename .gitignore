@@ -26,3 +26,4 @@ dist-ssr
 # Build
 storybook-static
 tsconfig.tsbuildinfo
+graphify-out
