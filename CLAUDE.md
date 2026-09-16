@@ -3,7 +3,9 @@
 여러 프로젝트에서 공용으로 쓰기 좋은 디자인 시스템.
 AI를 이용하는 여러 프로젝트에서도 가져다 쓰기 좋은 프로젝트를 만드는 것을 목표로 합니다.
 
-컴포넌트/토큰 사용 규칙은 `src/components/CLAUDE.md`에 있다. 그 파일은 `src/components`와 함께 다른 프로젝트로 복사되므로, 소비 프로젝트에서도 지켜야 하는 규칙은 거기에만 적고 여기서 중복하지 않는다. 이 파일은 이 레포를 개발할 때만 필요한 규칙을 담는다.
+@src/components/CLAUDE.md
+
+컴포넌트/토큰 사용 규칙은 위 `src/components/CLAUDE.md`에 있다. 그 파일은 `src/components`와 함께 다른 프로젝트로 복사되므로, 소비 프로젝트에서도 지켜야 하는 규칙은 거기에만 적고 여기서 중복하지 않는다. 이 파일은 이 레포를 개발할 때만 필요한 규칙을 담는다.
 
 ## Stack & Cmd
 
@@ -11,6 +13,7 @@ AI를 이용하는 여러 프로젝트에서도 가져다 쓰기 좋은 프로�
 - `npm run storybook` | `npm run build-storybook` | `npm run lint` | `npm run typecheck` | `npm run check` | `npm run generate:icons`
   - `storybook`/`build-storybook`는 실행 전 `generate:icons`를 자동 실행한다.
   - 테스트 러너 없음. `npm run check` = typecheck + lint + build-storybook.
+  - `lint` = ESLint + `scripts/check-css-tokens.mjs`. hex / rgba / primitive 변수 직접 사용과 barrel 우회 import를 에러로 잡는다. 규칙을 바꾸면 `eslint.config.js`와 그 스크립트를 같이 고친다.
 - 데모/플레이그라운드는 Storybook. 스토리는 전부 `src/stories/*.stories.tsx`에 모아 두고 `src/components` barrel에서만 import한다. 컴포넌트 폴더 안에 스토리를 두지 않는다(복사 대상에서 제외하기 위함). 앱 페이지는 없다.
 - 이 레포는 다른 프로젝트에 `src/components` + `src/util`(+ `src/hooks`, `src/css-reset/reset.css`, `src/assets/icons`, `generate-icon-types.ts`)을 복사해서 쓴다. 복사 대상은 Next App Router일 수 있다.
 

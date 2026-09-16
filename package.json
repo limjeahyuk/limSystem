@@ -7,7 +7,7 @@
     "generate:icons": "node generate-icon-types.ts",
     "storybook": "npm run generate:icons && storybook dev -p 6006",
     "build-storybook": "npm run generate:icons && storybook build",
-    "lint": "eslint .",
+    "lint": "eslint . && node scripts/check-css-tokens.mjs",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint && npm run build-storybook"
   },
