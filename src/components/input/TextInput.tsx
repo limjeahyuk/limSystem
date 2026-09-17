@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import { Icon, type IconSlot, renderIcon } from "../icon/Icon";
 import styles from "./TextInput.module.css";
 
 export type InputSize = "1" | "2" | "3";
@@ -9,8 +10,11 @@ export interface TextInputProps extends Omit<
 > {
   size?: InputSize;
   width?: string;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  /* IconName 문자열이면 size에 맞춘 placeholder 색 아이콘, 노드면 그대로 */
+  leftIcon?: IconSlot;
+  rightIcon?: IconSlot;
+  /* 값이 있을 때 우측에 지우기 버튼을 띄운다. rightIcon보다 우선 */
+  onClear?: () => void;
   fullWidth?: boolean;
   onChange?: (
     value: string,
@@ -30,6 +34,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       width = "100%",
       leftIcon,
       rightIcon,
+      onClear,
       fullWidth,
       onChange,
       noIconEvent,
@@ -43,33 +48,45 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       ...rest
     },
     ref,
-  ) => (
-    <div
-      className={[styles.wrapper, className].filter(Boolean).join(" ")}
-      data-size={size}
-      data-full-width={fullWidth || undefined}
-      data-has-left-icon={leftIcon ? "" : undefined}
-      data-no-icon-event={noIconEvent || undefined}
-      data-pointer={hasPointCursor || undefined}
-      style={{ width, ...wrapperStyle }}
-    >
-      {leftIcon && <div className={styles.leftIcon}>{leftIcon}</div>}
-      <input
-        ref={ref}
-        className={styles.input}
-        value={value ?? ""}
-        onChange={(e) => onChange?.(e.target.value, e)}
-        onClick={onClick}
-        style={{ textAlign, ...style }}
-        {...rest}
-      />
-      {rightIcon && (
-        <div className={styles.rightIcon} onClick={onClick}>
-          {rightIcon}
-        </div>
-      )}
-    </div>
-  ),
+  ) => {
+    const right =
+      onClear && value ? (
+        <button type="button" className={styles.clear} onClick={onClear}>
+          <Icon name="deleted" />
+        </button>
+      ) : (
+        renderIcon(rightIcon)
+      );
+    return (
+      <div
+        className={[styles.wrapper, className].filter(Boolean).join(" ")}
+        data-size={size}
+        data-full-width={fullWidth || undefined}
+        data-has-left-icon={leftIcon ? "" : undefined}
+        data-no-icon-event={noIconEvent || undefined}
+        data-pointer={hasPointCursor || undefined}
+        style={{ width, ...wrapperStyle }}
+      >
+        {leftIcon && (
+          <div className={styles.leftIcon}>{renderIcon(leftIcon)}</div>
+        )}
+        <input
+          ref={ref}
+          className={styles.input}
+          value={value ?? ""}
+          onChange={(e) => onChange?.(e.target.value, e)}
+          onClick={onClick}
+          style={{ textAlign, ...style }}
+          {...rest}
+        />
+        {right && (
+          <div className={styles.rightIcon} onClick={onClick}>
+            {right}
+          </div>
+        )}
+      </div>
+    );
+  },
 );
 
 TextInput.displayName = "TextInput";

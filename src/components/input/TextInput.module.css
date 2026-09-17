@@ -38,6 +38,45 @@
 .rightIcon button {
   height: 100%;
 }
+/* 문자열 아이콘 기본 룩: placeholder 색, size별 크기 */
+.leftIcon,
+.rightIcon {
+  color: var(--ls-text-placeholder);
+}
+.wrapper[data-size="1"] .leftIcon svg,
+.wrapper[data-size="1"] .rightIcon svg {
+  width: 16px;
+  height: 16px;
+}
+.wrapper[data-size="2"] .leftIcon svg,
+.wrapper[data-size="2"] .rightIcon svg {
+  width: 18px;
+  height: 18px;
+}
+.wrapper[data-size="3"] .leftIcon svg,
+.wrapper[data-size="3"] .rightIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.clear {
+  width: 15px;
+  height: 15px;
+  background-color: var(--ls-border-strong);
+  color: var(--ls-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ls-radius-full);
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.clear svg {
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+}
 .wrapper[data-no-icon-event] .rightIcon {
   pointer-events: none;
 }

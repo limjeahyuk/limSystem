@@ -50,10 +50,6 @@ export type {
 export { Icon, renderIcon, type IconProps, type IconSlot } from "./icon/Icon";
 export { ICON_DATA, type IconName } from "./icon/icon-data";
 export {
-  default as SearchInput,
-  type SearchInputProps,
-} from "./input/SearchInput";
-export {
   default as TextInput,
   type TextInputProps,
   type InputSize,

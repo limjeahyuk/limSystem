@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Icon, Flex, TextInput } from "src/components";
+import { Flex, TextInput } from "src/components";
 import { useState } from "react";
-import { Color } from "util/theme";
 
 const SIZES = ["1", "2", "3"] as const;
 
@@ -40,9 +39,21 @@ export const Size: Story = {
 };
 
 export const WithIcon: Story = {
-  args: {
-    leftIcon: <Icon name="search" size={20} color={Color.TEXT_PLACEHOLDER} />,
-    rightIcon: <Icon name="close" size={16} color={Color.TEXT_TERTIARY} />,
+  args: { leftIcon: "search", rightIcon: "close" },
+};
+
+export const Search: Story = {
+  args: { leftIcon: "search", placeholder: "검색어를 입력하세요" },
+  render: function Render(args) {
+    const [value, setValue] = useState("");
+    return (
+      <TextInput
+        {...args}
+        value={value}
+        onChange={setValue}
+        onClear={() => setValue("")}
+      />
+    );
   },
 };
 

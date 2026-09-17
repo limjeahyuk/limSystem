@@ -50,13 +50,16 @@
 
 .container[data-size="1"] .item {
   height: 28px;
+  padding: 0 var(--ls-space-3);
   font-size: 13px;
 }
 .container[data-size="2"] .item {
   height: 32px;
+  padding: 0 var(--ls-space-4);
   font-size: 15px;
 }
 .container[data-size="3"] .item {
   height: 40px;
+  padding: 0 var(--ls-space-5);
   font-size: var(--ls-font-size-3);
 }
