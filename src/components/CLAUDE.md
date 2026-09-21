@@ -39,12 +39,13 @@
 - `icon/icon-data.ts`는 `generate-icon-types.ts`가 만드는 자동 생성 파일이다. 직접 수정 금지. SVG 추가/삭제 후 `node generate-icon-types.ts`.
 - `<path d>`만 추출한다. `<circle>`, `<rect>`, stroke 기반 SVG는 빈 아이콘이 된다.
 
-## Floating UI (`dropdown/`, `tooltip/`, `dialog/`, `select/`)
+## Floating UI (`dropdown/`, `tooltip/`, `dialog/`, `bottom-sheet/`, `select/`)
 
 - `@floating-ui/react`의 `useFloating`, `FloatingPortal`, interaction 훅 사용. 직접 position 계산 금지.
 - `Dropdown`은 조합형: `Dropdown.Trigger / Content / Item`. `Item`은 클릭 시 자동으로 닫힌다(`closeOnClick={false}`로 유지).
 - `Select`도 floating-ui 기반. 키보드 탐색(`useListNavigation`)과 `role="listbox"` 내장.
 - `Dialog`는 조합형: `Dialog.Trigger / Content / CloseButton / Title / Description / Body / Footer / Close`.
+- `BottomSheet`는 `Dialog`와 같은 조합형(모바일 하단 시트). 응답이 필수인 흐름(약관 동의)은 `dismissible={false}` + `CloseButton` 생략. `Footer` 버튼은 `width="100%"`.
 
 ## 화면 조립용 컴포넌트
 

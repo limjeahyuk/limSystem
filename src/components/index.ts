@@ -126,6 +126,14 @@ export type {
 export { default as Tooltip, type TooltipProps } from "./tooltip/Tooltip";
 export { TreeView } from "./tree-view";
 export type { TreeNode, TreeViewProps } from "./tree-view/TreeView";
+export {
+  default as BottomSheet,
+  useBottomSheet,
+} from "./bottom-sheet/BottomSheet";
+export type {
+  BottomSheetContentProps,
+  BottomSheetProps,
+} from "./bottom-sheet/BottomSheet";
 export { Card } from "./card";
 export type { CardProps, CardSize, CardVariant } from "./card/Card";
 export { EmptyState } from "./empty-state";

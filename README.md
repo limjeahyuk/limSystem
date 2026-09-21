@@ -88,7 +88,7 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 | 컴포넌트           | 설명                                                                                                                                                                                                                                                                                        |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TextInput`        | 텍스트 입력. `size("1"~"3")`, `leftIcon/rightIcon`(IconName 또는 노드), `onClear` 주면 지우기 버튼, `fullWidth`, `textAlign`, `onChange(value)` |
+| `TextInput`        | 텍스트 입력. `size("1"~"3")`, `leftIcon/rightIcon`(IconName 또는 노드), `onClear` 주면 지우기 버튼, `fullWidth`, `textAlign`, `onChange(value)`                                                                                                                                             |
 | `Textarea`         | 여러 줄 입력. `size`, `variant(classic/surface/soft)`, `color`, `radius`, `resize`                                                                                                                                                                                                          |
 | `Checkbox`         | `checked`, `indeterminate`, `label`, `size`, `variant(classic/surface)`, `color`, `onChange(checked)`                                                                                                                                                                                       |
 | `CheckboxGroup`    | `options` 기반 다중 체크. `value: string[]`, `onChange(value[])`                                                                                                                                                                                                                            |
@@ -103,11 +103,12 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 ### 오버레이
 
-| 컴포넌트   | 설명                                                                                                                                                                               |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Dropdown` | 조합형 팝오버. `Dropdown` → `Dropdown.Trigger` / `Content` / `Item`. `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `Item`은 클릭 시 자동 닫힘(`closeOnClick`) |
-| `Toast`    | `ToastProvider`로 감싸고 `useToast().toast({ title, description, color, icon, duration })`. `position`, 기본 `duration` 4000ms                                                     |
-| `Dialog`   | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming`                       |
+| 컴포넌트      | 설명                                                                                                                                                                                                  |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Dropdown`    | 조합형 팝오버. `Dropdown` → `Dropdown.Trigger` / `Content` / `Item`. `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `Item`은 클릭 시 자동 닫힘(`closeOnClick`)                    |
+| `Toast`       | `ToastProvider`로 감싸고 `useToast().toast({ title, description, color, icon, duration })`. `position`, 기본 `duration` 4000ms                                                                        |
+| `Dialog`      | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming`                                          |
+| `BottomSheet` | 화면 아래에서 올라오는 시트. `Dialog`와 같은 조합형(`Trigger / Content / Title / Body / Footer / Close / CloseButton`). `dismissible={false}`면 바깥 클릭·ESC로 안 닫힘, `Content height`로 높이 지정 |
 
 ```tsx
 <Dialog>
