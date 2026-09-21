@@ -33,7 +33,7 @@ try {
     const viewBox = viewBoxMatch ? viewBoxMatch[1] : "0 0 24 24";
 
     // 모든 <path> 태그의 d 속성 추출
-    const pathMatches = [...svgContent.matchAll(/d="([^"]+)"/g)];
+    const pathMatches = [...svgContent.matchAll(/\bd="([^"]+)"/g)];
     const paths = pathMatches.map((match) => match[1]);
 
     // 아이콘 데이터 객체에 저장
