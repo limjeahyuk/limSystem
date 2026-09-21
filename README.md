@@ -103,12 +103,12 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 ### 오버레이
 
-| 컴포넌트      | 설명                                                                                                                                                                                                  |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Dropdown`    | 조합형 팝오버. `Dropdown` → `Dropdown.Trigger` / `Content` / `Item`. `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `Item`은 클릭 시 자동 닫힘(`closeOnClick`)                    |
-| `Toast`       | `ToastProvider`로 감싸고 `useToast().toast({ title, description, color, icon, duration })`. `position`, 기본 `duration` 4000ms                                                                        |
-| `Dialog`      | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming`                                          |
-| `BottomSheet` | 화면 아래에서 올라오는 시트. `Dialog`와 같은 조합형(`Trigger / Content / Title / Body / Footer / Close / CloseButton`). `dismissible={false}`면 바깥 클릭·ESC로 안 닫힘, `Content height`로 높이 지정 |
+| 컴포넌트      | 설명                                                                                                                                                                                                                                                 |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Dropdown`    | 조합형 팝오버. `Dropdown` → `Dropdown.Trigger` / `Content` / `Item`. `placement`, `triggerMode(click/hover/both)`, `open/onOpenChange`. `Item`은 클릭 시 자동 닫힘(`closeOnClick`)                                                                   |
+| `Toast`       | `ToastProvider`로 감싸고 `useToast().toast({ title, description, color, icon, duration })`. `position`, 기본 `duration` 4000ms                                                                                                                       |
+| `Dialog`      | 조합형 모달. `Dialog` → `Dialog.Trigger` / `Content` / `CloseButton` / `Title` / `Description` / `Body` / `Footer` / `Close`. `open/onOpenChange`, `dimming`                                                                                         |
+| `BottomSheet` | 화면 아래에서 올라오는 시트. `Dialog`와 같은 조합형(`Trigger / Content / Title / Body / Footer / Close / CloseButton`). 핸들을 끌어 닫거나 `Content snapPoints={["40%", "90%"]}` 사이를 이동. `dismissible={false}`면 바깥 클릭·ESC·드래그로 안 닫힘 |
 
 ```tsx
 <Dialog>

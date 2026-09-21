@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useRef, useState } from "react";
 import {
   FloatingFocusManager,
   FloatingOverlay,
@@ -122,17 +122,81 @@ const Close = ({ children }: { children: SlotChild }) => {
   });
 };
 
+// "50%" / "40vh" / "320px" / 320 → px
+const toPx = (value: string | number) => {
+  if (typeof value === "number") return value;
+  const n = parseFloat(value);
+  if (value.endsWith("%") || value.endsWith("vh"))
+    return (window.innerHeight * n) / 100;
+  return n;
+};
+
+interface DragState {
+  startY: number;
+  startH: number;
+  dy: number;
+}
+
 export interface BottomSheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  /* 시트 높이. 생략하면 내용만큼, "50%" / "90%"처럼 화면 비율 지정 가능 */
-  height?: string;
+  /* 핸들을 끌어 멈출 높이 목록("40%", "90vh", 320). 생략하면 내용 높이 하나 */
+  snapPoints?: (string | number)[];
+  defaultSnap?: number;
 }
 
 const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
-  ({ children, height, className, style, ...rest }, propRef) => {
-    const { open, context, setFloating, getFloatingProps } = useBottomSheet();
-    const ref = useMergeRefs([setFloating, propRef]);
+  (
+    { children, className, style, snapPoints, defaultSnap = 0, ...rest },
+    propRef,
+  ) => {
+    const {
+      open,
+      setOpen,
+      dismissible,
+      context,
+      setFloating,
+      getFloatingProps,
+    } = useBottomSheet();
+    const sheetRef = useRef<HTMLDivElement>(null);
+    const ref = useMergeRefs([setFloating, propRef, sheetRef]);
+    const [snap, setSnap] = useState(defaultSnap);
+    const [drag, setDrag] = useState<DragState | null>(null);
     if (!open) return null;
+
+    // 위로 끌면 높이를 키우고, 아래로 끌면 시트를 내린다
+    let dragStyle: React.CSSProperties = {};
+    if (drag) {
+      const maxH = snapPoints ? Math.max(...snapPoints.map(toPx)) : drag.startH;
+      dragStyle =
+        drag.dy < 0
+          ? { height: Math.min(drag.startH - drag.dy, maxH) }
+          : { transform: `translateY(${drag.dy}px)` };
+    }
+
+    const onPointerDown = (e: React.PointerEvent) => {
+      e.currentTarget.setPointerCapture(e.pointerId);
+      setDrag({
+        startY: e.clientY,
+        startH: sheetRef.current?.offsetHeight ?? 0,
+        dy: 0,
+      });
+    };
+    const onPointerMove = (e: React.PointerEvent) => {
+      if (drag) setDrag({ ...drag, dy: e.clientY - drag.startY });
+    };
+    // 놓은 시점의 높이에 가장 가까운 snap으로 이동. dismissible이면 0(닫힘)도 후보
+    const onPointerUp = () => {
+      if (!drag) return;
+      const h = drag.startH - drag.dy;
+      const candidates = (snapPoints ?? [drag.startH]).map(toPx);
+      if (dismissible) candidates.push(0);
+      const nearest = candidates.reduce((a, b) =>
+        Math.abs(b - h) < Math.abs(a - h) ? b : a,
+      );
+      setDrag(null);
+      if (nearest === 0) setOpen(false);
+      else if (snapPoints) setSnap(candidates.indexOf(nearest));
+    };
 
     return (
       <FloatingPortal>
@@ -141,10 +205,19 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
             <div
               ref={ref}
               className={[styles.sheet, className].filter(Boolean).join(" ")}
-              style={{ height, ...style }}
+              data-dragging={drag ? "" : undefined}
+              style={{ height: snapPoints?.[snap], ...dragStyle, ...style }}
               {...getFloatingProps(rest)}
             >
-              <div className={styles.handle} aria-hidden="true" />
+              <div
+                className={styles.grip}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                onPointerCancel={onPointerUp}
+              >
+                <div className={styles.handle} aria-hidden="true" />
+              </div>
               {children}
             </div>
           </FloatingFocusManager>

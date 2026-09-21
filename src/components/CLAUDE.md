@@ -45,7 +45,7 @@
 - `Dropdown`은 조합형: `Dropdown.Trigger / Content / Item`. `Item`은 클릭 시 자동으로 닫힌다(`closeOnClick={false}`로 유지).
 - `Select`도 floating-ui 기반. 키보드 탐색(`useListNavigation`)과 `role="listbox"` 내장.
 - `Dialog`는 조합형: `Dialog.Trigger / Content / CloseButton / Title / Description / Body / Footer / Close`.
-- `BottomSheet`는 `Dialog`와 같은 조합형(모바일 하단 시트). 응답이 필수인 흐름(약관 동의)은 `dismissible={false}` + `CloseButton` 생략. `Footer` 버튼은 `width="100%"`.
+- `BottomSheet`는 `Dialog`와 같은 조합형(모바일 하단 시트). 핸들 드래그로 닫히고 `Content snapPoints`로 높이 단계를 둔다. 응답이 필수인 흐름(약관 동의)은 `dismissible={false}` + `CloseButton` 생략. `Footer` 버튼은 `width="100%"`.
 
 ## 화면 조립용 컴포넌트
 

@@ -103,13 +103,13 @@ export const Confirm: Story = {
   render: () => <ConsentSheet />,
 };
 
-export const FixedHeight: Story = {
+export const SnapPoints: Story = {
   render: (args) => (
     <BottomSheet {...args}>
       <BottomSheet.Trigger>
-        <Button>90% 높이</Button>
+        <Button>40% / 90% 스냅</Button>
       </BottomSheet.Trigger>
-      <BottomSheet.Content height="90vh">
+      <BottomSheet.Content snapPoints={["40%", "90%"]}>
         <BottomSheet.CloseButton />
         <BottomSheet.Title>긴 목록</BottomSheet.Title>
         <BottomSheet.Body>

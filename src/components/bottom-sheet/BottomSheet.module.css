@@ -19,13 +19,29 @@
   border-radius: var(--ls-radius-large) var(--ls-radius-large) 0 0;
   box-shadow: var(--ls-shadow-dialog);
   animation: slide-up 0.25s ease-out;
+  transition:
+    height 0.2s ease-out,
+    transform 0.2s ease-out;
+}
+.sheet[data-dragging] {
+  transition: none;
+  user-select: none;
 }
 
-.handle {
+.grip {
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding: var(--ls-space-2) 0 var(--ls-space-1);
+  cursor: grab;
+  touch-action: none;
+}
+.sheet[data-dragging] .grip {
+  cursor: grabbing;
+}
+.handle {
   width: 36px;
   height: 4px;
-  margin: var(--ls-space-2) auto 0;
   border-radius: var(--ls-radius-full);
   background-color: var(--ls-border-strong);
 }
