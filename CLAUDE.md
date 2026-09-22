@@ -9,7 +9,7 @@ AI를 이용하는 여러 프로젝트에서도 가져다 쓰기 좋은 프로�
 
 ## Stack & Cmd
 
-- Stack: React 19 + TypeScript 6 + CSS Modules + Vite(빌드/Storybook) + `@floating-ui/react`
+- Stack: React 19 + TypeScript 6 + CSS Modules + Vite(빌드/Storybook) + `@floating-ui/react` + `react-date-picker`
 - `npm run storybook` | `npm run build-storybook` | `npm run lint` | `npm run typecheck` | `npm run check` | `npm run generate:icons`
   - `storybook`/`build-storybook`는 실행 전 `generate:icons`를 자동 실행한다.
   - 테스트 러너 없음. `npm run check` = typecheck + lint + build-storybook.

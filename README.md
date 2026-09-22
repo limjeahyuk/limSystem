@@ -100,6 +100,7 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 | `FormField`        | `label` / `description` / `error` / `required` / `descriptionPlacement(top/bottom)`를 입력 컴포넌트에 묶는다. 자식에 `id`, `aria-*` 자동 주입                                                                                                                                               |
 | `FileUploader`     | 파일 첨부. `variant(input/button-input/button/dropzone)`, `files: UploadFile[]`(status: idle/uploading/success/error), `onSelect(File[])`, `onRemove(id)`, `size`, `accept`, `multiple`, `readOnly`, `disabled`. 라벨/설명/에러는 `FormField`로 감싼다. dropzone은 모바일에서 버튼만 남는다 |
 | `Select`           | 드롭다운 셀렉트(floating-ui, 키보드 탐색). `options`(그룹 지원), `value/defaultValue`, `onChange(value)`, `size`, `variant`, `color`                                                                                                                                                        |
+| `DatePicker`       | 날짜 입력(`react-date-picker` 래퍼). `value: Date \| null`, `onChange(date)`, `size`, `variant(outline/underline/bubble)`, `format`, `locale`, `minDate/maxDate`, `error`, `readOnly`, `disabled`, `fullWidth`, `pickerProps`                                                               |
 
 ### 오버레이
 
