@@ -6,6 +6,11 @@
   align-items: flex-end;
   justify-content: center;
   background-color: var(--ls-overlay-dim);
+  transition: opacity 0.25s ease-out;
+}
+/* open이 아닌 모든 상태(unmounted/initial/close)를 숨김으로 두어 첫 렌더 깜박임 방지 */
+.overlay:not([data-status="open"]) {
+  opacity: 0;
 }
 
 .sheet {
@@ -16,10 +21,12 @@
   background-color: var(--ls-bg-surface);
   border-radius: var(--ls-radius-large) var(--ls-radius-large) 0 0;
   box-shadow: var(--ls-shadow-dialog);
-  animation: slide-up 0.25s ease-out;
   transition:
     height 0.2s ease-out,
-    transform 0.2s ease-out;
+    transform 0.25s ease-out;
+}
+.sheet:not([data-status="open"]) {
+  transform: translateY(100%);
 }
 .sheet[data-dragging] {
   transition: none;
@@ -69,10 +76,4 @@
   position: absolute;
   top: var(--ls-space-4);
   right: var(--ls-space-4);
-}
-
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
 }

@@ -11,6 +11,7 @@ import {
   useInteractions,
   useMergeRefs,
   useRole,
+  useTransitionStatus,
   type FloatingContext,
 } from "@floating-ui/react";
 import IconButton from "../button/IconButton";
@@ -159,19 +160,17 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
     },
     propRef,
   ) => {
-    const {
-      open,
-      setOpen,
-      dismissible,
-      context,
-      setFloating,
-      getFloatingProps,
-    } = useBottomSheet();
+    const { setOpen, dismissible, context, setFloating, getFloatingProps } =
+      useBottomSheet();
     const sheetRef = useRef<HTMLDivElement>(null);
     const ref = useMergeRefs([setFloating, propRef, sheetRef]);
     const [snap, setSnap] = useState(defaultSnap);
     const [drag, setDrag] = useState<DragState | null>(null);
-    if (!open) return null;
+    // 닫힐 때도 슬라이드 다운이 끝날 때까지 마운트 유지
+    const { isMounted, status } = useTransitionStatus(context, {
+      duration: 250,
+    });
+    if (!isMounted) return null;
 
     // 위로 끌면 높이를 키우고, 아래로 끌면 시트를 내린다
     let dragStyle: React.CSSProperties = {};
@@ -213,11 +212,16 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
 
     return (
       <FloatingPortal>
-        <FloatingOverlay className={styles.overlay} lockScroll>
+        <FloatingOverlay
+          className={styles.overlay}
+          data-status={status}
+          lockScroll
+        >
           <FloatingFocusManager context={context}>
             <div
               ref={ref}
               className={[styles.sheet, className].filter(Boolean).join(" ")}
+              data-status={status}
               data-dragging={drag ? "" : undefined}
               style={{ width, height: snapPoints?.[snap], ...dragStyle, ...style }}
               {...getFloatingProps(rest)}
