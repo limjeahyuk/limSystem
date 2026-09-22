@@ -8,11 +8,10 @@ const Heading = ({
   as: Tag = "h1",
   size = "6",
   weight = "400",
-  trim = "normal",
   children,
   ...rest
 }: HeadingProps) => (
-  <Tag {...toTextAttrs({ size, weight, trim, ...rest })}>{children}</Tag>
+  <Tag {...toTextAttrs({ size, weight, ...rest })}>{children}</Tag>
 );
 
 export default Heading;

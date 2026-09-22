@@ -60,7 +60,7 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 
 | 컴포넌트  | 설명                                                                                              |
 | --------- | ------------------------------------------------------------------------------------------------- |
-| `Text`    | 본문. `as(span/div/label/p)`, `size("1"~"9")`, `weight`, `color`, `truncate`, `lineClamp`, `trim` |
+| `Text`    | 본문. `as(span/div/label/p)`, `size("1"~"9")`, `weight`, `color`, `truncate`, `lineClamp` |
 | `Heading` | 제목(`h1`~`h6`). `Text`와 동일한 prop                                                             |
 
 ### 버튼 / 액션

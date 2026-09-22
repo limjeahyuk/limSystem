@@ -3,7 +3,6 @@ import styles from "./Text.module.css";
 export type TextSize = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 export type TextWeight = "300" | "400" | "500" | "600" | "700";
 export type TextWrap = "wrap" | "nowrap" | "balance" | "pretty";
-export type TextTrim = "normal" | "start" | "end" | "both";
 
 export interface TextStyleProps {
   size?: TextSize;
@@ -16,7 +15,6 @@ export interface TextStyleProps {
   lineClamp?: number;
   align?: React.CSSProperties["textAlign"];
   wrap?: TextWrap;
-  trim?: TextTrim;
   truncate?: boolean;
 }
 
@@ -35,12 +33,10 @@ export const toTextAttrs = ({
   lineClamp,
   align,
   wrap,
-  trim,
   truncate,
 }: Omit<TextStyleProps, "children">) => ({
   className: [styles.text, className].filter(Boolean).join(" "),
   "data-size": size,
-  "data-trim": trim !== "normal" ? trim : undefined,
   "data-truncate": truncate || undefined,
   "data-clamp": lineClamp || undefined,
   style: {
@@ -58,11 +54,10 @@ const Text = ({
   as: Tag = "span",
   size = "2",
   weight = "400",
-  trim = "normal",
   children,
   ...rest
 }: TextProps) => (
-  <Tag {...toTextAttrs({ size, weight, trim, ...rest })}>{children}</Tag>
+  <Tag {...toTextAttrs({ size, weight, ...rest })}>{children}</Tag>
 );
 
 export default Text;

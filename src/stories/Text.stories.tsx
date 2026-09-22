@@ -21,7 +21,6 @@ const meta = {
       control: "radio",
       options: ["wrap", "nowrap", "balance", "pretty"],
     },
-    trim: { control: "radio", options: ["normal", "start", "end", "both"] },
     color: { control: "color" },
   },
 } satisfies Meta<typeof Text>;

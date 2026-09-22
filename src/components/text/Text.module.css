@@ -64,19 +64,3 @@
   text-overflow: ellipsis;
   word-break: keep-all;
 }
-
-.text[data-trim="start"]::before,
-.text[data-trim="end"]::after,
-.text[data-trim="both"]::before,
-.text[data-trim="both"]::after {
-  content: "";
-  display: table;
-}
-.text[data-trim="start"]::before,
-.text[data-trim="both"]::before {
-  margin-bottom: -0.25em;
-}
-.text[data-trim="end"]::after,
-.text[data-trim="both"]::after {
-  margin-top: -0.25em;
-}

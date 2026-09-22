@@ -45,7 +45,7 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       {...rest}
     >
       {renderIcon(startIcon)}
-      <Text weight="500" trim="end" size={size}>
+      <Text weight="500" size={size} style={{ lineHeight: 1 }}>
         {children}
       </Text>
       {renderIcon(endIcon)}

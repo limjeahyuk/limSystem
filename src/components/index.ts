@@ -136,7 +136,6 @@ export type { HeadingProps } from "./text/Heading";
 export type {
   TextProps,
   TextSize,
-  TextTrim,
   TextWeight,
   TextWrap,
 } from "./text/Text";
