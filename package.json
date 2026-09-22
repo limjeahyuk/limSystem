@@ -16,7 +16,8 @@
     "@wojtekmaj/react-daterange-picker": "^7.1.0",
     "react": "^19.2.5",
     "react-date-picker": "^12.1.0",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "react-time-picker": "^8.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -5,7 +5,7 @@ import { Text } from "../text";
 import styles from "./Badge.module.css";
 
 export type BadgeVariant = "solid" | "surface" | "outline";
-export type BadgeSize = "1" | "2" | "3";
+export type BadgeSize = "1" | "2" | "3" | "4";
 
 export interface BadgeProps extends Omit<
   React.HTMLAttributes<HTMLSpanElement>,
@@ -45,7 +45,7 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       {...rest}
     >
       {renderIcon(startIcon)}
-      <Text weight="500" trim="end">
+      <Text weight="500" trim="end" size={size}>
         {children}
       </Text>
       {renderIcon(endIcon)}

@@ -56,7 +56,11 @@ export const calendarDefaults = (locale: string) => ({
 
 export const PickerRoot = forwardRef<
   HTMLDivElement,
-  PickerBaseProps & { range?: boolean; children: React.ReactNode }
+  PickerBaseProps & {
+    range?: boolean;
+    time?: boolean;
+    children: React.ReactNode;
+  }
 >(
   (
     {
@@ -66,6 +70,7 @@ export const PickerRoot = forwardRef<
       readOnly,
       fullWidth,
       range,
+      time,
       className,
       children,
       ...rest
@@ -82,6 +87,7 @@ export const PickerRoot = forwardRef<
       data-readonly={readOnly || undefined}
       data-full-width={fullWidth || undefined}
       data-range={range || undefined}
+      data-time={time || undefined}
       {...rest}
     >
       {children}

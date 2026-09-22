@@ -3,23 +3,29 @@
   vertical-align: middle;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   white-space: nowrap;
 }
 
 .badge[data-size="1"] {
+  height: 16px;
+  padding: 0 4px;
+  font-size: var(--ls-font-size-1);
+  gap: var(--ls-space-1);
+}
+.badge[data-size="2"] {
   height: 20px;
   padding: 0 6px;
   font-size: var(--ls-font-size-1);
   gap: var(--ls-space-1);
 }
-.badge[data-size="2"] {
+.badge[data-size="3"] {
   height: 24px;
   padding: 0 8px;
   font-size: var(--ls-font-size-2);
   gap: 6px;
 }
-.badge[data-size="3"] {
+.badge[data-size="4"] {
   height: 28px;
   padding: 0 10px;
   font-size: var(--ls-font-size-3);
@@ -45,10 +51,14 @@
   flex-shrink: 0;
 }
 .badge[data-size="1"] svg {
+  width: 8px;
+  height: 8px;
+}
+.badge[data-size="2"] svg {
   width: 12px;
   height: 12px;
 }
-.badge[data-size="2"] svg {
+.badge[data-size="3"] svg {
   width: 14px;
   height: 14px;
 }

@@ -23,7 +23,7 @@ export type {
   CheckboxVariant,
 } from "./checkbox/Checkbox";
 export type { CheckboxOption } from "./checkbox/CheckboxGroup";
-export { DatePicker, DateRangePicker } from "./date-picker";
+export { DatePicker, DateRangePicker, TimePicker } from "./date-picker";
 export type {
   DatePickerProps,
   DatePickerSize,
@@ -33,6 +33,7 @@ export type {
   DateRange,
   DateRangePickerProps,
 } from "./date-picker/DateRangePicker";
+export type { TimePickerProps } from "./date-picker/TimePicker";
 export {
   DataList,
   DataListItem,
