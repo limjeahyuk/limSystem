@@ -1,5 +1,7 @@
 .button {
   display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
   align-items: center;
   justify-content: center;
   cursor: pointer;

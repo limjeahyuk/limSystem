@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Text, Box, Flex, Grid } from "src/components";
+import { Text, Box, Flex, Grid, Button, Badge, Switch, TextInput } from "src/components";
 import { Color } from "util/theme";
 
 const Cell = ({ children }: { children: React.ReactNode }) => (
@@ -52,5 +52,30 @@ export const GridStory: Story = {
         <Cell key={i}>{i + 1}</Cell>
       ))}
     </Grid>
+  ),
+};
+
+// 좁은 컨테이너: 리프 컨트롤은 크기를 유지하고 넘치며, 필드(TextInput)만 줄어든다
+export const NarrowContainer: Story = {
+  name: "Narrow container",
+  render: () => (
+    <Flex gap={16}>
+      <Text size="2">width 240px / overflow hidden</Text>
+      <Flex row gap={8} align="center" p={10} bg={Color.BG_MUTED} width={240} style={{ overflow: "hidden" }}>
+        <Button>확인</Button>
+        <Button variant="outline">취소하기</Button>
+        <Badge>NEW</Badge>
+        <Switch />
+        <TextInput placeholder="줄어드는 필드" />
+      </Flex>
+      <Text size="2">wrap</Text>
+      <Flex row wrap="wrap" gap={8} align="center" p={10} bg={Color.BG_MUTED} width={240}>
+        <Button>확인</Button>
+        <Button variant="outline">취소하기</Button>
+        <Badge>NEW</Badge>
+        <Switch />
+        <TextInput placeholder="줄어드는 필드" />
+      </Flex>
+    </Flex>
   ),
 };

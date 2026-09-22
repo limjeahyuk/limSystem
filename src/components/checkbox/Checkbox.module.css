@@ -1,5 +1,7 @@
 .label {
   display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
   align-items: center;
   gap: var(--ls-space-2);
   cursor: pointer;

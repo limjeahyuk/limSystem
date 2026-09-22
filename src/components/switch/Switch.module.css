@@ -1,5 +1,7 @@
 .label {
   display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
   align-items: center;
   cursor: pointer;
   position: relative;
@@ -17,6 +19,7 @@
 
 .track {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   background-color: var(--ls-border-strong);
   border-radius: var(--ls-radius-full);

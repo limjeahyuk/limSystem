@@ -33,6 +33,7 @@
 - CSS Modules(`Foo.module.css`)만 사용한다. Emotion / Tailwind / 인라인 hex 금지.
 - 유한한 선택지(`size`, `variant`, `color`)는 `data-*` 속성 + `.foo[data-size="2"]` 선택자. 임의 값(`width`, `height`)은 인라인 `style`. 파생/전파가 필요한 값은 인라인 CSS 변수(`--size`).
 - 컴포넌트 CSS의 색은 `var(--ls-accent-*)`와 semantic 변수만 참조한다.
+- 크기 정책: 리프 컨트롤(Button, Badge, Checkbox, Radio, Switch, Avatar, Icon, Spinner, SegmentedControl, Tab)은 `flex-shrink: 0` + `white-space: nowrap`로 자기 크기를 유지한다. 좁으면 찌그러지지 않고 넘친다. 필드(TextInput, Select, DatePicker 계열)는 `width: 100%` + `min-width: 0`으로 부모 폭에 맞춰 줄어든다. 넘침 처리는 컴포넌트가 아니라 레이아웃 몫이다(`Flex wrap`, `ScrollBox`, 세로 스택).
 
 ## 아이콘
 
