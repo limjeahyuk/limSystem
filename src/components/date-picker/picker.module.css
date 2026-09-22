@@ -1,18 +1,25 @@
-/* DatePicker / DateRangePicker 공용. 라이브러리 DOM은 :global로 스타일링하고 세 prefix(date / daterange / time)를 :is로 묶는다 */
+/* DatePicker / DateRangePicker 공용. 라이브러리 DOM은 :global로 스타일링하고 네 prefix(date / daterange / time / datetime)를 :is로 묶는다 */
 .root {
   display: inline-block;
   width: 200px;
   font-size: var(--ls-font-size-2);
   color: var(--ls-text-primary);
 }
-.root[data-range] {
+.root[data-kind="range"] {
   width: 300px;
 }
-.root[data-time] {
+.root[data-kind="time"],
+.root[data-kind="datetime"] {
   position: relative;
+}
+.root[data-kind="time"] {
   width: 120px;
 }
-.root[data-time] :global(.react-time-picker__wrapper) {
+.root[data-kind="datetime"] {
+  width: 240px;
+}
+.root[data-kind="time"] :global(.react-time-picker__wrapper),
+.root[data-kind="datetime"] :global(.react-datetime-picker__wrapper) {
   padding-right: 30px;
 }
 .root[data-full-width] {
@@ -20,7 +27,12 @@
 }
 .root
   :global(
-    :is(.react-date-picker, .react-daterange-picker, .react-time-picker)
+    :is(
+      .react-date-picker,
+      .react-daterange-picker,
+      .react-time-picker,
+      .react-datetime-picker
+    )
   ) {
   display: flex;
   position: relative;
@@ -31,7 +43,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   display: flex;
@@ -49,7 +62,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   height: 32px;
@@ -60,7 +74,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   height: 40px;
@@ -71,7 +86,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   border-width: 0 0 1px;
@@ -83,7 +99,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   border-color: transparent;
@@ -94,7 +111,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ):hover {
   border-color: var(--ls-border-strong);
@@ -104,7 +122,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ):focus-within,
 .root
@@ -112,12 +131,14 @@
     :is(
         .react-date-picker--open,
         .react-daterange-picker--open,
-        .react-time-picker--open
+        .react-time-picker--open,
+        .react-datetime-picker--open
       )
       :is(
         .react-date-picker__wrapper,
         .react-daterange-picker__wrapper,
-        .react-time-picker__wrapper
+        .react-time-picker__wrapper,
+        .react-datetime-picker__wrapper
       )
   ) {
   border-color: var(--ls-border-focus);
@@ -127,7 +148,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ),
 .root[aria-invalid="true"]
@@ -135,7 +157,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   border-color: var(--ls-accent-500);
@@ -145,12 +168,14 @@
     :is(
         .react-date-picker--disabled,
         .react-daterange-picker--disabled,
-        .react-time-picker--disabled
+        .react-time-picker--disabled,
+        .react-datetime-picker--disabled
       )
       :is(
         .react-date-picker__wrapper,
         .react-daterange-picker__wrapper,
-        .react-time-picker__wrapper
+        .react-time-picker__wrapper,
+        .react-datetime-picker__wrapper
       )
   ) {
   background: var(--ls-bg-disabled);
@@ -163,7 +188,8 @@
     :is(
       .react-date-picker__wrapper,
       .react-daterange-picker__wrapper,
-      .react-time-picker__wrapper
+      .react-time-picker__wrapper,
+      .react-datetime-picker__wrapper
     )
   ) {
   color: var(--ls-text-primary);
@@ -175,7 +201,8 @@
     :is(
       .react-date-picker__inputGroup,
       .react-daterange-picker__inputGroup,
-      .react-time-picker__inputGroup
+      .react-time-picker__inputGroup,
+      .react-datetime-picker__inputGroup
     )
   ) {
   flex: 1;
@@ -189,7 +216,8 @@
     :is(
       .react-date-picker__inputGroup__input,
       .react-daterange-picker__inputGroup__input,
-      .react-time-picker__inputGroup__input
+      .react-time-picker__inputGroup__input,
+      .react-datetime-picker__inputGroup__input
     )
   ) {
   min-width: 0.6em;
@@ -207,7 +235,8 @@
     :is(
       .react-date-picker__inputGroup__input,
       .react-daterange-picker__inputGroup__input,
-      .react-time-picker__inputGroup__input
+      .react-time-picker__inputGroup__input,
+      .react-datetime-picker__inputGroup__input
     )::-webkit-outer-spin-button
   ),
 .root
@@ -215,7 +244,8 @@
     :is(
       .react-date-picker__inputGroup__input,
       .react-daterange-picker__inputGroup__input,
-      .react-time-picker__inputGroup__input
+      .react-time-picker__inputGroup__input,
+      .react-datetime-picker__inputGroup__input
     )::-webkit-inner-spin-button
   ) {
   appearance: none;
@@ -226,7 +256,8 @@
     :is(
       .react-date-picker__inputGroup__input,
       .react-daterange-picker__inputGroup__input,
-      .react-time-picker__inputGroup__input
+      .react-time-picker__inputGroup__input,
+      .react-datetime-picker__inputGroup__input
     )::placeholder
   ) {
   color: var(--ls-text-placeholder);
@@ -236,7 +267,8 @@
     :is(
       .react-date-picker__inputGroup__input--hasLeadingZero,
       .react-daterange-picker__inputGroup__input--hasLeadingZero,
-      .react-time-picker__inputGroup__input--hasLeadingZero
+      .react-time-picker__inputGroup__input--hasLeadingZero,
+      .react-datetime-picker__inputGroup__input--hasLeadingZero
     )
   ) {
   margin-left: -0.6em;
@@ -247,7 +279,8 @@
     :is(
       .react-date-picker__inputGroup__divider,
       .react-daterange-picker__inputGroup__divider,
-      .react-time-picker__inputGroup__divider
+      .react-time-picker__inputGroup__divider,
+      .react-datetime-picker__inputGroup__divider
     )
   ),
 .root
@@ -255,18 +288,21 @@
     :is(
       .react-date-picker__inputGroup__leadingZero,
       .react-daterange-picker__inputGroup__leadingZero,
-      .react-time-picker__inputGroup__leadingZero
+      .react-time-picker__inputGroup__leadingZero,
+      .react-datetime-picker__inputGroup__leadingZero
     )
   ) {
   display: inline-block;
   font: inherit;
+  white-space: pre;
 }
 .root
   :global(
     :is(
       .react-date-picker__button,
       .react-daterange-picker__button,
-      .react-time-picker__button
+      .react-time-picker__button,
+      .react-datetime-picker__button
     )
   ) {
   display: flex;
@@ -282,7 +318,8 @@
     :is(
         .react-date-picker__button,
         .react-daterange-picker__button,
-        .react-time-picker__button
+        .react-time-picker__button,
+        .react-datetime-picker__button
       ):enabled:hover
   ) {
   color: var(--ls-text-primary);
@@ -292,7 +329,8 @@
     :is(
       .react-date-picker__button,
       .react-daterange-picker__button,
-      .react-time-picker__button
+      .react-time-picker__button,
+      .react-datetime-picker__button
     ):disabled
   ) {
   color: var(--ls-text-disabled);
@@ -305,7 +343,8 @@
     :is(
       .react-date-picker__calendar,
       .react-daterange-picker__calendar,
-      .react-time-picker__calendar
+      .react-time-picker__calendar,
+      .react-datetime-picker__calendar
     )
   ) {
   width: 280px;
@@ -318,13 +357,18 @@
     :is(
       .react-date-picker__calendar--closed,
       .react-daterange-picker__calendar--closed,
-      .react-time-picker__calendar--closed
+      .react-time-picker__calendar--closed,
+      .react-datetime-picker__calendar--closed
     )
   ) {
   display: none;
 }
-.root[data-range]
-  :global(.react-daterange-picker__calendar, .react-time-picker__calendar) {
+.root[data-kind="range"]
+  :global(
+    .react-daterange-picker__calendar,
+    .react-time-picker__calendar,
+    .react-datetime-picker__calendar
+  ) {
   width: 560px;
 }
 .root :global(.react-calendar--doubleView .react-calendar__viewContainer) {
@@ -443,7 +487,13 @@
   color: var(--ls-text-inverse);
 }
 
-.root :global(.react-time-picker__inputGroup__amPm) {
+.root
+  :global(
+    :is(
+      .react-time-picker__inputGroup__amPm,
+      .react-datetime-picker__inputGroup__amPm
+    )
+  ) {
   border: 0;
   background: none;
   font: inherit;
@@ -453,8 +503,8 @@
   padding: 0 2px;
 }
 
-/* TimePicker: 필드 안 시계 버튼과 시/분/오전오후 열 팝업 */
-.timeButton {
+/* TimePicker / DateTimePicker: 필드 안 버튼과 직접 그리는 팝업 */
+.pickerButton {
   position: absolute;
   top: 50%;
   right: 4px;
@@ -466,14 +516,14 @@
   color: var(--ls-text-tertiary);
   cursor: pointer;
 }
-.timeButton:enabled:hover {
+.pickerButton:enabled:hover {
   color: var(--ls-text-primary);
 }
-.timeButton:disabled {
+.pickerButton:disabled {
   color: var(--ls-text-disabled);
   cursor: not-allowed;
 }
-.timePopover {
+.popover {
   display: flex;
   gap: var(--ls-space-1);
   padding: var(--ls-space-1);
@@ -488,9 +538,21 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  height: 200px;
+  min-height: 0;
   overflow-y: auto;
   scrollbar-width: none;
+}
+.popover[data-kind="time"] .timeColumn {
+  height: 200px;
+}
+/* ponytail: 달력(6주) 높이에 맞춘 고정값. 달력 크기를 바꾸면 같이 조정 */
+.popover[data-kind="datetime"] .timeColumn {
+  height: 300px;
+}
+.popover[data-kind="datetime"] :global(.react-calendar) {
+  width: 280px;
+  border: 0;
+  box-shadow: none;
 }
 .timeColumn::-webkit-scrollbar {
   display: none;

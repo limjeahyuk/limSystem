@@ -103,6 +103,7 @@ npm run generate:icons   # src/assets/icons/*.svg → src/components/icon/icon-d
 | `DatePicker`       | 날짜 입력(`react-date-picker` 래퍼). `value: Date \| null`, `onChange(date)`, `size`, `variant(outline/underline/bubble)`, `format`, `locale`, `minDate/maxDate`, `error`, `readOnly`, `disabled`, `fullWidth`, `pickerProps`                                                               |
 | `DateRangePicker`  | 기간 입력(`@wojtekmaj/react-daterange-picker` 래퍼). `value: [Date \| null, Date \| null] \| null`, `onChange(range)`, `showDoubleView`(기본 두 달), 나머지 prop은 `DatePicker`와 동일                                                                                                      |
 | `TimePicker`       | 시간 입력(`react-time-picker` 필드 + 시/분/오전오후 열 팝업). `value: "HH:mm" \| null`, `onChange(value)`, `format`(`"HH:mm"`, `"hh:mm a"` …), `minuteStep`, 나머지 prop은 `DatePicker`와 동일                                                                                              |
+| `DateTimePicker`   | 일시 입력(`react-datetime-picker` 필드 + 달력·시간 열 팝업). `value: Date \| null`, `onChange(date)`, `format`(기본 `"y-MM-dd HH:mm"`), `minuteStep`, `minDate/maxDate`, 나머지 prop은 `DatePicker`와 동일                                                                                  |
 
 ### 오버레이
 

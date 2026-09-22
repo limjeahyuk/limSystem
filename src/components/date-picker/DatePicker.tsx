@@ -57,8 +57,7 @@ export const calendarDefaults = (locale: string) => ({
 export const PickerRoot = forwardRef<
   HTMLDivElement,
   PickerBaseProps & {
-    range?: boolean;
-    time?: boolean;
+    kind?: "range" | "time" | "datetime";
     children: React.ReactNode;
   }
 >(
@@ -69,8 +68,7 @@ export const PickerRoot = forwardRef<
       error,
       readOnly,
       fullWidth,
-      range,
-      time,
+      kind,
       className,
       children,
       ...rest
@@ -86,8 +84,7 @@ export const PickerRoot = forwardRef<
       data-color={error ? "RED" : undefined}
       data-readonly={readOnly || undefined}
       data-full-width={fullWidth || undefined}
-      data-range={range || undefined}
-      data-time={time || undefined}
+      data-kind={kind}
       {...rest}
     >
       {children}

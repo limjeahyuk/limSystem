@@ -46,7 +46,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
     },
     ref,
   ) => (
-    <PickerRoot ref={ref} range {...rest}>
+    <PickerRoot ref={ref} kind="range" {...rest}>
       <ReactDateRangePicker
         value={value && [value[0], endOfDay(value[1])]}
         onChange={(v) => onChange?.(Array.isArray(v) ? v : null)}

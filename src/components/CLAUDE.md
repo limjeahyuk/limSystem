@@ -10,7 +10,7 @@
 - 컴포넌트/타입/훅은 전부 `src/components/index.ts`에서 가져온다. 개별 파일 경로 import 금지.
 - 소스에 번들러 전용 기능(`next/*`, `import.meta.env`, `?raw`)을 넣지 않는다. Vite / Next 어디서든 동작해야 한다.
 - 훅, 상태, floating-ui를 쓰는 파일은 첫 줄에 `"use client"`를 둔다.
-- 외부 의존성: `@floating-ui/react`, `react-date-picker`(`DatePicker`), `@wojtekmaj/react-daterange-picker`(`DateRangePicker`), `react-time-picker`(`TimePicker`). 복사해 오는 프로젝트에도 설치한다.
+- 외부 의존성: `@floating-ui/react`, `react-date-picker`(`DatePicker`), `@wojtekmaj/react-daterange-picker`(`DateRangePicker`), `react-time-picker`(`TimePicker`), `react-datetime-picker`(`DateTimePicker`). 복사해 오는 프로젝트에도 설치한다.
 
 ## 토큰 (`src/util/`)
 
