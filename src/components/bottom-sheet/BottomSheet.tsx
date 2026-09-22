@@ -142,11 +142,21 @@ export interface BottomSheetContentProps extends React.HTMLAttributes<HTMLDivEle
   /* 핸들을 끌어 멈출 높이 목록("40%", "90vh", 320). 생략하면 내용 높이 하나 */
   snapPoints?: (string | number)[];
   defaultSnap?: number;
+  /* 시트 너비. 숫자는 px */
+  width?: string | number;
 }
 
 const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
   (
-    { children, className, style, snapPoints, defaultSnap = 0, ...rest },
+    {
+      children,
+      className,
+      style,
+      snapPoints,
+      defaultSnap = 0,
+      width = "100%",
+      ...rest
+    },
     propRef,
   ) => {
     const {
@@ -184,18 +194,21 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
     const onPointerMove = (e: React.PointerEvent) => {
       if (drag) setDrag({ ...drag, dy: e.clientY - drag.startY });
     };
-    // 놓은 시점의 높이에 가장 가까운 snap으로 이동. dismissible이면 0(닫힘)도 후보
+    // 높이의 1/4 이상 아래로 끌면 닫고, 아니면 가장 가까운 snap으로 이동
     const onPointerUp = () => {
       if (!drag) return;
+      setDrag(null);
+      if (dismissible && drag.dy > drag.startH / 4) {
+        setOpen(false);
+        return;
+      }
+      if (!snapPoints) return;
       const h = drag.startH - drag.dy;
-      const candidates = (snapPoints ?? [drag.startH]).map(toPx);
-      if (dismissible) candidates.push(0);
+      const candidates = snapPoints.map(toPx);
       const nearest = candidates.reduce((a, b) =>
         Math.abs(b - h) < Math.abs(a - h) ? b : a,
       );
-      setDrag(null);
-      if (nearest === 0) setOpen(false);
-      else if (snapPoints) setSnap(candidates.indexOf(nearest));
+      setSnap(candidates.indexOf(nearest));
     };
 
     return (
@@ -206,7 +219,7 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
               ref={ref}
               className={[styles.sheet, className].filter(Boolean).join(" ")}
               data-dragging={drag ? "" : undefined}
-              style={{ height: snapPoints?.[snap], ...dragStyle, ...style }}
+              style={{ width, height: snapPoints?.[snap], ...dragStyle, ...style }}
               {...getFloatingProps(rest)}
             >
               <div
