@@ -8,6 +8,9 @@
   background-color: var(--ls-overlay-dim);
   transition: opacity 0.25s ease-out;
 }
+.overlay[data-dragging] {
+  transition: none;
+}
 /* open이 아닌 모든 상태(unmounted/initial/close)를 숨김으로 두어 첫 렌더 깜박임 방지 */
 .overlay:not([data-status="open"]) {
   opacity: 0;

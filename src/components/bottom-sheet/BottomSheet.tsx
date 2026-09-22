@@ -174,7 +174,11 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
 
     // 위로 끌면 높이를 키우고, 아래로 끌면 시트를 내린다
     let dragStyle: React.CSSProperties = {};
+    // 아래로 끌수록 오버레이를 옅게 한다
+    let overlayStyle: React.CSSProperties | undefined;
     if (drag) {
+      if (drag.dy > 0)
+        overlayStyle = { opacity: 1 - Math.min(drag.dy / drag.startH, 1) };
       const maxH = snapPoints ? Math.max(...snapPoints.map(toPx)) : drag.startH;
       dragStyle =
         drag.dy < 0
@@ -194,15 +198,17 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
       if (drag) setDrag({ ...drag, dy: e.clientY - drag.startY });
     };
     // 높이의 1/4 이상 아래로 끌면 닫고, 아니면 가장 가까운 snap으로 이동
-    const onPointerUp = () => {
+    // dy는 state 대신 이벤트에서 다시 계산한다(move 직후 up이 오면 state가 아직 이전 값)
+    const onPointerUp = (e: React.PointerEvent) => {
       if (!drag) return;
+      const dy = e.clientY - drag.startY;
       setDrag(null);
-      if (dismissible && drag.dy > drag.startH / 4) {
+      if (dismissible && dy > drag.startH / 4) {
         setOpen(false);
         return;
       }
       if (!snapPoints) return;
-      const h = drag.startH - drag.dy;
+      const h = drag.startH - dy;
       const candidates = snapPoints.map(toPx);
       const nearest = candidates.reduce((a, b) =>
         Math.abs(b - h) < Math.abs(a - h) ? b : a,
@@ -215,6 +221,8 @@ const Content = React.forwardRef<HTMLDivElement, BottomSheetContentProps>(
         <FloatingOverlay
           className={styles.overlay}
           data-status={status}
+          data-dragging={drag ? "" : undefined}
+          style={overlayStyle}
           lockScroll
         >
           <FloatingFocusManager context={context}>
