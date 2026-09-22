@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
+    "@wojtekmaj/react-daterange-picker": "^7.1.0",
     "react": "^19.2.5",
     "react-date-picker": "^12.1.0",
     "react-dom": "^19.2.5"

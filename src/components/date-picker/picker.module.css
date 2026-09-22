@@ -1,19 +1,23 @@
-/* 라이브러리 DOM(react-date-picker / react-calendar)은 :global로 스타일링 */
+/* DatePicker / DateRangePicker 공용. 라이브러리 DOM은 :global로 스타일링하고 두 prefix를 :is로 묶는다 */
 .root {
   display: inline-block;
   width: 200px;
   font-size: var(--ls-font-size-2);
   color: var(--ls-text-primary);
 }
+.root[data-range] {
+  width: 300px;
+}
 .root[data-full-width] {
   width: 100%;
 }
-.root :global(.react-date-picker) {
+.root :global(:is(.react-date-picker, .react-daterange-picker)) {
   display: flex;
   position: relative;
   width: 100%;
 }
-.root :global(.react-date-picker__wrapper) {
+.root
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   display: flex;
   align-items: center;
   flex: 1;
@@ -24,53 +28,83 @@
   background: var(--ls-bg-surface);
   transition: border-color 0.15s ease;
 }
-.root[data-size="1"] :global(.react-date-picker__wrapper) {
+.root[data-size="1"]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   height: 32px;
   font-size: var(--ls-font-size-1);
 }
-.root[data-size="3"] :global(.react-date-picker__wrapper) {
+.root[data-size="3"]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   height: 40px;
   font-size: var(--ls-font-size-3);
 }
-.root[data-variant="underline"] :global(.react-date-picker__wrapper) {
+.root[data-variant="underline"]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   border-width: 0 0 1px;
   border-radius: 0;
   padding-left: 0;
 }
-.root[data-variant="bubble"] :global(.react-date-picker__wrapper) {
+.root[data-variant="bubble"]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   border-color: transparent;
   background: var(--ls-bg-muted);
 }
-.root :global(.react-date-picker__wrapper):hover {
+.root
+  :global(
+    :is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)
+  ):hover {
   border-color: var(--ls-border-strong);
 }
-.root :global(.react-date-picker__wrapper):focus-within,
-.root :global(.react-date-picker--open .react-date-picker__wrapper) {
+.root
+  :global(
+    :is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)
+  ):focus-within,
+.root
+  :global(
+    :is(.react-date-picker--open, .react-daterange-picker--open)
+      :is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)
+  ) {
   border-color: var(--ls-border-focus);
 }
-.root[data-error] :global(.react-date-picker__wrapper),
-.root[aria-invalid="true"] :global(.react-date-picker__wrapper) {
+.root[data-error]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)),
+.root[aria-invalid="true"]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   border-color: var(--ls-accent-500);
 }
-.root :global(.react-date-picker--disabled .react-date-picker__wrapper) {
+.root
+  :global(
+    :is(.react-date-picker--disabled, .react-daterange-picker--disabled)
+      :is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)
+  ) {
   background: var(--ls-bg-disabled);
   color: var(--ls-text-disabled);
   border-color: var(--ls-border-default);
   cursor: not-allowed;
 }
-.root[data-readonly] :global(.react-date-picker__wrapper) {
+.root[data-readonly]
+  :global(:is(.react-date-picker__wrapper, .react-daterange-picker__wrapper)) {
   color: var(--ls-text-primary);
 }
 
 /* 입력 그룹 */
-.root :global(.react-date-picker__inputGroup) {
+.root
+  :global(
+    :is(.react-date-picker__inputGroup, .react-daterange-picker__inputGroup)
+  ) {
   flex: 1;
   min-width: 0;
   display: flex;
   align-items: center;
   white-space: nowrap;
 }
-.root :global(.react-date-picker__inputGroup__input) {
+.root
+  :global(
+    :is(
+      .react-date-picker__inputGroup__input,
+      .react-daterange-picker__inputGroup__input
+    )
+  ) {
   min-width: 0.6em;
   padding: 0 1px;
   border: 0;
@@ -81,25 +115,61 @@
   appearance: textfield;
   -moz-appearance: textfield;
 }
-.root :global(.react-date-picker__inputGroup__input::-webkit-outer-spin-button),
 .root
-  :global(.react-date-picker__inputGroup__input::-webkit-inner-spin-button) {
+  :global(
+    :is(
+      .react-date-picker__inputGroup__input,
+      .react-daterange-picker__inputGroup__input
+    )::-webkit-outer-spin-button
+  ),
+.root
+  :global(
+    :is(
+      .react-date-picker__inputGroup__input,
+      .react-daterange-picker__inputGroup__input
+    )::-webkit-inner-spin-button
+  ) {
   appearance: none;
   margin: 0;
 }
-.root :global(.react-date-picker__inputGroup__input::placeholder) {
+.root
+  :global(
+    :is(
+      .react-date-picker__inputGroup__input,
+      .react-daterange-picker__inputGroup__input
+    )::placeholder
+  ) {
   color: var(--ls-text-placeholder);
 }
-.root :global(.react-date-picker__inputGroup__input--hasLeadingZero) {
+.root
+  :global(
+    :is(
+      .react-date-picker__inputGroup__input--hasLeadingZero,
+      .react-daterange-picker__inputGroup__input--hasLeadingZero
+    )
+  ) {
   margin-left: -0.6em;
   padding-left: calc(1px + 0.6em);
 }
-.root :global(.react-date-picker__inputGroup__divider),
-.root :global(.react-date-picker__inputGroup__leadingZero) {
+.root
+  :global(
+    :is(
+      .react-date-picker__inputGroup__divider,
+      .react-daterange-picker__inputGroup__divider
+    )
+  ),
+.root
+  :global(
+    :is(
+      .react-date-picker__inputGroup__leadingZero,
+      .react-daterange-picker__inputGroup__leadingZero
+    )
+  ) {
   display: inline-block;
   font: inherit;
 }
-.root :global(.react-date-picker__button) {
+.root
+  :global(:is(.react-date-picker__button, .react-daterange-picker__button)) {
   display: flex;
   align-items: center;
   padding: 4px;
@@ -108,23 +178,52 @@
   color: var(--ls-text-tertiary);
   cursor: pointer;
 }
-.root :global(.react-date-picker__button:enabled:hover) {
+.root
+  :global(
+    :is(
+        .react-date-picker__button,
+        .react-daterange-picker__button
+      ):enabled:hover
+  ) {
   color: var(--ls-text-primary);
 }
-.root :global(.react-date-picker__button:disabled) {
+.root
+  :global(
+    :is(.react-date-picker__button, .react-daterange-picker__button):disabled
+  ) {
   color: var(--ls-text-disabled);
   cursor: not-allowed;
 }
 
 /* 팝업 달력 */
-.root :global(.react-date-picker__calendar) {
+.root
+  :global(
+    :is(.react-date-picker__calendar, .react-daterange-picker__calendar)
+  ) {
   width: 280px;
   max-width: 100vw;
   z-index: 10;
   padding-top: 4px;
 }
-.root :global(.react-date-picker__calendar--closed) {
+.root
+  :global(
+    :is(
+      .react-date-picker__calendar--closed,
+      .react-daterange-picker__calendar--closed
+    )
+  ) {
   display: none;
+}
+.root[data-range] :global(.react-daterange-picker__calendar) {
+  width: 560px;
+}
+.root :global(.react-calendar--doubleView .react-calendar__viewContainer) {
+  display: flex;
+  gap: var(--ls-space-4);
+}
+.root :global(.react-calendar--doubleView .react-calendar__viewContainer > *) {
+  flex: 1;
+  min-width: 0;
 }
 .root :global(.react-calendar) {
   padding: var(--ls-space-3);
@@ -219,10 +318,17 @@
   background: var(--ls-accent-100);
   color: var(--ls-accent-600);
 }
+/* 기간 안쪽은 연하게, 시작/끝(단일 선택 포함)은 진하게 */
 .root :global(.react-calendar__tile--active),
+.root :global(.react-calendar--selectRange .react-calendar__tile--hover) {
+  background: var(--ls-accent-100);
+  color: var(--ls-accent-700);
+  box-shadow: none;
+}
+.root :global(.react-calendar__tile--rangeStart),
+.root :global(.react-calendar__tile--rangeEnd),
 .root :global(.react-calendar__tile--active:enabled:hover),
 .root :global(.react-calendar__tile--active:enabled:focus-visible) {
   background: var(--ls-accent-600);
   color: var(--ls-text-inverse);
-  box-shadow: none;
 }
