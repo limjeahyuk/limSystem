@@ -176,6 +176,7 @@ const Body = ({
   height = "200px",
 }: {
   children: React.ReactNode;
+  /** 내용이 짧아도 기본 200px를 차지한다. 내용에 맞추려면 "auto" */
   height?: string;
 }) => (
   <Box p={24} pr={0}>

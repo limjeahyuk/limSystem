@@ -49,7 +49,7 @@ export interface BottomSheetProps {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  /* false면 바깥 클릭 / ESC로 닫히지 않는다. 약관 동의처럼 응답이 필수인 경우 */
+  /** false면 바깥 클릭 / ESC / 핸들 드래그로 닫히지 않는다. 약관 동의처럼 응답이 필수인 경우 */
   dismissible?: boolean;
 }
 
@@ -140,10 +140,11 @@ interface DragState {
 
 export interface BottomSheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  /* 핸들을 끌어 멈출 높이 목록("40%", "90vh", 320). 생략하면 내용 높이 하나 */
+  /** 핸들을 끌어 멈출 높이 목록("40%", "90vh", 320). %와 vh는 화면 높이 기준. 생략하면 내용 높이 하나 */
   snapPoints?: (string | number)[];
+  /** 시작할 snapPoints의 인덱스. 높이 값이 아니다 */
   defaultSnap?: number;
-  /* 시트 너비. 숫자는 px */
+  /** 시트 너비. 숫자는 px. 기본 "100%" */
   width?: string | number;
 }
 

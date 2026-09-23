@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useCallback, useEffect, useRef } from "react";
 import { ColorType } from "util/theme";
 import { Icon } from "../icon/Icon";

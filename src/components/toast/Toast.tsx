@@ -18,8 +18,9 @@ export interface ToastOptions {
   title: React.ReactNode;
   description?: React.ReactNode;
   color?: ColorType;
+  /** 생략하면 "circle-info". 아이콘을 없애려면 null을 명시한다 */
   icon?: IconSlot | null;
-  /* ms. 0이면 수동으로 닫을 때까지 유지 */
+  /** ms. 0이면 자동으로 닫히지 않으므로 toast()가 준 id로 dismiss(id)를 불러야 한다 */
   duration?: number;
 }
 

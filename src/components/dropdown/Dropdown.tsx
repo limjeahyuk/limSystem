@@ -130,6 +130,7 @@ const Trigger = ({ children }: { children: SlotChild }) => {
 };
 
 export interface DropdownContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** CSS 문자열만. 숫자는 받지 않는다("200px", not 200) */
   width?: string;
   height?: string;
   padding?: string;
@@ -189,11 +190,14 @@ export interface DropdownItemProps extends Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   "onClick"
 > {
+  /** 오른쪽에 체크 아이콘을 자동으로 붙인다. endIcon과 같이 주면 둘 다 나온다 */
   selected?: boolean;
+  /** ReactNode만. IconName 문자열은 글자로 찍힌다 — <Icon name="edit-pen" />로 넘긴다 */
   startIcon?: React.ReactNode;
+  /** ReactNode만. IconName 문자열은 글자로 찍힌다 */
   endIcon?: React.ReactNode;
   gap?: string;
-  /* 클릭 시 자동으로 닫는다. 메뉴를 열어둔 채 상태만 바꾸려면 false */
+  /** 클릭 시 자동으로 닫는다. 메뉴를 열어둔 채 상태만 바꾸려면 false */
   closeOnClick?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
